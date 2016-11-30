@@ -21,11 +21,12 @@ visualize.treemap <- function(viz){
   library(treemap)
   
   yrs_in_data <- sort(unique(wateruse_data$year))
-  lapply(yrs_in_data, function(y, wateruse_data){
+  lapply(yrs_in_data, function(y, wateruse_data, viz){
     wateruse_year <- wateruse_data %>% filter(year == y)
-    treemap(wateruse_year, index="category", vSize="value", type="index", title=y)
     filepath_year <- file.path(viz[['location']], paste0(y, '.png'))
     png(filename=filepath_year)
-  }, wateruse_data)
+    treemap(wateruse_year, index="category", vSize="value", type="index", title=y)
+    dev.off()
+  }, wateruse_data, viz)
 
 }
