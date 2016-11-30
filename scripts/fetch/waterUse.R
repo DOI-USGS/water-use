@@ -1,7 +1,6 @@
 fetch.waterUse <- function(viz){
   library(dataRetrieval)
   library(dplyr)
-  library(data.table)
   
   all.states <- data.frame()
   
