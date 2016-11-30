@@ -9,12 +9,14 @@ visualize.treemap <- function(viz){
   #### trying out different tree maps
   
   # library(portfolio)
-  # treemap_1985 <- map.market(id=1:nrow(wateruse_1985), 
-  #                            area=wateruse_1985$value, 
-  #                            group=wateruse_1985$category, 
-  #                            color=wateruse_1985$color, 
-  #                            main="Wateruse 1985")
-  
+  # lapply(yrs_in_data, function(y, wateruse_data){
+  #   wateruse_year <- wateruse_data %>% filter(year == y)
+  #   treemap_1985 <- map.market(id=1:nrow(wateruse_year), area=wateruse_year$value,
+  #                              group=wateruse_year$category, color=wateruse_year$color,
+  #                              main=paste("Wateruse", y))
+  #   filepath_year <- file.path(viz[['location']], paste0(y, '.png'))
+  #   png(filename=filepath_year)
+  # }, wateruse_data)
   
   library(treemap)
   
