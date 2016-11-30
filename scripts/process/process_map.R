@@ -12,8 +12,10 @@ to_sp <- function(...){
   return(map.sp.t)
 }
 
-# create the sp object 
-process.map_states <- function(){
+#' create the sp object 
+#'
+#'@param viz the vizlab object (currently ignored)
+process.map_states <- function(viz){
   library(sp)
   conus <- to_sp('state')
   HI <- to_sp("world", "USA:hawaii")
