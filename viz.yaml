@@ -31,6 +31,13 @@ fetch:
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
     refetch: FALSE
+  -
+    id: nationalUse-data
+    fetcher: nationalUse
+    location: cache/nationalUse.csv
+    mimetype: text/csv
+    scripts: scripts/fetch/nationalUse.R
+    refetch: FALSE
 process:
   -
     id: calc-waterData
