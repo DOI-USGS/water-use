@@ -27,6 +27,22 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    svglite:
+      repo: CRAN
+      version: 1.2.0
+    sp:
+      repo: CRAN
+      version: 1.2.3
+    xml2:
+      repo: CRAN
+      version: 1.0.0
+    maptools:
+      repo: CRAN
+      version: 0.8.40
+    maps:
+      repo: CRAN
+      version: 3.1.1
+    
 fetch:
   -
     id: waterUse-data
@@ -51,7 +67,23 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
+  -
+    id: state-map
+    location: cache/state-map.rds
+    processor: state_map
+    scripts: scripts/process/process_map.R
+    reader: rds
 visualize:
+  -
+    id: states-svg
+    location: figures/states_map.svg
+    visualizer: states_svg
+    depends: ["state-map"]
+    scripts: scripts/visualize/visualize_map.R
+    mimetype: image/svg+xml
+    inline: true
+    title: "Map of US state water use"
+    alttext: "Map of US state water use"
 publish:
   -
     id: water-use-page
