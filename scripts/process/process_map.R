@@ -12,6 +12,7 @@ to_sp <- function(...){
   return(map.sp.t)
 }
 
+# create the sp object 
 process.map_states <- function(){
   library(sp)
   conus <- to_sp('state')
@@ -24,11 +25,13 @@ process.map_states <- function(){
   alaska <- elide(AK, rotate=-50)
   alaska <- elide(alaska, scale=max(apply(bbox(alaska), 1, diff)) / 2.3)
   alaska <- elide(alaska, shift=c(-2100000, -2500000))
+  row.names(alaska) <- 'alaska'
   proj4string(alaska) <- proj4string(conus)
   
   hawaii <- elide(HI, rotate=-35)
   hawaii <- elide(hawaii, shift=c(5400000, -1400000))
+  row.names(hawaii) <- 'hawaii'
   proj4string(hawaii) <- proj4string(conus)
- 
+  
   rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
 }
