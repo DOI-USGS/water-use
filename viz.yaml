@@ -14,10 +14,15 @@ info:
   height: 250    
   alttext:
   required-packages:
-  dataRetrieval:
-    repo: CRAN
-  dplyr:
-    repo: CRAN
+    dataRetrieval:
+      repo: CRAN
+      version: 2.6.2
+    dplyr:
+      repo: CRAN
+      version: 0.5.0
+    tidyr:
+      repo: CRAN
+      version: 0.6.0
 fetch:
   -
     id: waterUse-data
@@ -27,6 +32,14 @@ fetch:
     scripts: scripts/fetch/waterUse.R
     refetch: FALSE
 process:
+  -
+    id: calc-waterData
+    location: cache/wuClean.rds
+    processor: wuClean
+    scripts: scripts/process/wuClean.R
+    reader: rds
+    depends: 
+      waterUse: waterUse-data
 visualize:
 publish:
 
