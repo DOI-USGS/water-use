@@ -1,5 +1,7 @@
 
-
+#' take map arguments and return a projected sp object
+#' 
+#' @param \dots arguments passed to \code{\link[maps]{map}} excluding \code{fill} and \code{plot}
 to_sp <- function(...){
   library(maptools)
   library(maps)
