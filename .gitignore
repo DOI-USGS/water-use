@@ -3,7 +3,7 @@ target/
 user/
 figures/
 vizlab/
-makefile
+Makefile
 
 # RStudio files
 *.Rproj

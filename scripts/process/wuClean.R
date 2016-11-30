@@ -13,9 +13,11 @@ process.wuClean <- function(viz){
   
   longWU <- longWU %>%
     mutate(year = as.numeric(year)) %>%
-    filter(value != "-") %>%
     filter(category %in% uglyCats) %>%
+    mutate(value = replace(value, value=='-', NA)) %>%
     mutate(value = as.numeric(value))
+  
+  
   
   longWU$category[longWU$category == uglyCats[1]] <- "Public Supply"
   longWU$category[longWU$category == uglyCats[2]] <- "Irrigation"
