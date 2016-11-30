@@ -13,7 +13,14 @@ info:
   width: 250    
   height: 250    
   alttext:
-  fetch:
+fetch:
+  -
+    id: waterUse-data
+    fetcher: waterUse
+    location: data/waterUse.csv
+    mimetype: text/csv
+    scripts: scripts/fetch/waterUse.R
+    refetch: FALSE
 process:
 visualize:
 publish:
