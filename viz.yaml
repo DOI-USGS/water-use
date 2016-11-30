@@ -27,7 +27,7 @@ fetch:
   -
     id: waterUse-data
     fetcher: waterUse
-    location: data/waterUse.csv
+    location: cache/waterUse.csv
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
     refetch: FALSE
