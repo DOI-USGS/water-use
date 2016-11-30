@@ -1,18 +1,22 @@
 vizlab: "0.1.5"
 info:
   id: water-use
-  name: Visualization long name
+  name: Visualizing water use by region and time
   date: 2016-11-30
-  publish-date: 2016-12-14
+  publish-date: 2016-12-06
   path: /water-use
-  analytics-id: UA-78530187-1
+  analytics-id: UA-78530187-5
   description: >-
-    Describe project here
-  thumbnail:    
-  url:    
-  width: 250    
-  height: 250    
-  alttext:
+    Water use data has been collected and compiled by the USGS since 1950.  This data has
+    changed over time in terms of how it was categorized and at what spatial scale it was
+    summarized to.  This visualization shows that change over time as this dataset has become
+    more powerful, and attempts to illustrate where the data can go in the future to be a more
+    useful dataset going forward.
+  thumbnail:
+    url:
+    width: 250
+    height: 250
+    alttext:
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -47,6 +51,13 @@ fetch:
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
     refetch: FALSE
+  -
+    id: nationalUse-data
+    fetcher: nationalUse
+    location: cache/nationalUse.csv
+    mimetype: text/csv
+    scripts: scripts/fetch/nationalUse.R
+    refetch: FALSE
 process:
   -
     id: calc-waterData
@@ -54,7 +65,7 @@ process:
     processor: wuClean
     scripts: scripts/process/wuClean.R
     reader: rds
-    depends: 
+    depends:
       waterUse: waterUse-data
   -
     id: state-map
@@ -74,4 +85,13 @@ visualize:
     title: "Map of US state water use"
     alttext: "Map of US state water use"
 publish:
-
+  -
+    id: water-use-page
+    name: index
+    template: fullPage
+    publisher: page
+    mimetype: text/html
+    depends: []
+    context:
+      sections: []
+      resoureces: []
