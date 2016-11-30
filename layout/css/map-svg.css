@@ -5,6 +5,9 @@ line, polyline, path{
 	stroke-miterlimit: 10.00;
 }
 
+.background {
+  fill: none;
+}
 .state-polygon {
   fill:red;
 }
