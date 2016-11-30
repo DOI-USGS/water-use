@@ -1,0 +1,19 @@
+vizlab: "0.1.5"
+info:
+  id: water-use
+  name: Visualization long name
+  date: 2016-11-30
+  publish-date: 2016-12-14
+  path: /water-use
+  analytics-id: UA-78530187-1
+  description: >-
+    Describe project here
+  thumbnail:    
+  url:    
+  width: 250    
+  height: 250    
+  alttext:
+  fetch:
+process:
+visualize:
+publish:
