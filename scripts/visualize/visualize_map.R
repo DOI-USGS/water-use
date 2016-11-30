@@ -38,6 +38,13 @@ visualize.states_svg <- function(viz){
     xml_attr(p[[i]], 'style') <- NULL
     xml_attr(p[[i]], 'clip-path') <- NULL
   }
+  
+  d <- xml_find_all(svg, '//*[local-name()="defs"]')
+  xml_remove(d)
+  d <- xml_add_child(svg, 'defs') 
+  cp <- xml_add_child(d, 'clipPath', id="svg-bounds")
+  xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
+  
   write_xml(svg, viz[['location']])
   
 }
