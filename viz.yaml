@@ -46,7 +46,7 @@ process:
 visualize:
   -
     id: wateruse-treemap
-    location: cache/treemaps/
+    location: figures/treemaps/
     visualizer: treemap
     scripts: scripts/visualize/treemap.R
     depends:
