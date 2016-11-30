@@ -1,0 +1,14 @@
+line, polyline, path{
+  fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-miterlimit: 10.00;
+}
+
+.state-polygon {
+  fill:red;
+}
+
+.state-polygon:hover {
+  fill:yellow;
+}
