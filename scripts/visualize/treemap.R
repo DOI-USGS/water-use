@@ -2,7 +2,7 @@
 visualize.treemap <- function(viz){
   ### getting data ready
   library(dplyr)
-  wateruse_data <- readData(viz[['depends']][['waterUse_clean']]) %>% 
+  wateruse_data <- readDepends(viz)[[1]] %>% 
     mutate(category = as.factor(category),
            color = as.numeric(category))
   
