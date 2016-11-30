@@ -13,6 +13,11 @@ info:
   width: 250    
   height: 250    
   alttext:
+  required-packages:
+  dataRetrieval:
+    repo: CRAN
+  dplyr:
+    repo: CRAN
 fetch:
   -
     id: waterUse-data
@@ -24,3 +29,4 @@ fetch:
 process:
 visualize:
 publish:
+
