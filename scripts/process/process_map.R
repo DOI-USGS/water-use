@@ -14,7 +14,7 @@ to_sp <- function(...){
 
 #' create the sp object 
 #'
-#'@param viz the vizlab object (currently ignored)
+#'@param viz the vizlab object 
 process.state_map <- function(viz){
   library(sp)
   conus <- to_sp('state')
@@ -35,5 +35,6 @@ process.state_map <- function(viz){
   row.names(hawaii) <- 'hawaii'
   proj4string(hawaii) <- proj4string(conus)
   
-  rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
+  out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
+  saveRDS(out, file = viz[['location']])
 }
