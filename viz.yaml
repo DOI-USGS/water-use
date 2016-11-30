@@ -23,6 +23,9 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    treemap:
+      repo: CRAN
+      version: 2.4-1
 fetch:
   -
     id: waterUse-data
@@ -41,5 +44,12 @@ process:
     depends: 
       waterUse: waterUse-data
 visualize:
+  -
+    id: wateruse-treemap
+    location: cache/treemaps/
+    visualizer: treemap
+    scripts: scripts/visualize/treemap.R
+    depends:
+      waterUse_clean: calc-waterData
 publish:
 
