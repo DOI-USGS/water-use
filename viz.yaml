@@ -47,6 +47,14 @@ process:
     reader: rds
     depends: 
       waterUse: waterUse-data
+  -
+    id: calc-nationalData
+    location: cache/nationalClean.rds
+    processor: nationalClean
+    scripts: scripts/process/nationalClean.R
+    reader: rds
+    depends: 
+      nationalUse: nationalUse-data
 visualize:
 publish:
 
