@@ -9,6 +9,7 @@ visualize.states_svg <- function(viz){
   svglite::svglite(viz[['location']])
   par(mai=c(0,0,0,0), omi=c(0,0,0,0))
   sp::plot(state.map)
+  dev.off()
   library(xml2)
   svg <- read_xml(viz[['location']])
   
