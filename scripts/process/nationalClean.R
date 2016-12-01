@@ -19,14 +19,16 @@ process.nationalClean <- function(viz){
         national[[i]] <- as.numeric(national[[i]])
       } else {
         subList[[j]][[i]][index] <- TRUE
-        national[[i]] <- as.numeric(gsub(j, "", national[[i]]))
+        national[[i]] <- gsub(j, "", national[[i]])
       }
     }
   }
   
   #longform data
   national <- gather(national, key = category, value = value, 
-                     -Year, -`Population, in millions`)
+                     -Year, -`Population, in millions`) %>%
+    mutate(value = as.numeric(value))
+  
   national <- rename(national, year = Year, population_mil = `Population, in millions`)
 
   saveRDS(list("nationalData" = national, 
