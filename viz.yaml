@@ -27,6 +27,9 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    treemap:
+      repo: CRAN
+      version: 2.4-1
     svglite:
       repo: CRAN
       version: 1.2.0
@@ -42,7 +45,6 @@ info:
     maps:
       repo: CRAN
       version: 3.1.1
-    
 fetch:
   -
     id: waterUse-data
@@ -59,7 +61,7 @@ fetch:
     scripts: scripts/fetch/nationalUse.R
     refetch: FALSE
 process:
-  -
+  - 
     id: calc-waterData
     location: cache/wuClean.rds
     processor: wuClean
@@ -81,6 +83,13 @@ process:
     processor: state_map
     scripts: scripts/process/process_map.R
     reader: rds
+  -
+    id: wateruse-treemap
+    location: cache/treemaps_list.rds
+    processor: treemap
+    scripts: scripts/process/treemap.R
+    depends:
+      waterUse_clean: calc-nationalData
 visualize:
   -
     id: states-svg
