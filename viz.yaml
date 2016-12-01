@@ -182,7 +182,7 @@ publish:
       title: U.S. Water Use from 1950-Present
       logo: usgs-logo
       caption: Exploring trends in water use from National Water-Use Information Program historic data.
--
+  -
     id: footer-section
     template: footer
     publisher: footer
