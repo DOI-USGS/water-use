@@ -23,6 +23,9 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    gsplot:
+      repo: GRAN
+      version: 0.7.0
 fetch:
   -
     id: waterUse-data
@@ -41,5 +44,15 @@ process:
     depends: 
       waterUse: waterUse-data
 visualize:
+  -
+    id: wuBars
+    location: figures/wuBars.svg
+    scripts: scripts/visualize/wuBars.R
+    visualizer: wuBars
+    mimetype: image/svg+xml
+    title: "Water use over time"
+    alttext: "Stacked barplot of water ues by category over time"
+    depends:
+      waterUse: calc-waterData
 publish:
 
