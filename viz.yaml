@@ -27,6 +27,9 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    treemap:
+      repo: CRAN
+      version: 2.4-1
     svglite:
       repo: CRAN
       version: 1.2.0
@@ -42,6 +45,9 @@ info:
     maps:
       repo: CRAN
       version: 3.1.1
+    readxl:
+      repo: CRAN
+      version: 0.1.1
     
 fetch:
   -
@@ -50,6 +56,14 @@ fetch:
     location: cache/waterUse.csv
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
+    refetch: FALSE
+  -
+    id: histWaterUse-data
+    fetcher: histWaterUse
+    location: cache/histWaterUse.rds
+    mimetype: rds
+    reader: rds
+    scripts: scripts/fetch/histWaterUse.R
     refetch: FALSE
   -
     id: nationalUse-data
@@ -68,11 +82,35 @@ process:
     depends:
       waterUse: waterUse-data
   -
+    id: calc-histWaterData
+    location: cache/histWuClean.rds
+    processor: histWuClean
+    scripts: scripts/process/histWuClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUse-data
+  -
+    id: calc-nationalData
+    location: cache/nationalClean.rds
+    processor: nationalClean
+    scripts: scripts/process/nationalClean.R
+    reader: rds
+    depends:
+      nationalUse: nationalUse-data
+  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
     scripts: scripts/process/process_map.R
     reader: rds
+  -
+    id: wateruse-treemap
+    location: cache/treemaps_list.rds
+    processor: treemap
+    scripts: scripts/process/treemap.R
+    depends:
+      waterUse_clean: calc-nationalData
 visualize:
   -
     id: states-svg
@@ -91,7 +129,24 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: []
+    depends: [ "figure-section", "main-css", "svg-css-map" ]
     context:
-      sections: []
-      resoureces: []
+      sections: [ "figure-section" ]
+      resources: [ "main-css", "svg-css-map" ]
+  -
+    id: figure-section
+    template: layout/templates/simple.mustache
+    publisher: section
+    depends:
+      map: states-svg
+    context:
+      map: states-svg
+    comment: "We should consolidate the depends and context now with named dependencies"
+  -
+    id: main-css
+    location: layout/css/main.css
+    mimetype: text/css
+  -
+    id: svg-css-map
+    location: layout/css/map-svg.css
+    mimetype: text/css
