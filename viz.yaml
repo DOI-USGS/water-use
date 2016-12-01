@@ -73,7 +73,7 @@ fetch:
     scripts: scripts/fetch/nationalUse.R
     refetch: FALSE
 process:
-  - 
+  -
     id: calc-waterData
     location: cache/wuClean.rds
     processor: wuClean
@@ -96,7 +96,7 @@ process:
     processor: nationalClean
     scripts: scripts/process/nationalClean.R
     reader: rds
-    depends: 
+    depends:
       nationalUse: nationalUse-data
   -
     id: state-map
@@ -129,7 +129,24 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: []
+    depends: [ "figure-section", "main-css", "svg-css-map" ]
     context:
-      sections: []
-      resoureces: []
+      sections: [ "figure-section" ]
+      resources: [ "main-css", "svg-css-map" ]
+  -
+    id: figure-section
+    template: layout/templates/simple.mustache
+    publisher: section
+    depends:
+      map: states-svg
+    context:
+      map: states-svg
+    comment: "We should consolidate the depends and context now with named dependencies"
+  -
+    id: main-css
+    location: layout/css/main.css
+    mimetype: text/css
+  -
+    id: svg-css-map
+    location: layout/css/map-svg.css
+    mimetype: text/css
