@@ -62,13 +62,13 @@ fetch:
     refetch: FALSE
 process:
   -
-    id: calc-waterData
-    location: cache/wuClean.rds
-    processor: wuClean
-    scripts: scripts/process/wuClean.R
+    id: calc-nationalData
+    location: cache/nationalClean.rds
+    processor: nationalClean
+    scripts: scripts/process/nationalClean.R
     reader: rds
-    depends:
-      waterUse: waterUse-data
+    depends: 
+      nationalUse: nationalUse-data
   -
     id: state-map
     location: cache/state-map.rds
@@ -76,13 +76,6 @@ process:
     scripts: scripts/process/process_map.R
     reader: rds
 visualize:
-  -
-    id: wateruse-treemap
-    location: figures/treemaps/
-    visualizer: treemap
-    scripts: scripts/visualize/treemap.R
-    depends:
-      waterUse_clean: calc-waterData
   -
     id: states-svg
     location: figures/states_map.svg
@@ -93,6 +86,13 @@ visualize:
     inline: true
     title: "Map of US state water use"
     alttext: "Map of US state water use"
+  -
+    id: wateruse-treemap
+    location: figures/treemaps/
+    visualizer: treemap
+    scripts: scripts/visualize/treemap.R
+    depends:
+      waterUse_clean: calc-waterData
 publish:
   -
     id: water-use-page
