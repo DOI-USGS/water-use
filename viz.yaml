@@ -75,6 +75,13 @@ process:
     processor: state_map
     scripts: scripts/process/process_map.R
     reader: rds
+  -
+    id: wateruse-treemap
+    location: figures/treemaps/
+    processor: treemap
+    scripts: scripts/process/treemap.R
+    depends:
+      waterUse_clean: calc-nationalData
 visualize:
   -
     id: states-svg
@@ -86,13 +93,6 @@ visualize:
     inline: true
     title: "Map of US state water use"
     alttext: "Map of US state water use"
-  -
-    id: wateruse-treemap
-    location: figures/treemaps/
-    visualizer: treemap
-    scripts: scripts/visualize/treemap.R
-    depends:
-      waterUse_clean: calc-waterData
 publish:
   -
     id: water-use-page
