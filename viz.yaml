@@ -45,6 +45,10 @@ info:
     maps:
       repo: CRAN
       version: 3.1.1
+    readxl:
+      repo: CRAN
+      version: 0.1.1
+    
 fetch:
   -
     id: waterUse-data
@@ -52,6 +56,14 @@ fetch:
     location: cache/waterUse.csv
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
+    refetch: FALSE
+  -
+    id: histWaterUse-data
+    fetcher: histWaterUse
+    location: cache/histWaterUse.xls
+    mimetype: rds
+    reader: rds
+    scripts: scripts/fetch/histWaterUse.R
     refetch: FALSE
   -
     id: nationalUse-data
@@ -69,6 +81,15 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
+  -
+    id: calc-histWaterData
+    location: cache/histWuClean.rds
+    processor: histWuClean
+    scripts: scripts/process/histWuClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUse-data
   -
     id: calc-nationalData
     location: cache/nationalClean.rds
