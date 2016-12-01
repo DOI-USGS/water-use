@@ -60,7 +60,7 @@ fetch:
   -
     id: histWaterUse-data
     fetcher: histWaterUse
-    location: cache/histWaterUse.xls
+    location: cache/histWaterUse.rds
     mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUse.R
