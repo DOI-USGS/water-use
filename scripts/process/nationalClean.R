@@ -22,6 +22,11 @@ process.nationalClean <- function(viz){
       }
     }
   }
+  
+  #longform data
+  national <- gather(national, key = category, value = value, 
+                     -Year, -`Population, in millions`)
+  national <- rename(national, year = Year, population_mil = `Population, in millions`)
 
   saveRDS(list("nationalData" = national, 
                "dataNotes" = subList),
