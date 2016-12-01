@@ -16,25 +16,25 @@ process.histWuClean <- function(viz){
   full.data <- data.frame(Year = as.integer(),
                           StateCode = as.character(),
                           StateName = as.character(),
-                          industry = as.numeric(),
-                          irrigation = as.numeric(),
+                          Industrial = as.numeric(),
+                          Irrigation = as.numeric(),
                           public = as.numeric(),
-                          thermal = as.numeric(),
+                          Thermoelectric = as.numeric(),
                           stringsAsFactors = FALSE)
   
   for(i in seq_along(histExDat)){
     dataYear <- wuExcel[[i]]
 
     if(!is.null(histExDat[[i]][["ind"]])){
-      industry <- rowSums(dataYear[,histExDat[[i]][["ind"]]], na.rm = TRUE)
+      Industrial <- rowSums(dataYear[,histExDat[[i]][["ind"]]], na.rm = TRUE)
     } else {
-      industry <- NA
+      Industrial <- NA
     }
 
     if(!is.null(histExDat[[i]][["iri"]])){
-      irrigation <- rowSums(dataYear[,histExDat[[i]][["iri"]]], na.rm = TRUE)
+      Irrigation <- rowSums(dataYear[,histExDat[[i]][["iri"]]], na.rm = TRUE)
     } else {
-      irrigation <- NA
+      Irrigation <- NA
     }
     
     if(!is.null(histExDat[[i]][["pub"]])){
@@ -44,17 +44,19 @@ process.histWuClean <- function(viz){
     }
     
     if(!is.null(histExDat[[i]][["thr"]])){
-      thermal <- rowSums(dataYear[,histExDat[[i]][["thr"]]], na.rm = TRUE)
+      Thermoelectric <- rowSums(dataYear[,histExDat[[i]][["thr"]]], na.rm = TRUE)
     } else {
-      thermal <- NA
+      Thermoelectric <- NA
     }
       
     if(dataYear$Year[1] == 1950){
-      irrigation <- irrigation*0.8921
+      Irrigation <- Irrigation*0.8921
     }
     
     dataClean <- bind_cols(dataYear[,c("Year", "StateCode", "StateName")] ,
-                           data.frame(industry, irrigation, public, thermal))
+                           data.frame(Industrial, Irrigation, public, Thermoelectric)) %>%
+      rename(`Public Supply` = public) %>%
+      select(-public)
     
     full.data <- bind_rows(full.data, dataClean)
     
