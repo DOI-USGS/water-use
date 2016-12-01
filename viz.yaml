@@ -70,14 +70,6 @@ process:
     depends: 
       nationalUse: nationalUse-data
   -
-    id: calc-nationalData
-    location: cache/nationalClean.rds
-    processor: nationalClean
-    scripts: scripts/process/nationalClean.R
-    reader: rds
-    depends: 
-      nationalUse: nationalUse-data
-  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
