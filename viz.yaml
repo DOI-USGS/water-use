@@ -13,10 +13,10 @@ info:
     more powerful, and attempts to illustrate where the data can go in the future to be a more
     useful dataset going forward.
   thumbnail:
-    url:
+    url: images/tmp_thumbnail_map.png
     width: 250
     height: 250
-    alttext:
+    alttext: National water use map
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -48,7 +48,6 @@ info:
     readxl:
       repo: CRAN
       version: 0.1.1
-    
 fetch:
   -
     id: waterUse-data
@@ -124,6 +123,25 @@ visualize:
     alttext: "Map of US state water use"
 publish:
   -
+    id: thumbnail
+    location: images/tmp_thumbnail_map.png
+    mimetype: image/png
+    title: thumbnail
+    alttext: "water use thumbnail"
+  -
+    id: usgs-logo
+    location: images/usgsLogo.png
+    mimetype: image/png
+    title: "USGS Logo"
+    alttext: "USGS Logo"
+  -
+    id: vizlab-favicon
+    location: images/favicon.ico
+    mimetype: image/png
+    comment: saying it is a png to get it in right spot, need handler for ico
+    title: icon
+    alttext: icon
+  -
     id: water-use-page
     name: index
     template: fullPage
@@ -150,3 +168,39 @@ publish:
     id: svg-css-map
     location: layout/css/map-svg.css
     mimetype: text/css
+  - 
+    id: header-footer-css
+    location: layout/css/header-footer.css
+    mimetype: text/css
+  -
+    id: header-section
+    template: layout/templates/header.mustache
+    publisher: section
+    depends: ["usgs-logo"]
+    context:
+      id: header
+      title: U.S. Water Use from 1950-Present
+      logo: usgs-logo
+      caption: Exploring trends in water use from National Water-Use Information Program historic data.
+  -
+    id: footer-section
+    template: footer
+    publisher: footer
+    depends: [ "header-footer-css", "vizlab-logo" ]
+    context:
+      logo: vizlab-logo
+    blogsInFooter: FALSE
+    vizzies:
+      - name: Microplastics in the Great Lakes
+        org: USGS-VIZLAB
+        repo: great-lakes-microplastics
+      - name: Hurricane Matthew
+        org: USGS-VIZLAB
+        repo: hurricane-matthew
+    blogs: 
+      - name: 
+        url: 
+        thumbLoc: 
+      - name: 
+        url: 
+        thumbLoc: 
