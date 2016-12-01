@@ -61,6 +61,14 @@ fetch:
     scripts: scripts/fetch/nationalUse.R
     refetch: FALSE
 process:
+  - 
+    id: calc-waterData
+    location: cache/wuClean.rds
+    processor: wuClean
+    scripts: scripts/process/wuClean.R
+    reader: rds
+    depends:
+      waterUse: waterUse-data
   -
     id: calc-nationalData
     location: cache/nationalClean.rds
