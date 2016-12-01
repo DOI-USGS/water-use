@@ -9,12 +9,13 @@ process.nationalClean <- function(viz){
   
   subList <- list("a" = a_matrix, 
                   "b" = a_matrix, 
-                  "c" = a_matrix)
+                  "c" = a_matrix,
+                  "d" = a_matrix)
 
-  for(j in c("a","b","c")){
+  for(j in c("a","b","c","d")){
     for(i in colnames(national)[-1]){
       index <- grep(j,national[[i]])
-      if(length(index) > 0){
+      if(length(index) < 0){
         national[[i]] <- as.numeric(national[[i]])
       } else {
         subList[[j]][[i]][index] <- TRUE
