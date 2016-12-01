@@ -32,9 +32,10 @@ process.wuClean <- function(viz){
   
   wideWU <- spread(longWU, category, value) 
   
-  wideWU$`Thermoelectric Total`[is.na(wideWU$`Thermoelectric Total`)] <- sum(wideWU$`Thermoelectric Fossil`,
-                                                                             wideWU$`Thermoelectric Geothermal`,
-                                                                             wideWU$`Thermoelectric Nuclear`, na.rm = TRUE)
+  wideWU$`Thermoelectric Total`[is.na(wideWU$`Thermoelectric Total`)] <- sum(wideWU$`Thermoelectric Fossil`[is.na(wideWU$`Thermoelectric Total`)] ,
+                                                                             wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric Total`)] ,
+                                                                             wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric Total`)] ,
+                                                                             na.rm = TRUE)
   
   longWU <- gather(wideWU, category, value, -state_cd, -state_name, -year)
   
