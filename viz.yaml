@@ -77,7 +77,7 @@ process:
     reader: rds
   -
     id: wateruse-treemap
-    location: figures/treemaps/
+    location: cache/treemaps_list.rds
     processor: treemap
     scripts: scripts/process/treemap.R
     depends:
