@@ -25,16 +25,16 @@ process.wuClean <- function(viz){
   longWU$category[longWU$category == uglyCats[1]] <- "Public Supply"
   longWU$category[longWU$category == uglyCats[2]] <- "Irrigation"
   longWU$category[longWU$category == uglyCats[3]] <- "Industrial"
-  longWU$category[longWU$category == uglyCats[4]] <- "Thermoelectric Total"
+  longWU$category[longWU$category == uglyCats[4]] <- "Thermoelectric"
   longWU$category[longWU$category == uglyCats[5]] <- "Thermoelectric Fossil"
   longWU$category[longWU$category == uglyCats[6]] <- "Thermoelectric Geothermal"
   longWU$category[longWU$category == uglyCats[7]] <- "Thermoelectric Nuclear"
   
   wideWU <- spread(longWU, category, value) 
   
-  wideWU$`Thermoelectric Total`[is.na(wideWU$`Thermoelectric Total`)] <- rowSums(data.frame(wideWU$`Thermoelectric Fossil`[is.na(wideWU$`Thermoelectric Total`)] ,
-                                                                             wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric Total`)] ,
-                                                                             wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric Total`)] ),
+  wideWU$`Thermoelectric`[is.na(wideWU$`Thermoelectric`)] <- rowSums(data.frame(wideWU$`Thermoelectric Fossil`[is.na(wideWU$`Thermoelectric`)] ,
+                                                                             wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric`)] ,
+                                                                             wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric`)] ),
                                                                              na.rm = TRUE)
   
   longWU <- gather(wideWU, category, value, -state_cd, -state_name, -year)
