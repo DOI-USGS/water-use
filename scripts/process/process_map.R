@@ -35,14 +35,11 @@ process.state_map <- function(viz){
   row.names(hawaii) <- 'hawaii'
   proj4string(hawaii) <- proj4string(conus)
   
-  out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
-  sp::plot(out, col='grey97',border='white', lwd=2)
-  #sp::plot(out[names(out) == 'california',], add=TRUE, col='darkgreen', border=NA)
-  cols <- brewer.pal(9,'Greens')
-  names.st <- names(out)#[!names(out) %in% 'california']
+  states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
+  out <- list(orig.states = states.out, bbox = bbox(states.out)) # then spatial points for centroids, and other things
+  
+  names.st <- names(out)
   for (name in names.st){
-    scale.n <- runif(1, min = 0.1, max=1)
-    col.i <- round(scale.n*9)
     sp::plot(scale_transform(out[names(out) == name,], scale.n), add=TRUE, col=cols[col.i], border=NA)
   }
   
