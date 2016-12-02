@@ -29,6 +29,8 @@ animate_category_and_time = function(cat, timestep) {
 
 $(document).ready(function(){
   get_resize_data();
+  svg = document.querySelector("svg");
+  pt = svg.createSVGPoint();
 });
 
 function hovertext(text, evt){
@@ -65,8 +67,7 @@ function hovertext(text, evt){
 }
 
 function cursorPoint(evt){  
-  svg = document.querySelector("svg");
-  pt = svg.createSVGPoint();
+
   pt.x = evt.clientX; pt.y = evt.clientY;
   return pt.matrixTransform(svg.getScreenCTM().inverse());
 }
