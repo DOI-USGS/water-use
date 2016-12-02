@@ -15,14 +15,14 @@ animate_resize_map = function(data) {
 }
 
 get_resize_data = function() {
-  $.get( "js/state-size-transform.json", function( data ) {
+  $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
     animate_category_and_time("Irrigation", "1985")
   });
 }
 
 animate_category_and_time = function(cat, timestep) {
-  var statesTransform = transformData[timestep][cat];
+  var statesTransform = transformData["totState"][timestep][cat];
   animate_resize_map(statesTransform);
 }
 

@@ -138,10 +138,12 @@ process:
     location: cache/scaleFactors.json
     processor: scaleFactors2json
     scripts: scripts/process/scaleStates.R
+    export: true
+    mimetype: text/javascript
     depends:
       scaleFactors: calc-scaleFactors
       scaleFactorsNational: calc-scaleNational
-      
+
 visualize:
   -
     id: states-svg
@@ -186,7 +188,7 @@ publish:
     publisher: page
     mimetype: text/html
     depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
+      "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
     context:
       sections: [ "header-section", "figure-section", "footer-section" ]
       resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
@@ -235,11 +237,6 @@ publish:
   -
     id: nouislider
     location: layout/js/nouislider.js
-    mimetype: text/javascript
-  -
-    id: scaleFactorJson
-    location: target/scaleFactor.json
-    publisher: resource
     mimetype: text/javascript
   -
     id: header-section
