@@ -27,12 +27,10 @@ process.scaleStates <- function(viz){
   #per category
   for(cat in coreCats){
     thisCat <- filter(wuAreas, category == cat)
-    maxRatio <- max(thisCat$wuPerArea, na.rm = TRUE)
-    thisCat <- mutate(thisCat, scale = wuPerArea/maxRatio)
-    thisCat <- mutate(thisCat, newArea = area*scale)
-    thisCat <- mutate(thisCat, scaleFactor = newArea/area)
-    maxScaleFactor <- range(thisCat$scaleFactor, na.rm = TRUE, finite = TRUE)[2]
-    thisCat <- mutate(thisCat, scaleFactor = scaleFactor/maxScaleFactor)
+    
+    magicState <- thisCat[which.max(thisCat$wuPerArea), ]
+    thisCat <- mutate(thisCat, newArea = value * magicState$area / magicState$value)
+    thisCat <- mutate(thisCat, scaleFactor = newArea / area)
     
     finalScaleFactors <- bind_rows(finalScaleFactors, thisCat)
   }
