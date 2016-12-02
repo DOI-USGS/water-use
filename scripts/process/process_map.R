@@ -35,6 +35,11 @@ process.state_map <- function(viz){
   hawaii <- elide(hawaii, shift=c(5400000, -1400000))
   row.names(hawaii) <- 'hawaii'
   proj4string(hawaii) <- proj4string(conus)
+  
+  # resize: c('district of columbia', 'maryland', 'deleware')
+  
+  conus <- shift_state(conus, 'district of columbia', 3, c(300000,100000))
+  
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   
   # shifting states to be located at (0,0) in svg-space:
@@ -56,6 +61,17 @@ scale_transform <- function(obj, scale){
   centroid <- c(unlist(rgeos::gCentroid(obj,byid=TRUE)@coords))
   obj <- elide(obj, scale=max(apply(bbox(obj), 1, diff)) * scale) # do by area?
   elide(obj, shift=centroid - c(unlist(rgeos::gCentroid(obj,byid=TRUE)@coords)))
+}
+
+shift_state <- function(sp, state, scale, shift){
+  obj <- sp[names(sp) %in% state,]
+  orig.cent <- rgeos::gCentroid(obj,byid=TRUE)@coords
+  obj.out <- sp[!names(sp) %in% state,]
+  obj <- elide(obj, scale=max(apply(bbox(obj), 1, diff)) * scale)
+  new.cent <- rgeos::gCentroid(obj,byid=TRUE)@coords
+  obj <- elide(obj, shift=shift+c(orig.cent-new.cent))
+  proj4string(obj) <- proj4string(sp)
+  return(rbind(obj.out, obj))
 }
 
 state_centroids <- function(sp){

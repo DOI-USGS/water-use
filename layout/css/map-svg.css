@@ -5,12 +5,12 @@ line, polyline, path{
 }
 
 .map-background {
-  fill:#3f3f3f;
+  fill:#939393;
   stroke:none;
 }
 .state-background {
   fill:#f1f1f1;
-  stroke:white;
+  stroke:#939393;
   stroke-width:2;
 }
 .state-foreground {
