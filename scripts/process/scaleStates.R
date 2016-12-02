@@ -52,6 +52,7 @@ process.scaleFactors2json <- function(viz){
   
   
   uniqYears <- unique(scaleFactors$year)
+  uniqYears <- uniqYears[order(uniqYears)]
   forJson <- vector("list", length(uniqYears)) #initialize
   
   for(i in 1:length(uniqYears)){
@@ -59,9 +60,9 @@ process.scaleFactors2json <- function(viz){
     
     #convert to list of dfs for each category
     forJson[[i]] <- list(Thermoelectric=filter(thisYear, category == "Thermoelectric"),
-                    Industrial = filter(thisYear, category == "Industrial"),
-                    Public_Supply = filter(thisYear, category == "Public Supply"),
-                    Irrigation = filter(thisYear, category == "Irrigation"))
+                          Industrial = filter(thisYear, category == "Industrial"),
+                          Public_Supply = filter(thisYear, category == "Public Supply"),
+                          Irrigation = filter(thisYear, category == "Irrigation"))
   }
   names(forJson) <- uniqYears
   
