@@ -9,12 +9,36 @@ line, polyline, path{
   stroke:none;
 }
 .state-background {
-    fill:#f1f1f1;
-    stroke:white;
-    stroke-width:2;
-    }
-    .state-foreground {
-    fill:lightgreen;
-    stroke:none;
-  
-    }
+  fill:#f1f1f1;
+  stroke:white;
+  stroke-width:2;
+}
+.state-foreground {
+  fill:lightgreen;
+  stroke:none;
+}
+    
+.disabled-button {
+  fill:black;
+  stroke:none;
+  opacity:0.4;
+}
+
+.enabled-button {
+  fill:white;
+  stroke:none;
+  opacity:0;
+}
+
+.Thermoelectric-button {
+  fill:red;
+}
+.Public_Suppy-button {
+  fill:green;
+}
+.Industrial-button{
+  fill:blue;
+}
+.Irrigation-button{
+  fill:lightblue;
+}

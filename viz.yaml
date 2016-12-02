@@ -135,7 +135,7 @@ visualize:
     id: states-svg
     location: figures/states_map.svg
     visualizer: states_svg
-    depends: ["state-map"]
+    depends: ["state-map", "calc-scaleFactors"]
     scripts: scripts/visualize/visualize_map.R
     mimetype: image/svg+xml
     inline: true

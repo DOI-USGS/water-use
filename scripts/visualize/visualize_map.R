@@ -3,13 +3,14 @@
 visualize.states_svg <- function(viz){
   data <- readDepends(viz)
   state.map <- data$`state-map`
+  category.names <- unique(data[['calc-scaleFactors']]$category)
   states <- state.map$states
   shifts <- state.map$shifted.states
   centroids <- state.map$state.centroids
   state.name <- as.character(row.names(states)[states@plotOrder])
   library(svglite)
   library(sp)
-  size <- apply(state.map$bbox, 1, diff)/1000000
+  size <- apply(state.map$bbox, 1, diff)/500000
   svg <- svglite::xmlSVG({
     par(mai=c(0,0,0,0), omi=c(0,0,0,0))
     sp::plot(shifts, ylim=bbox(states)[2,], xlim=bbox(states)[1,], setParUsrBB = TRUE)
@@ -18,15 +19,18 @@ visualize.states_svg <- function(viz){
   
   library(xml2)
 
-  
+  bump.width <- 200
   
   # let this thing scale:
   xml_attr(svg, "preserveAspectRatio") <- "xMidYMid meet" 
   xml_attr(svg, "xmlns") <- 'http://www.w3.org/2000/svg' 
   xml_attr(svg, "xmlns:xlink") <- 'http://www.w3.org/1999/xlink'
   xml_attr(svg, "id") <- "water-use-svg"
+  vb.num <- as.numeric(strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]])
+  vb.num[3] <- vb.num[3]+bump.width
+  xml_attr(svg, 'viewBox') <- sprintf('%s %s %s %s', vb.num[1], vb.num[2], vb.num[3], vb.num[4])
+  
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
-
   r <- xml_find_all(svg, '//*[local-name()="rect"]')
 
   xml_add_sibling(xml_children(svg)[[1]], 'rect', .where='before', width=vb[3], height=vb[4], class='map-background')
@@ -63,6 +67,20 @@ visualize.states_svg <- function(viz){
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
   }
+  
+  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons')
+  y.button <- 100
+  for (name in category.names){
+    id <- gsub(pattern = ' ','_',name)
+    xml_add_child(g.button, 'rect', x = as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), height='20', width=as.character(bump.width*.7), 
+                  class=sprintf('%s-button',id))
+    xml_add_child(g.button, 'text', x=as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), dy='1em', name, class='cat-button-text', fill='black','stroke'='none')
+    xml_add_child(g.button, 'rect', x = as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), height='20', width=as.character(bump.width*.7), 
+                  class='disabled-button', id=id,
+                  onclick=sprintf("setCategory('%s', evt)", name)) 
+    y.button <- y.button+30
+  }
+  
   xml_remove(p)
   xml_remove(cr)
 
