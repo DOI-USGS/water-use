@@ -30,6 +30,8 @@ process.nationalClean <- function(viz){
     mutate(value = as.numeric(value))
   
   national <- rename(national, year = Year, population_mil = `Population, in millions`)
+  
+  national['population_mil'] <- as.numeric(national['population_mil'][[1]])
 
   saveRDS(list("nationalData" = national, 
                "dataNotes" = subList),
