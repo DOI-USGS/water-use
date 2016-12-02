@@ -182,11 +182,11 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "footer-section", "main-css", "svg-css-map",
+    depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
       "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
     context:
       sections: [ "header-section", "figure-section", "footer-section" ]
-      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery",
+      resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "nouislider", "appJS", "mapJS" ]
   -
     id: figure-section
