@@ -40,25 +40,32 @@ visualize.states_svg <- function(viz){
   if (length(p) != length(states)){
     stop('something is wrong, the number of states and polys is different')
   }
-
+  
+  defs <- xml_find_all(svg, '//*[local-name()="defs"]')
+  # !!---- use these lines when we have css for the svg ---!!
+  # xml_remove(defs) 
+  # defs <- xml_add_child(svg, 'defs') 
+  cp <- xml_add_child(defs[[1]], 'clipPath', id="svg-bounds")
+  xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
+  gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
+  gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
+  
   for (i in 1:length(state.name)){
     id.name <- gsub(state.name[i], pattern = '[ ]', replacement = '_')
+    id.use <- paste0(id.name,'-pattern')
     circle <- cr[[i]]
     transform <- sprintf('translate(%s,%s)', xml_attr(cr[[i]],'cx'), xml_attr(cr[[i]],'cy'))
-    g <- xml_add_child(svg, 'g', 'id' = paste0(id.name,'-group'), transform=transform)
+    
     # why can't xml2 allow me to just move the node to be under the group?
-    xml_add_child(g, 'path', d = xml_attr(p[i], 'd'), id=id.name, class='state-polygon')
+    xml_add_child(xml_add_child(gb, 'g', 'id' = paste0(id.name,'-group'), transform=transform), 
+                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background')
+    xml_add_child(xml_add_child(gf, 'g', 'id' = paste0(id.name,'-group'), transform=transform), 
+                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
+    xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
   }
   xml_remove(p)
   xml_remove(cr)
 
-  d <- xml_find_all(svg, '//*[local-name()="defs"]')
-  # !!---- use these lines when we have css for the svg ---!!
-  # xml_remove(d) 
-  # d <- xml_add_child(svg, 'defs') 
-  cp <- xml_add_child(d[[1]], 'clipPath', id="svg-bounds")
-  xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
-  
   write_xml(svg, viz[['location']])
   
 }
