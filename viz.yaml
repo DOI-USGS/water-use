@@ -13,10 +13,10 @@ info:
     more powerful, and attempts to illustrate where the data can go in the future to be a more
     useful dataset going forward.
   thumbnail:
-    url:
+    url: images/tmp_thumbnail_map.png
     width: 250
     height: 250
-    alttext:
+    alttext: National water use map
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -27,6 +27,9 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
+    treemap:
+      repo: CRAN
+      version: 2.4-1
     svglite:
       repo: CRAN
       version: 1.2.0
@@ -42,7 +45,9 @@ info:
     maps:
       repo: CRAN
       version: 3.1.1
-    
+    readxl:
+      repo: CRAN
+      version: 0.1.1
 fetch:
   -
     id: waterUse-data
@@ -50,6 +55,14 @@ fetch:
     location: cache/waterUse.csv
     mimetype: text/csv
     scripts: scripts/fetch/waterUse.R
+    refetch: FALSE
+  -
+    id: histWaterUse-data
+    fetcher: histWaterUse
+    location: cache/histWaterUse.rds
+    mimetype: rds
+    reader: rds
+    scripts: scripts/fetch/histWaterUse.R
     refetch: FALSE
   -
     id: nationalUse-data
@@ -68,11 +81,35 @@ process:
     depends:
       waterUse: waterUse-data
   -
+    id: calc-histWaterData
+    location: cache/histWuClean.rds
+    processor: histWuClean
+    scripts: scripts/process/histWuClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUse-data
+  -
+    id: calc-nationalData
+    location: cache/nationalClean.rds
+    processor: nationalClean
+    scripts: scripts/process/nationalClean.R
+    reader: rds
+    depends:
+      nationalUse: nationalUse-data
+  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
     scripts: scripts/process/process_map.R
     reader: rds
+  -
+    id: wateruse-treemap
+    location: cache/treemaps_list.rds
+    processor: treemap
+    scripts: scripts/process/treemap.R
+    depends:
+      waterUse_clean: calc-nationalData
 visualize:
   -
     id: states-svg
@@ -86,12 +123,110 @@ visualize:
     alttext: "Map of US state water use"
 publish:
   -
+    id: thumbnail
+    location: images/tmp_thumbnail_map.png
+    mimetype: image/png
+    title: thumbnail
+    alttext: "water use thumbnail"
+  -
+    id: usgs-logo
+    location: images/usgsLogo.png
+    mimetype: image/png
+    title: "USGS Logo"
+    alttext: "USGS Logo"
+  -
+    id: vizlab-logo
+    location: images/vizlab.svg
+    mimetype: image/svg+xml
+    title: "Vizlab Logo"
+    alttext: "Vizlab Logo"
+  -
+    id: vizlab-favicon
+    location: images/favicon.ico
+    mimetype: image/png
+    comment: saying it is a png to get it in right spot, need handler for ico
+    title: icon
+    alttext: icon
+  -
     id: water-use-page
     name: index
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: []
+    depends: [ "figure-section", "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
     context:
-      sections: []
-      resoureces: []
+      sections: [ "figure-section" ]
+      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
+  -
+    id: figure-section
+    template: layout/templates/simple.mustache
+    publisher: section
+    depends:
+      map: states-svg
+    context:
+      map: states-svg
+    comment: "We should consolidate the depends and context now with named dependencies"
+  -
+    id: main-css
+    location: layout/css/main.css
+    mimetype: text/css
+  -
+    id: svg-css-map
+    location: layout/css/map-svg.css
+    mimetype: text/css
+  -
+    id: nouislidercss
+    location: layout/css/nouislider.css
+    mimetype: text/css
+  -
+    id: noiuipipcss
+    location: layout/css/nouislider.pips.css
+    mimetype: text/css
+  - 
+    id: header-footer-css
+    location: layout/css/header-footer.css
+    mimetype: text/css
+  - 
+    id: appJS
+    location: layout/js/app.js
+    mimetype: text/javascript
+  - 
+    id: jquery
+    location: layout/js/jquery311.min.js
+    mimetype: text/javascript
+  -
+    id: nouislider
+    location: layout/js/nouislider.js
+    mimetype: text/javascript
+  -
+    id: header-section
+    template: layout/templates/header.mustache
+    publisher: section
+    depends: ["usgs-logo"]
+    context:
+      id: header
+      title: U.S. Water Use from 1950-Present
+      logo: usgs-logo
+      caption: Exploring trends in water use from National Water-Use Information Program historic data.
+  -
+    id: footer-section
+    template: footer
+    publisher: footer
+    depends: [ "header-footer-css", "vizlab-logo" ]
+    context:
+      logo: vizlab-logo
+    blogsInFooter: FALSE
+    vizzies:
+      - name: Microplastics in the Great Lakes
+        org: USGS-VIZLAB
+        repo: great-lakes-microplastics
+      - name: Hurricane Matthew
+        org: USGS-VIZLAB
+        repo: hurricane-matthew
+    blogs: 
+      - name: 
+        url: 
+        thumbLoc: 
+      - name: 
+        url: 
+        thumbLoc: 
