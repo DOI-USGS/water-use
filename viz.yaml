@@ -153,10 +153,10 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "main-css", "svg-css-map" ]
+    depends: [ "figure-section", "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
     context:
       sections: [ "figure-section" ]
-      resources: [ "main-css", "svg-css-map" ]
+      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
   -
     id: figure-section
     template: layout/templates/simple.mustache
@@ -174,10 +174,30 @@ publish:
     id: svg-css-map
     location: layout/css/map-svg.css
     mimetype: text/css
+  -
+    id: nouislidercss
+    location: layout/css/nouislider.css
+    mimetype: text/css
+  -
+    id: noiuipipcss
+    location: layout/css/nouislider.pips.css
+    mimetype: text/css
   - 
     id: header-footer-css
     location: layout/css/header-footer.css
     mimetype: text/css
+  - 
+    id: appJS
+    location: layout/js/app.js
+    mimetype: text/javascript
+  - 
+    id: jquery
+    location: layout/js/jquery311.min.js
+    mimetype: text/javascript
+  -
+    id: nouislider
+    location: layout/js/nouislider.js
+    mimetype: text/javascript
   -
     id: header-section
     template: layout/templates/header.mustache
