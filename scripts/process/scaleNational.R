@@ -1,7 +1,7 @@
 library(tidyr)
 library(dplyr)
 
-process.nationalScales <- function(viz) {
+process.scaleNational <- function(viz) {
 
   nationalData <- readData(viz[['depends']][['nationalClean']])
 
@@ -11,21 +11,22 @@ process.nationalScales <- function(viz) {
 
   names(nationalData) <- c("Year", "Population", "Irrigation", "Public Supply", "Industrial", "Thermoelectric", "Total")
 
-  nationalScales <- list()
+  scaleNational <- list()
 
-  nationalScales["totData"][[1]] <- gather(nationalData, key = category, value = value, -Year, -Population)
+  scaleNational["totData"][[1]] <- gather(nationalData, key = category, value = value, -Year, -Population)
 
-  nationalScales["pCapData"][[1]] <- nationalScales$totData %>% 
+  scaleNational["pCapData"][[1]] <- scaleNational$totData %>% 
     mutate(value = value/Population) %>% 
     mutate(value = value*365)
 
   maxList <- list(totData = 500, pCapData = 800)
 
   for(col in c("totData", "pCapData")) {
-    nationalScales[col][[1]] <- mutate(nationalScales[col][[1]], barScale = value / maxList[col][[1]])
+    scaleNational[col][[1]] <- mutate(scaleNational[col][[1]], barScale = value / maxList[col][[1]])
   }
   
-  saveRDS(nationalScales,
+  saveRDS(scaleNational,
           file=viz[["location"]])
   
 }
+
