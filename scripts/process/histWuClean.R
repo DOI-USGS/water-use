@@ -20,6 +20,7 @@ process.histWuClean <- function(viz){
                           Irrigation = as.numeric(),
                           public = as.numeric(),
                           Thermoelectric = as.numeric(),
+                          Total = as.numeric(),
                           stringsAsFactors = FALSE)
   
   for(i in seq_along(histExDat)){
@@ -53,16 +54,20 @@ process.histWuClean <- function(viz){
       Irrigation <- Irrigation*0.8921
     }
     
+    Total <- rowSums(data.frame(Industrial, Irrigation, public, Thermoelectric), na.rm = TRUE)
+    
     dataClean <- bind_cols(dataYear[,c("Year", "StateCode", "StateName")] ,
-                           data.frame(Industrial, Irrigation, public, Thermoelectric)) %>%
-      rename(`Public Supply` = public) %>%
-      select(-public)
+                           data.frame(Industrial, Irrigation, public, Thermoelectric, Total)) %>%
+      filter(StateName != "Total")
     
     full.data <- bind_rows(full.data, dataClean)
     
   }
   
-  full.long <- gather(full.data, category, value, -Year, -StateCode, -StateName) %>%
+  full.long <- full.data %>%
+    rename(`Public Supply` = public) %>%
+    select(-public) %>%
+    gather(category, value, -Year, -StateCode, -StateName) %>%
     rename(state_cd = StateCode,
            state_name = StateName,
            year = Year)

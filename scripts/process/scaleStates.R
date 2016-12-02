@@ -5,8 +5,6 @@ library(rgeos)
 library(dplyr)
 
 process.scaleStates <- function(viz){
-  #could put these in yaml too?
-  coreCats <- c("Thermoelectric", "Irrigation", "Public Supply", "Industrial")
   
   #read sp, wuClean
   statePoly <- readData(viz[['depends']]$stateMap)$states
@@ -25,14 +23,12 @@ process.scaleStates <- function(viz){
   wuAreas <- mutate(wuAreas, wuPerArea = value/area)
   finalScaleFactors <- data.frame()
   #per category
-  for(cat in coreCats){
+  for(cat in unique(wuAreas$category)){
     thisCat <- filter(wuAreas, category == cat)
-    maxRatio <- max(thisCat$wuPerArea, na.rm = TRUE)
-    thisCat <- mutate(thisCat, scale = wuPerArea/maxRatio)
-    thisCat <- mutate(thisCat, newArea = area*scale)
-    thisCat <- mutate(thisCat, scaleFactor = newArea/area)
-    maxScaleFactor <- range(thisCat$scaleFactor, na.rm = TRUE, finite = TRUE)[2]
-    thisCat <- mutate(thisCat, scaleFactor = scaleFactor/maxScaleFactor)
+    
+    magicState <- thisCat[which.max(thisCat$wuPerArea), ]
+    thisCat <- mutate(thisCat, newArea = value * magicState$area / magicState$value)
+    thisCat <- mutate(thisCat, scaleFactor = newArea / area)
     
     finalScaleFactors <- bind_rows(finalScaleFactors, thisCat)
   }
@@ -48,7 +44,7 @@ library(jsonlite)
 process.scaleFactors2json <- function(viz){
   scaleFactors <- readData(viz[['depends']]$scaleFactors)
   
-  scaleFactors <- select(scaleFactors, -area, -wuPerArea, -scale, -newArea)
+  scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
   
   #replace spaces with underscore
   scaleFactors <- mutate(scaleFactors, state_name = gsub(" ", "_", scaleFactors$state_name))

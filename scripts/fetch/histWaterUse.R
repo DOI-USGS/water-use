@@ -5,7 +5,7 @@ fetch.histWaterUse <- function(viz){
   
   fileName<-"SIU_USStateWaterUse1950_80_01Dec2016.xlsx"
   
-  download.file("ftp://ftpint.usgs.gov/private/er/wi/middleton/dblodgett/SIU_USStateWaterUse1950_80_01Dec2016.xlsx", file.path(filePath,fileName), mode='wb')
+  download.file("ftp://ftpext.usgs.gov/pub/er/wi/middleton/dblodgett/SIU_USStateWaterUse1950_80_01Dec2016.xlsx", file.path(filePath,fileName), mode='wb')
   
   histExDat <- list(list(sheet = "1950", skip = 11),
                     list(sheet = "1955", skip = 15),
