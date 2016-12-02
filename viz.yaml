@@ -135,6 +135,12 @@ publish:
     title: "USGS Logo"
     alttext: "USGS Logo"
   -
+    id: vizlab-logo
+    location: images/vizlab.svg
+    mimetype: image/svg+xml
+    title: "Vizlab Logo"
+    alttext: "Vizlab Logo"
+  -
     id: vizlab-favicon
     location: images/favicon.ico
     mimetype: image/png
