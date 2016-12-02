@@ -2,14 +2,15 @@ var transformData = undefined;
 
 /* depends on jquery */
 animate_resize_map = function(data) {
-  $.each(data, function(state) {
+  $.each(data, function() {
     var color = "blue";
+    var scale = this.scale;
     var style = {
       "fill": color,
-      "transform": "scale3d(" + state.scale + "," + state.scale + ",1)",
-      "transition": "all .2s ease-in-out"
+      "transform": "scale3d(" + scale + "," + scale + ",1)",
+      "transition": "all .5s ease-in-out"
     };
-    $("#" + state.name).css(style)
+    $("#" + this.name).css(style)
   });
 }
 
@@ -25,6 +26,6 @@ animate_category_and_time = function(cat, timestep) {
   animate_resize_map(statesTransform);
 }
 
-$.ready(function(){
+$(document).ready(function(){
   get_resize_data();
 });
