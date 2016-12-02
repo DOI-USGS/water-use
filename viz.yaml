@@ -98,6 +98,14 @@ process:
     depends:
       nationalUse: nationalUse-data
   -
+    id: calc-nationalScales
+    location: cache/nationalScales.rds
+    processor: nationalScales
+    scripts: scripts/process/nationalScales.R
+    reader: rds
+    depends:
+      nationalClean: calc-nationalData
+  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
