@@ -8,6 +8,16 @@ visualize.states_svg <- function(viz){
   shifts <- state.map$shifted.states
   centroids <- state.map$state.centroids
   state.name <- as.character(row.names(states)[states@plotOrder])
+  
+  # create hovertext, just capitalized state names for now
+  capwords <- function(s) {
+    capword <- function(w) {
+      paste(ifelse(w == 'of', w, paste0(toupper(substring(w, 1, 1)), substring(w, 2))), collapse=" ")
+    }
+    sapply(strsplit(s, split = " "), capword, USE.NAMES = FALSE)
+  }
+  state.hovertext <- sprintf("%s", capwords(state.name))
+                             
   library(svglite)
   library(sp)
   size <- apply(state.map$bbox, 1, diff)/500000
@@ -63,11 +73,11 @@ visualize.states_svg <- function(viz){
     # why can't xml2 allow me to just move the node to be under the group?
     xml_add_child(xml_add_child(gb, 'g', transform=transform), 
                   'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background', 
-                  onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
+                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
                   onmouseout="hovertext(' ');")
     xml_add_child(xml_add_child(gf, 'g', transform=transform), 
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
-                  onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
+                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
                   onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
 
