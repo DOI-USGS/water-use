@@ -46,7 +46,7 @@ library(jsonlite)
 process.scaleFactors2json <- function(viz){
   scaleFactors <- readData(viz[['depends']]$scaleFactors)
   
-  scaleFactors <- select(scaleFactors, -area, -wuPerArea, -scale, -newArea)
+  scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
   
   #replace spaces with underscore
   scaleFactors <- mutate(scaleFactors, state_name = gsub(" ", "_", scaleFactors$state_name))
