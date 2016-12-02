@@ -69,11 +69,16 @@ var setYear = function(yr) {
 
 $(document).ready(function(){
   get_resize_data();
+
+  svg = document.querySelector("svg");
+  pt = svg.createSVGPoint();
+
   var slider = document.getElementById('slider');
   slider.noUiSlider.on('update', function( values, handle ) {
 	  var year = "" + Math.round(values[handle]);
   	setYear(year);
   });
+
 });
 
 function hovertext(text, evt){
@@ -110,8 +115,6 @@ function hovertext(text, evt){
 }
 
 function cursorPoint(evt){
-  svg = document.querySelector("svg");
-  pt = svg.createSVGPoint();
   pt.x = evt.clientX; pt.y = evt.clientY;
   return pt.matrixTransform(svg.getScreenCTM().inverse());
 }

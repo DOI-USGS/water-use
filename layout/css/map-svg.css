@@ -5,12 +5,12 @@ line, polyline, path{
 }
 
 .map-background {
-  fill:#3f3f3f;
+  fill:#939393;
   stroke:none;
 }
 .state-background {
   fill:#f1f1f1;
-  stroke:white;
+  stroke:#939393;
   stroke-width:2;
 }
 .state-foreground {
@@ -52,18 +52,18 @@ line, polyline, path{
 }
 
 .Thermoelectric-button {
-  fill:red;
+  fill:#EFBA5A;
 }
 .Public_Supply-button {
-  fill:green;
+  fill:#857EB0;
 }
 .Industrial-button{
-  fill:blue;
+  fill:#A38775;
 }
 .Irrigation-button{
-  fill:lightblue;
+  fill:#61B4A9;
 }
 
 .Total-button{
-  fill:lightgreen;
+  fill:#92C5EA;
 }

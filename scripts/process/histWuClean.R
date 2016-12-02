@@ -66,7 +66,6 @@ process.histWuClean <- function(viz){
   
   full.long <- full.data %>%
     rename(`Public Supply` = public) %>%
-    select(-public) %>%
     gather(category, value, -Year, -StateCode, -StateName) %>%
     rename(state_cd = StateCode,
            state_name = StateName,
