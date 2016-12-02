@@ -101,6 +101,14 @@ process:
     depends:
       nationalUse: nationalUse-data
   -
+    id: calc-scaleNational
+    location: cache/scaleNational.rds
+    processor: scaleNational
+    scripts: scripts/process/scaleNational.R
+    reader: rds
+    depends:
+      nationalClean: calc-nationalData
+  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
@@ -129,13 +137,14 @@ process:
     scripts: scripts/process/scaleStates.R
     depends:
       scaleFactors: calc-scaleFactors
+      scaleFactorsNational: calc-scaleNational
       
 visualize:
   -
     id: states-svg
     location: figures/states_map.svg
     visualizer: states_svg
-    depends: ["state-map"]
+    depends: ["state-map", "calc-scaleFactors"]
     scripts: scripts/visualize/visualize_map.R
     mimetype: image/svg+xml
     inline: true
