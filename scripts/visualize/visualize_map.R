@@ -57,9 +57,9 @@ visualize.states_svg <- function(viz){
     transform <- sprintf('translate(%s,%s)', xml_attr(cr[[i]],'cx'), xml_attr(cr[[i]],'cy'))
     
     # why can't xml2 allow me to just move the node to be under the group?
-    xml_add_child(xml_add_child(gb, 'g', 'id' = paste0(id.name,'-group'), transform=transform), 
+    xml_add_child(xml_add_child(gb, 'g', transform=transform), 
                   'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background')
-    xml_add_child(xml_add_child(gf, 'g', 'id' = paste0(id.name,'-group'), transform=transform), 
+    xml_add_child(xml_add_child(gf, 'g', transform=transform), 
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
   }
