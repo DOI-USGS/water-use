@@ -48,6 +48,9 @@ info:
     readxl:
       repo: CRAN
       version: 0.1.1
+    rgeos:
+      repo: CRAN
+      version: 0.3-21
 fetch:
   -
     id: waterUse-data
@@ -110,6 +113,23 @@ process:
     scripts: scripts/process/treemap.R
     depends:
       waterUse_clean: calc-nationalData
+  -
+    id: calc-scaleFactors
+    location: cache/stateScaleFactors.rds
+    processor: scaleStates
+    scripts: scripts/process/scaleStates.R
+    reader: rds
+    depends:
+      stateMap: state-map
+      wuClean: calc-histWaterData
+  -
+    id: scaleFactors2json
+    location: cache/scaleFactors.json
+    processor: scaleFactors2json
+    scripts: scripts/process/scaleStates.R
+    depends:
+      scaleFactors: calc-scaleFactors
+      
 visualize:
   -
     id: states-svg
