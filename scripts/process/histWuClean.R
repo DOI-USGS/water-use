@@ -72,7 +72,14 @@ process.histWuClean <- function(viz){
            state_name = StateName,
            year = Year)
   
-  full.out <- bind_rows(wuData, full.long)
+  full.long$state_name[full.long$state_name == "D.C."] <- "district of columbia"
+  full.long$state_name[full.long$state_name == "Dist. of Columbia"] <- "district of columbia"
+  
+  wuData$state_name[wuData$state_name == "Dist. of Columbia"] <- "district of columbia"
+  
+  full.out <- bind_rows(wuData, full.long) %>%
+    arrange(state_name, category, year)
+  
   
   saveRDS(full.out, viz[["location"]])
   
