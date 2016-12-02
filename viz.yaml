@@ -51,6 +51,9 @@ info:
     rgeos:
       repo: CRAN
       version: 0.3-21
+    jsonlite:
+      repo: CRAN
+      version: 1.1
 fetch:
   -
     id: waterUse-data
@@ -182,11 +185,11 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "footer-section", "main-css", "svg-css-map",
+    depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
       "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
     context:
       sections: [ "header-section", "figure-section", "footer-section" ]
-      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery",
+      resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "nouislider", "appJS", "mapJS" ]
   -
     id: figure-section
@@ -232,6 +235,11 @@ publish:
   -
     id: nouislider
     location: layout/js/nouislider.js
+    mimetype: text/javascript
+  -
+    id: scaleFactorJson
+    location: target/scaleFactor.json
+    publisher: resource
     mimetype: text/javascript
   -
     id: header-section
