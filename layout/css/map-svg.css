@@ -52,18 +52,18 @@ line, polyline, path{
 }
 
 .Thermoelectric-button {
-  fill:#EFBA5A;
+  fill:red;
 }
 .Public_Supply-button {
-  fill:#857EB0;
+  fill:green;
 }
 .Industrial-button{
-  fill:#A38775;
+  fill:blue;
 }
 .Irrigation-button{
-  fill:#61B4A9;
+  fill:lightblue;
 }
 
 .Total-button{
-  fill:#92C5EA;
+  fill:lightgreen;
 }
