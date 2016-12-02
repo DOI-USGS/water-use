@@ -88,7 +88,7 @@ visualize.states_svg <- function(viz){
   
   g.tool <- xml_add_child(svg,'g',id='tooltip-group')
   xml_add_child(g.tool, 'rect', id="tooltip-box", height="24", class="tooltip-box")
-  xml_add_child(g.tool, 'use', id="tooltip-point", d="M-6,-11 l6,10 l6,-11", class="tooltip-box")
+  xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-11 l6,10 l6,-11", class="tooltip-box")
   xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
   
   xml_remove(p)

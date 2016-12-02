@@ -1,5 +1,6 @@
 var transformData = undefined;
-
+var svg = undefined;
+var pt = undefined;
 /* depends on jquery */
 animate_resize_map = function(data) {
   $.each(data, function() {
@@ -64,6 +65,8 @@ function hovertext(text, evt){
 }
 
 function cursorPoint(evt){  
+  svg = document.querySelector("svg");
+  pt = svg.createSVGPoint();
   pt.x = evt.clientX; pt.y = evt.clientY;
   return pt.matrixTransform(svg.getScreenCTM().inverse());
 }
