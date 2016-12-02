@@ -16,6 +16,7 @@ process.scaleStates <- function(viz){
   #get areas, join to wuClean
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
   areas$state_name <- rownames(areas)
+  #need to change DC so that it matches state_names in the water use df
   areas["district of columbia",][2] <- "dist. of columbia"
   wuAreas <- left_join(wuClean, areas, by = 'state_name')
   names(wuAreas)[6] <- "area"
@@ -38,4 +39,37 @@ process.scaleStates <- function(viz){
   
   #save
   saveRDS(finalScaleFactors, file = viz[['location']])
+}
+
+
+#convert the rds from above to appropriately-formatted json
+library(jsonlite)
+
+process.scaleFactors2json <- function(viz){
+  scaleFactors <- readData(viz[['depends']]$scaleFactors)
+  
+  scaleFactors <- select(scaleFactors, -area, -wuPerArea, -scale, -newArea)
+  
+  #replace spaces with underscore
+  scaleFactors <- mutate(scaleFactors, state_name = gsub(" ", "_", scaleFactors$state_name))
+  
+  
+  uniqYears <- unique(scaleFactors$year)
+  forJson <- vector("list", length(uniqYears)) #initialize
+  
+  for(i in 1:length(uniqYears)){
+    thisYear <- filter(scaleFactors, year == uniqYears[i])
+    
+    #convert to list of dfs for each category
+    forJson[[i]] <- list(Thermoelectric=filter(thisYear, category == "Thermoelectric"),
+                    Industrial = filter(thisYear, category == "Industrial"),
+                    Public_Supply = filter(thisYear, category == "Public Supply"),
+                    Irrigation = filter(thisYear, category == "Irrigation"))
+  }
+  names(forJson) <- uniqYears
+  
+  #to JSON
+  jsOut <- toJSON(forJson)
+  write(jsOut, viz[['location']])
+   
 }

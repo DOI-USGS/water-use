@@ -118,9 +118,17 @@ process:
     location: cache/stateScaleFactors.rds
     processor: scaleStates
     scripts: scripts/process/scaleStates.R
+    reader: rds
     depends:
       stateMap: state-map
       wuClean: calc-waterData
+  -
+    id: scaleFactors2json
+    location: cache/scaleFactors.json
+    processor: scaleFactors2json
+    scripts: scripts/process/scaleStates.R
+    depends:
+      scaleFactors: calc-scaleFactors
       
 visualize:
   -
