@@ -1,12 +1,15 @@
 line, polyline, path{
-  fill: none;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	stroke-miterlimit: 10.00;
 }
 
+.map-background {
+  fill:#3f3f3f;
+  stroke:none;
+}
 .state-background {
-  fill:grey;
+  fill:#f1f1f1;
   stroke:white;
   stroke-width:2;
 }
@@ -14,6 +17,7 @@ line, polyline, path{
   fill:lightgreen;
   stroke:none;
 }
+
 .hidden {
   opacity: 0;
 }
@@ -33,4 +37,33 @@ line, polyline, path{
 	-moz-user-select: none;      /* Firefox */
 	-ms-user-select: none;       /* Internet Explorer/Edge */
 	cursor: default;
+}
+    
+.disabled-button {
+  fill:black;
+  stroke:none;
+  opacity:0.4;
+}
+
+.enabled-button {
+  fill:white;
+  stroke:none;
+  opacity:0;
+}
+
+.Thermoelectric-button {
+  fill:red;
+}
+.Public_Supply-button {
+  fill:green;
+}
+.Industrial-button{
+  fill:blue;
+}
+.Irrigation-button{
+  fill:lightblue;
+}
+
+.Total-button{
+  fill:lightgreen;
 }
