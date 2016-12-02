@@ -153,10 +153,10 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "main-css", "svg-css-map", "nouislidercss",
-      "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
+    depends: [ "figure-section", "header-section", "footer-section", "main-css", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
     context:
-      sections: [ "figure-section" ]
+      sections: [ "header-section", "figure-section", "footer-section" ]
       resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery",
         "nouislider", "appJS", "mapJS" ]
   -
@@ -194,7 +194,7 @@ publish:
     mimetype: text/javascript
   -
     id: mapJS
-    location: layout/js/app.js
+    location: layout/js/map.js
     mimetype: text/javascript
   -
     id: jquery
