@@ -43,6 +43,7 @@ library(jsonlite)
 
 process.scaleFactors2json <- function(viz){
   scaleFactors <- readData(viz[['depends']]$scaleFactors)
+  scaleFactorsNational <- readData(viz[['depends']]$scaleFactorsNational)
   
   scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
   
@@ -64,8 +65,29 @@ process.scaleFactors2json <- function(viz){
   }
   names(forJson) <- uniqYears
   
-  #to JSON
-  jsOut <- toJSON(forJson)
+  natScaleTypes <- list()
+  
+  for(type in names(scaleFactorsNational)) {
+    dat <- scaleFactorsNational[type][[1]]
+    uniqYears <- unique(dat$Year)
+    natJson <- vector("list", length(uniqYears))
+    for(i in 1:length(uniqYears)){
+      thisYear <- filter(dat, Year == uniqYears[i])
+      
+      #convert to list of dfs for each category
+      natJson[[i]] <- list(Thermoelectric=filter(thisYear, category == "Thermoelectric"),
+                           Industrial = filter(thisYear, category == "Industrial"),
+                           Public_Supply = filter(thisYear, category == "Public Supply"),
+                           Irrigation = filter(thisYear, category == "Irrigation"),
+                           Total = filter(thisYear, category == "Total"))
+    }
+    names(natJson) <- uniqYears
+    natScaleTypes[type][[1]] <- natJson
+  }
+  
+  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData)
+  
+  jsOut <- toJSON(allJson)
   write(jsOut, viz[['location']])
    
 }
