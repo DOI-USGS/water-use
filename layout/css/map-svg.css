@@ -1,12 +1,15 @@
 line, polyline, path{
-  fill: none;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	stroke-miterlimit: 10.00;
 }
 
+.map-background {
+  fill:#3f3f3f;
+  stroke:none;
+}
 .state-background {
-    fill:grey;
+    fill:#f1f1f1;
     stroke:white;
     stroke-width:2;
     }

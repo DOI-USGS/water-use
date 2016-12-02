@@ -4,13 +4,13 @@ var transformData = undefined;
 animate_resize_map = function(data) {
   $.each(data, function() {
     var color = "blue";
-    var scale = this.scale;
+    var scale = this.scaleFactor;
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
-      "transition": "all .5s ease-in-out"
+      "transition": "all 1s ease-in-out"
     };
-    $("#" + this.name).css(style)
+    $("#" + this.state_name).css(style)
   });
 }
 

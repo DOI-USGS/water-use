@@ -9,7 +9,7 @@ process.scaleStates <- function(viz){
   coreCats <- c("Thermoelectric", "Irrigation", "Public Supply", "Industrial")
   
   #read sp, wuClean
-  statePoly <- readData(viz[['depends']]$stateMap)
+  statePoly <- readData(viz[['depends']]$stateMap)$states
   wuClean <- readData(viz[['depends']]$wuClean)
   
   wuClean$state_name <- tolower(wuClean$state_name)
