@@ -153,10 +153,12 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
+    depends: [ "figure-section", "header-section", "footer-section", "main-css", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS" ]
     context:
-      sections: [ "figure-section" ]
-      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS" ]
+      sections: [ "header-section", "figure-section", "footer-section" ]
+      resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery",
+        "nouislider", "appJS", "mapJS" ]
   -
     id: figure-section
     template: layout/templates/simple.mustache
@@ -182,15 +184,19 @@ publish:
     id: noiuipipcss
     location: layout/css/nouislider.pips.css
     mimetype: text/css
-  - 
+  -
     id: header-footer-css
     location: layout/css/header-footer.css
     mimetype: text/css
-  - 
+  -
     id: appJS
     location: layout/js/app.js
     mimetype: text/javascript
-  - 
+  -
+    id: mapJS
+    location: layout/js/map.js
+    mimetype: text/javascript
+  -
     id: jquery
     location: layout/js/jquery311.min.js
     mimetype: text/javascript
@@ -223,10 +229,10 @@ publish:
       - name: Hurricane Matthew
         org: USGS-VIZLAB
         repo: hurricane-matthew
-    blogs: 
-      - name: 
-        url: 
-        thumbLoc: 
-      - name: 
-        url: 
-        thumbLoc: 
+    blogs:
+      - name:
+        url:
+        thumbLoc:
+      - name:
+        url:
+        thumbLoc:
