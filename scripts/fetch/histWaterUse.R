@@ -3,7 +3,7 @@ fetch.histWaterUse <- function(viz){
   
   filePath <- tempdir()
   
-  download.file("ftp://ftpint.usgs.gov/private/er/wi/middleton/dblodgett/SIU_USStateWaterUse1950_80.xls", file.path(filePath,"SIU_USStateWaterUse1950_80.xls"))
+  download.file("ftp://ftpint.usgs.gov/private/er/wi/middleton/dblodgett/SIU_USStateWaterUse1950_80.xls", file.path(filePath,"SIU_USStateWaterUse1950_80.xls"), mode='wb')
   
   histExDat <- list(list(sheet = "1950", skip = 12, ind = c("sIndGw", "sIndSurf"), iri = "irrTotal", pub = NULL, thr = NULL),
                     list(sheet = "1955", skip = 22, ind = "sIndTotal", iri = "irrTotal", pub = "pubTotal", thr = NULL),
