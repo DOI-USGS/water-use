@@ -85,17 +85,6 @@ process:
     reader: rds
 visualize:
   -
-    id: wuBars
-    location: figures/wuBars.png
-    scripts: scripts/visualize/wuBars.R
-    visualizer: wuBars
-    mimetype: image/svg+xml
-    title: "Water use over time"
-    alttext: "Stacked barplot of water ues by category over time"
-    depends:
-      stateUse: calc-waterData
-      natlUse: calc-nationalData
-  -
     id: states-svg
     location: figures/states_map.svg
     visualizer: states_svg
