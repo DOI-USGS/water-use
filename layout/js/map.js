@@ -1,41 +1,86 @@
 var transformData = undefined;
 var svg = undefined;
 var pt = undefined;
+var category = "Total";
+var year = "1950";
+var transitionTime = "1s";
+var colors = {
+  "Thermoelectric": "#EFBA5A",
+  "Public_Supply": "#857EB0",
+  "Industrial": "#A38775",
+  "Irrigation": "#61B4A9",
+  "Total": "#92C5EA"
+};
+
 /* depends on jquery */
-animate_resize_map = function(data) {
-  $.each(data, function() {
-    var color = "blue";
-    var scale = this.scaleFactor;
+var animate_resize_map = function(data) {
+  $.each(data, function(index, val) {
+    var color = colors[category];
+    var scale = val.scaleFactor;
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
-      "transition": "all 1s ease-in-out"
+      "transition": "all " + transitionTime + " ease-in-out"
     };
-    $("#" + this.state_name).css(style)
+    $("#" + val.state_name).css(style)
   });
-}
+};
 
-get_resize_data = function() {
+var animate_bars = function(data) {
+  $.each(data, function(prop, val) {
+    var myYear = prop;
+    var color = colors[category];
+    var scale = val[category][0]["barScale"];
+    // if we want tooltips
+    var value = val[category][0]["value"];
+    var style = {
+      "background": color,
+      "transform": "scale3d(1," + scale + ",1)",
+      "transform-origin": "100% 100%",
+      "transition": "all " + transitionTime + " ease-in-out"
+    };
+    $("#bar-" + myYear).css(style);
+  });
+};
+
+var get_resize_data = function() {
   $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
-    animate_category_and_time("Irrigation", "1985")
+    animate();
   });
-}
+};
 
-animate_category_and_time = function(cat, timestep) {
-  var statesTransform = transformData["totState"][timestep][cat];
+var animate = function() {
+  var statesTransform = transformData["totState"][year][category];
+  var barsTransform = transformData["totNat"];
   animate_resize_map(statesTransform);
-}
+  animate_bars(barsTransform);
+};
+
+var setCategory = function(cat, evt) {
+  category = cat;
+  animate();
+};
+
+var setYear = function(yr) {
+  year = yr;
+  animate();
+};
 
 $(document).ready(function(){
   get_resize_data();
+  var slider = document.getElementById('slider');
+  slider.noUiSlider.on('update', function( values, handle ) {
+	  var year = "" + Math.round(values[handle]);
+  	setYear(year);
+  });
 });
 
 function hovertext(text, evt){
   var tooltip = document.getElementById("tooltip-text");
-  var tooltip_bg = document.getElementById("tooltip-box");    
+  var tooltip_bg = document.getElementById("tooltip-box");
   var tool_pt = document.getElementById("tooltip-point");
-  if (evt === undefined){ 
+  if (evt === undefined){
     tooltip.firstChild.data = ' ';
     tooltip_bg.setAttribute("class","hidden");
     tooltip_bg.setAttribute("x",0);
@@ -64,7 +109,7 @@ function hovertext(text, evt){
   }
 }
 
-function cursorPoint(evt){  
+function cursorPoint(evt){
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
   pt.x = evt.clientX; pt.y = evt.clientY;
