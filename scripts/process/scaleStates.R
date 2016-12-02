@@ -14,8 +14,6 @@ process.scaleStates <- function(viz){
   #get areas, join to wuClean
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
   areas$state_name <- rownames(areas)
-  #need to change DC so that it matches state_names in the water use df
-  areas["district of columbia",][2] <- "dist. of columbia"
   wuAreas <- left_join(wuClean, areas, by = 'state_name')
   names(wuAreas)[6] <- "area"
   

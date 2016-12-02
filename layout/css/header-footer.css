@@ -99,11 +99,6 @@ footer:after {
 	
 	@media screen and (min-width:768px){
 	  /*Header CSS*/
-  	#logo{
-  		width:760px;
-  		margin:0 auto;
-  		}
-  		
   	#header h3{
   		padding-top:0;
   		font-size:1.2em;
@@ -142,8 +137,27 @@ footer:after {
   }
 }
 
-@media screen and (min-width:1200px){
-  #logo{
-    width:960px;
-  }
+@media screen and (min-width:1024px){
+	
+	#logo{
+		width:960px;
+		margin:0 auto;
+	}
+	
+}
+
+@media screen and (min-width:1500px){
+	
+	#logo{
+		width:1200px;
+	}
+	
+}
+
+@media screen and (min-width:2000px){
+	
+	#logo{
+		width:1800px;
+	}
+	
 }
