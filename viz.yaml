@@ -101,6 +101,14 @@ process:
     depends:
       nationalUse: nationalUse-data
   -
+    id: calc-scaleNational
+    location: cache/scaleNational.rds
+    processor: scaleNational
+    scripts: scripts/process/scaleNational.R
+    reader: rds
+    depends:
+      nationalClean: calc-nationalData
+  -
     id: state-map
     location: cache/state-map.rds
     processor: state_map
@@ -129,6 +137,7 @@ process:
     scripts: scripts/process/scaleStates.R
     depends:
       scaleFactors: calc-scaleFactors
+      scaleFactorsNational: calc-scaleNational
       
 visualize:
   -
