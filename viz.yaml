@@ -158,7 +158,7 @@ publish:
     context:
       sections: [ "figure-section" ]
       resources: [ "main-css", "svg-css-map", "nouislidercss", "noiuipipcss", "jquery",
-        "nouislider", "appJS" ]
+        "nouislider", "appJS", "mapJS" ]
   -
     id: figure-section
     template: layout/templates/simple.mustache
