@@ -142,8 +142,18 @@ footer:after {
   }
 }
 
-@media screen and (min-width:1200px){
-  #logo{
-    width:960px;
-  }
+@media screen and (min-width:1500px){
+	
+	#logo{
+		width:1200px;
+	}
+	
+}
+
+@media screen and (min-width:2000px){
+	
+	#logo{
+		width:1800px;
+	}
+	
 }
