@@ -56,7 +56,8 @@ process.histWuClean <- function(viz){
     dataClean <- bind_cols(dataYear[,c("Year", "StateCode", "StateName")] ,
                            data.frame(Industrial, Irrigation, public, Thermoelectric)) %>%
       rename(`Public Supply` = public) %>%
-      select(-public)
+      select(-public) %>%
+      filter(StateName != "Total")
     
     full.data <- bind_rows(full.data, dataClean)
     
