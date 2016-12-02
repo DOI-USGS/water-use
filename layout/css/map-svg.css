@@ -6,12 +6,31 @@ line, polyline, path{
 }
 
 .state-background {
-    fill:grey;
-    stroke:white;
-    stroke-width:2;
-    }
-    .state-foreground {
-    fill:lightgreen;
-    stroke:none;
-  
-    }
+  fill:grey;
+  stroke:white;
+  stroke-width:2;
+}
+.state-foreground {
+  fill:lightgreen;
+  stroke:none;
+}
+.hidden {
+  opacity: 0;
+}
+.shown {
+  opacity: 1;
+}
+.tooltip-box{
+  stroke-width: 2;
+  stroke: grey;
+  opacity: 0.9;
+  fill: #E8E8E8;
+}
+.svg-text {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	cursor: default;
+}

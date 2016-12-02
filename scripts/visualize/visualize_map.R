@@ -58,11 +58,22 @@ visualize.states_svg <- function(viz){
     
     # why can't xml2 allow me to just move the node to be under the group?
     xml_add_child(xml_add_child(gb, 'g', transform=transform), 
-                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background')
+                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background', 
+                  onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
+                  onmouseout="hovertext(' ');")
     xml_add_child(xml_add_child(gf, 'g', transform=transform), 
-                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
+                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
+                  onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
+                  onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
+
   }
+  
+  g.tool <- xml_add_child(svg,'g',id='tooltip-group')
+  xml_add_child(g.tool, 'rect', id="tooltip-box", height="24", class="tooltip-box")
+  xml_add_child(g.tool, 'use', id="tooltip-point", d="M-6,-11 l6,10 l6,-11", class="tooltip-box")
+  xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
+  
   xml_remove(p)
   xml_remove(cr)
 
