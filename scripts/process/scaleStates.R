@@ -5,8 +5,6 @@ library(rgeos)
 library(dplyr)
 
 process.scaleStates <- function(viz){
-  #could put these in yaml too?
-  coreCats <- c("Thermoelectric", "Irrigation", "Public Supply", "Industrial")
   
   #read sp, wuClean
   statePoly <- readData(viz[['depends']]$stateMap)$states
@@ -25,7 +23,7 @@ process.scaleStates <- function(viz){
   wuAreas <- mutate(wuAreas, wuPerArea = value/area)
   finalScaleFactors <- data.frame()
   #per category
-  for(cat in coreCats){
+  for(cat in unique(wuAreas$category)){
     thisCat <- filter(wuAreas, category == cat)
     
     magicState <- thisCat[which.max(thisCat$wuPerArea), ]
