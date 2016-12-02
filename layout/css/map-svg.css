@@ -5,13 +5,13 @@ line, polyline, path{
 	stroke-miterlimit: 10.00;
 }
 
-.background {
-  fill: none;
-}
-.state-polygon {
-  fill:red;
-}
-
-.state-polygon:hover {
-  fill:yellow;
-}
+.state-background {
+    fill:grey;
+    stroke:white;
+    stroke-width:2;
+    }
+    .state-foreground {
+    fill:lightgreen;
+    stroke:none;
+  
+    }

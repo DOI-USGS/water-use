@@ -36,6 +36,7 @@ process.wuClean <- function(viz){
                                                                              wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric`)] ,
                                                                              wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric`)] ),
                                                                              na.rm = TRUE)
+  wideWU <- select(wideWU, -`Thermoelectric Fossil`, -`Thermoelectric Geothermal`, -`Thermoelectric Nuclear`)
   
   longWU <- gather(wideWU, category, value, -state_cd, -state_name, -year)
   
