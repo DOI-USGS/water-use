@@ -14,8 +14,6 @@ process.scaleStates <- function(viz){
   #get areas, join to wuClean
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
   areas$state_name <- rownames(areas)
-  #need to change DC so that it matches state_names in the water use df
-  areas["district of columbia",][2] <- "dist. of columbia"
   wuAreas <- left_join(wuClean, areas, by = 'state_name')
   names(wuAreas)[6] <- "area"
   
@@ -52,6 +50,7 @@ process.scaleFactors2json <- function(viz){
   
   
   uniqYears <- unique(scaleFactors$year)
+  uniqYears <- uniqYears[order(uniqYears)]
   forJson <- vector("list", length(uniqYears)) #initialize
   
   for(i in 1:length(uniqYears)){
@@ -59,9 +58,9 @@ process.scaleFactors2json <- function(viz){
     
     #convert to list of dfs for each category
     forJson[[i]] <- list(Thermoelectric=filter(thisYear, category == "Thermoelectric"),
-                    Industrial = filter(thisYear, category == "Industrial"),
-                    Public_Supply = filter(thisYear, category == "Public Supply"),
-                    Irrigation = filter(thisYear, category == "Irrigation"))
+                          Industrial = filter(thisYear, category == "Industrial"),
+                          Public_Supply = filter(thisYear, category == "Public Supply"),
+                          Irrigation = filter(thisYear, category == "Irrigation"))
   }
   names(forJson) <- uniqYears
   
