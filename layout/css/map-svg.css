@@ -33,7 +33,7 @@ line, polyline, path{
 .Thermoelectric-button {
   fill:red;
 }
-.Public_Suppy-button {
+.Public_Supply-button {
   fill:green;
 }
 .Industrial-button{
@@ -41,4 +41,8 @@ line, polyline, path{
 }
 .Irrigation-button{
   fill:lightblue;
+}
+
+.Total-button{
+  fill:lightgreen;
 }
