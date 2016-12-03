@@ -63,6 +63,8 @@ visualize.states_svg <- function(viz){
   xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
   gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
   gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
+  g.tool <- xml_add_child(svg,'g',id='tooltip-group')
+  gm <- xml_add_child(svg, 'g', 'id' = 'state-mouseovers')
   
   for (i in 1:length(state.name)){
     id.name <- gsub(state.name[i], pattern = '[ ]', replacement = '_')
@@ -72,11 +74,13 @@ visualize.states_svg <- function(viz){
     
     # why can't xml2 allow me to just move the node to be under the group?
     xml_add_child(xml_add_child(gb, 'g', transform=transform), 
-                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background', 
-                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
-                  onmouseout="hovertext(' ');")
-    xml_add_child(xml_add_child(gf, 'g', transform=transform), 
-                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
+                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-background'), class='state-background')
+    
+    
+    xml_add_child(xml_add_child(gf, 'g', transform=transform),
+                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
+    xml_add_child(xml_add_child(gm, 'g', transform=transform), # this sits on top but only for mouseover
+                  'use', 'xlink:href'=paste0("#", id.use), opacity='0',
                   onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
                   onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
@@ -96,7 +100,7 @@ visualize.states_svg <- function(viz){
     y.button <- y.button+30
   }
   
-  g.tool <- xml_add_child(svg,'g',id='tooltip-group')
+  
   xml_add_child(g.tool, 'rect', id="tooltip-box", height="24", class="tooltip-box")
   xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-11 l6,10 l6,-11", class="tooltip-box")
   xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
