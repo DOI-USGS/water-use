@@ -50,6 +50,10 @@ visualize.states_svg <- function(viz){
   xml_remove(defs)
   defs <- xml_add_child(svg, 'defs')
   cp <- xml_add_child(defs, 'clipPath', id="svg-bounds")
+  patt <- xml_add_child(defs, 'pattern', id="nodata", patternUnits="userSpaceOnUse", width="6", height="6")
+  xml_add_child(patt, 'rect', height='6',width='6', class='nodata-fill')
+  xml_add_child(patt, 'path', d = "M-1,1 l2,-2 M0,6 l6,-6 M5,7 l2,-2", class='nodata-lines')
+  
   xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
   gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
   gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
