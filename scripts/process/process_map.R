@@ -38,13 +38,13 @@ process.state_map <- function(viz){
   
   # resize: c('district of columbia', 'maryland', 'delaware')
   
-  conus <- shift_state(conus, 'district of columbia', 7, c(190000,0))
-  conus <- shift_state(conus, 'maryland', 1.4, c(330000,23000))
-  conus <- shift_state(conus, 'delaware', 1.4, c(384000,70000))
-  conus <- shift_state(conus, 'new jersey', 1.4, c(430000,100000))
-  conus <- shift_state(conus, 'massachusetts', 1.4, c(330000,230000))
-  conus <- shift_state(conus, 'connecticut', 1.4, c(230000,140000))
-  conus <- shift_state(conus, 'rhode island', 1.4, c(300000,170000))
+  conus <- shift_state(conus, 'district of columbia', 7, c(19,0))
+  conus <- shift_state(conus, 'maryland', 1.4, c(33,2.3))
+  conus <- shift_state(conus, 'delaware', 1.4, c(38.4,7))
+  conus <- shift_state(conus, 'new jersey', 1.4, c(43,10))
+  conus <- shift_state(conus, 'massachusetts', 1.4, c(33,23))
+  conus <- shift_state(conus, 'connecticut', 1.4, c(23,14))
+  conus <- shift_state(conus, 'rhode island', 1.4, c(30,17))
   
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   
@@ -75,7 +75,7 @@ shift_state <- function(sp, state, scale, shift){
   obj.out <- sp[!names(sp) %in% state,]
   obj <- elide(obj, scale=max(apply(bbox(obj), 1, diff)) * scale)
   new.cent <- rgeos::gCentroid(obj,byid=TRUE)@coords
-  obj <- elide(obj, shift=shift+c(orig.cent-new.cent))
+  obj <- elide(obj, shift=shift*10000+c(orig.cent-new.cent))
   proj4string(obj) <- proj4string(sp)
   return(rbind(obj.out, obj))
 }
