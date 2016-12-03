@@ -80,7 +80,7 @@ visualize.states_svg <- function(viz){
     xml_add_child(xml_add_child(gf, 'g', transform=transform),
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
     xml_add_child(xml_add_child(gm, 'g', transform=transform), # this sits on top but only for mouseover
-                  'use', 'xlink:href'=paste0("#", id.use), opacity='0',
+                  'use', 'xlink:href'=paste0("#", id.use), id=paste0(id.name,'-mousemove'), opacity='0',
                   onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
                   onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
