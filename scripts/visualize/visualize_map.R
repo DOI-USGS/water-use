@@ -92,9 +92,11 @@ visualize.states_svg <- function(viz){
     y.button <- y.button+30
   }
 
-
+  clip <- xml_add_child(xml_add_child(g.tool, 'defs'), 'clipPath', id="tipClip")
+  xml_add_child(clip, 'rect', x='-6', y='-11.5', height='11', width='12')
   xml_add_child(g.tool, 'rect', id="tooltip-box", height="24", class="tooltip-box")
-  xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-12 l6,10 l6,-10", class="tooltip-box", 'stroke-linecap'="butt")
+  xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-12 l6,10 l6,-10", class="tooltip-box", 'clip-path'="url(#tipClip)")
+  
   xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
 
   xml_remove(p)
