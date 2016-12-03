@@ -1,32 +1,10 @@
 <div class="container">
 		<div class="map">{{{ map }}}</div>
 		<div class="dataBars">
-		  <div id="bar-1950" class="dataBar">
+		  {{#bars}}
+		  <div id="bar-{{.}}" class="dataBar hastip">
 		  </div>
-		  <div id="bar-1955" class="dataBar">
-		  </div>
-		  <div id="bar-1960" class="dataBar">
-		  </div>
-		  <div id="bar-1965" class="dataBar">
-		  </div>
-		  <div id="bar-1970" class="dataBar">
-		  </div>
-		  <div id="bar-1975" class="dataBar">
-		  </div>
-		  <div id="bar-1980" class="dataBar">
-		  </div>
-		  <div id="bar-1985" class="dataBar">
-		  </div>
-		  <div id="bar-1990" class="dataBar">
-		  </div>
-		  <div id="bar-1995" class="dataBar">
-		  </div>
-		  <div id="bar-2000" class="dataBar">
-		  </div>
-		  <div id="bar-2005" class="dataBar">
-		  </div>
-		  <div id="bar-2010" class="dataBar">
-		  </div>
+		  {{/bars}}
 		</div>
 		<div class="timeslider">
 			<div id="slider"></div>

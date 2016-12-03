@@ -188,11 +188,11 @@ publish:
     publisher: page
     mimetype: text/html
     depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
+      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
     context:
       sections: [ "header-section", "figure-section", "footer-section" ]
       resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
-        "nouislider", "appJS", "mapJS" ]
+        "tooltipsy", "nouislider", "appJS", "mapJS" ]
   -
     id: figure-section
     template: layout/templates/simple.mustache
@@ -201,6 +201,7 @@ publish:
       map: states-svg
     context:
       map: states-svg
+      bars: [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010]
     comment: "We should consolidate the depends and context now with named dependencies"
   -
     id: main-css
@@ -233,6 +234,10 @@ publish:
   -
     id: jquery
     location: layout/js/jquery311.min.js
+    mimetype: text/javascript
+  -
+    id: tooltipsy
+    location: layout/js/tooltipsy.min.js
     mimetype: text/javascript
   -
     id: nouislider

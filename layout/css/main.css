@@ -88,6 +88,15 @@ body{
   left:91.2%;
 }
 
+.tooltipsy
+{
+    padding: 10px;
+    max-width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    opacity: 0.85;
+}
+
 .timeslider{
 	margin:10px auto 50px auto;
 }
