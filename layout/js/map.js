@@ -26,6 +26,13 @@ var animate_resize_map = function(data) {
     };
     var state = $("#" + val.state_name);
     if (state !== undefined) {
+      if (isNaN(scale)){ // doesn't seem to work?
+        style = {
+          "fill":"url(#nodata)",
+          "transform": "scale3d(1,1,1)",
+          "transition": "all " + transitionTime + " ease-in-out"
+        };
+      } 
       state.css(style);
     }
   });

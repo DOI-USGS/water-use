@@ -23,6 +23,20 @@ line, polyline, path{
   text-anchor:middle;
   font-size: 0.75em;
 }
+.nodata {
+  fill:url(#nodata);
+}
+.nodata-lines{
+  stroke:#8b8b8b; 
+  stroke-width:1;
+}
+
+.nodata-fill{
+  fill:#b9b9b9;
+  stroke:none;
+}
+
+
 .cat-button-text {
   fill:black;
   stroke:none;
