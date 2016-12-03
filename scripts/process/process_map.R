@@ -36,9 +36,15 @@ process.state_map <- function(viz){
   row.names(hawaii) <- 'hawaii'
   proj4string(hawaii) <- proj4string(conus)
   
-  # resize: c('district of columbia', 'maryland', 'deleware')
+  # resize: c('district of columbia', 'maryland', 'delaware')
   
-  conus <- shift_state(conus, 'district of columbia', 5, c(300000,100000))
+  conus <- shift_state(conus, 'district of columbia', 7, c(190000,0))
+  conus <- shift_state(conus, 'maryland', 1.4, c(330000,23000))
+  conus <- shift_state(conus, 'delaware', 1.4, c(384000,70000))
+  conus <- shift_state(conus, 'new jersey', 1.4, c(430000,100000))
+  conus <- shift_state(conus, 'massachusetts', 1.4, c(330000,230000))
+  conus <- shift_state(conus, 'connecticut', 1.4, c(230000,140000))
+  conus <- shift_state(conus, 'rhode island', 1.4, c(300000,170000))
   
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   
