@@ -17,8 +17,16 @@ line, polyline, path{
   fill:lightgreen;
   stroke:none;
 }
-
+.legend-title-text{
+  fill:#666666;
+  stroke:none;
+  text-anchor:middle;
+  font-size: 0.75em;
+}
 .cat-button-text {
+  fill:black;
+  stroke:none;
+  text-anchor:middle;
   font-size: 0.8em;
 }
 .hidden {
@@ -45,13 +53,13 @@ line, polyline, path{
 .cat-button {
   fill:#e5e5e5;
   stroke:#262626;
-  stroke-width: 1;
+  stroke-width: 0.0;
   cursor:pointer;
 }
 
 .cat-button:hover {
   fill:#404040;
-  stroke-width: 1.5;
+  stroke-width: 0.5;
   stroke-opacity:1;
 }
 

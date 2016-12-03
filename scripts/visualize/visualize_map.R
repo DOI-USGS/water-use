@@ -81,14 +81,18 @@ visualize.states_svg <- function(viz){
   g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
   w.button <- "90"
+  x.text <- as.character(as.numeric(w.button)/2)
   h.button <- "20"
+  xml_add_child(g.button, 'text', x=x.text, dy='-1.5em', "Water withdrawal", 
+                class='legend-title-text svg-text')
+  xml_add_child(g.button, 'text', x=x.text, dy='-0.5em', "categories", 
+                class='legend-title-text svg-text')
   for (name in category.names){
     id <- gsub(pattern = ' ','_',name)
     xml_add_child(g.button, 'rect',  y = y.button[1], height=h.button, width=w.button,
                   class=sprintf('%s-button',id))
-    xml_add_child(g.button, 'text', x=as.character(as.numeric(w.button)/2), y = y.button[1], dy='1.1em', name, 
-                  class='cat-button-text svg-text', fill='black','stroke'='none',
-                  'text-anchor'='middle')
+    xml_add_child(g.button, 'text', x=x.text, y = y.button[1], dy='1.1em', name, 
+                  class='cat-button-text svg-text')
     xml_add_child(g.button, 'rect', y = y.button[1], height=h.button, width=w.button,
                   class='cat-button', id=id,
                   onclick=sprintf("setCategory('%s')", id))
