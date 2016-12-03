@@ -45,8 +45,9 @@ process.scaleFactors2json <- function(viz){
 
   scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
 
-  #replace spaces with underscore
+  #replace spaces with underscore and remove &
   scaleFactors <- mutate(scaleFactors, state_name = gsub(" ", "_", scaleFactors$state_name))
+  scaleFactors <- mutate(scaleFactors, state_name = gsub("&_", "", scaleFactors$state_name))
 
 
   uniqYears <- unique(scaleFactors$year)
