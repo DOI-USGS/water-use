@@ -14,22 +14,30 @@ var colors = {
 
 /* depends on jquery */
 var animate_resize_map = function(data) {
+  var color = colors[category];
   $.each(data, function(index, val) {
-    var color = colors[category];
     var scale = val.scaleFactor;
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
       "transition": "all " + transitionTime + " ease-in-out"
     };
-    $("#" + val.state_name).css(style)
+    var state = $("#" + val.state_name);
+    if (state !== undefined) {
+      state.css(style);
+    }
   });
 };
 
 var animate_bars = function(data) {
+
   $.each(data, function(prop, val) {
     var myYear = prop;
     var color = colors[category];
+    if (myYear > year) {
+      color = "#E0E0E0";
+    }
+
     var scale = val[category][0]["barScale"];
     // if we want tooltips
     var value = val[category][0]["value"];
@@ -39,14 +47,24 @@ var animate_bars = function(data) {
       "transform-origin": "100% 100%",
       "transition": "all " + transitionTime + " ease-in-out"
     };
-    $("#bar-" + myYear).css(style);
+    var bar = $("#bar-" + myYear);
+    if (bar !== undefined) {
+      bar.css(style);
+    }
   });
 };
 
 var get_resize_data = function() {
   $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
+
     animate();
+
+    var slider = document.getElementById('slider');
+    slider.noUiSlider.on('update', function( values, handle ) {
+  	  var year = "" + Math.round(values[handle]);
+    	setYear(year);
+    });
   });
 };
 
@@ -72,13 +90,6 @@ $(document).ready(function(){
 
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
-
-  var slider = document.getElementById('slider');
-  slider.noUiSlider.on('update', function( values, handle ) {
-	  var year = "" + Math.round(values[handle]);
-  	setYear(year);
-  });
-
 });
 
 function hovertext(text, evt){
