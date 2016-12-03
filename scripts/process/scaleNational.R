@@ -19,10 +19,24 @@ process.scaleNational <- function(viz) {
     mutate(value = value/Population) %>% 
     mutate(value = value*365)
 
-  maxList <- list(totData = 500, pCapData = 800)
-
+  maxList <- list(totData = list(), pCapData = list())
+  
+  breaks <- function(x) {
+    for(i in 1:length(x)) {
+      if(x[i]<=50) x[i] <- 50
+      if(x[i]>50) x[i] <- ceiling(x[i]/100)*100
+    }
+    return(x)
+  }
+  
   for(col in c("totData", "pCapData")) {
-    scaleNational[col][[1]] <- mutate(scaleNational[col][[1]], barScale = value / maxList[col][[1]])
+      maxList[[col]] <- aggregate(value ~ category, data = scaleNational$totData, max) %>% 
+        mutate(maxCat = breaks(value)) %>%
+        select(-value)
+      scaleNational[col][[1]] <- left_join(scaleNational[col][[1]], maxList[[col]], by = "category") %>%
+        group_by(category) %>%
+        mutate(barScale = value / maxCat) %>%
+        select(-maxCat)
   }
   
   saveRDS(scaleNational,
