@@ -19,7 +19,6 @@ visualize.states_svg <- function(viz){
 
   library(xml2)
 
-  bump.width <- 0
 
   # let this thing scale:
   xml_attr(svg, "preserveAspectRatio") <- "xMidYMid meet"
@@ -27,8 +26,6 @@ visualize.states_svg <- function(viz){
   xml_attr(svg, "xmlns:xlink") <- 'http://www.w3.org/1999/xlink'
   xml_attr(svg, "id") <- "water-use-svg"
   vb.num <- as.numeric(strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]])
-  vb.num[3] <- vb.num[3]+bump.width
-  xml_attr(svg, 'viewBox') <- sprintf('%s %s %s %s', vb.num[1], vb.num[2], vb.num[3], vb.num[4])
 
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
   r <- xml_find_all(svg, '//*[local-name()="rect"]')
@@ -79,15 +76,17 @@ visualize.states_svg <- function(viz){
 
   }
 
-  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(500,200)')
-  y.button <- as.character(seq(0, by=30, length.out=length(category.names)))
+  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
+  y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
   w.button <- "90"
   h.button <- "20"
   for (name in category.names){
     id <- gsub(pattern = ' ','_',name)
     xml_add_child(g.button, 'rect',  y = y.button[1], height=h.button, width=w.button,
                   class=sprintf('%s-button',id))
-    xml_add_child(g.button, 'text', y = y.button[1], dy='1em', name, class='cat-button-text', fill='black','stroke'='none')
+    xml_add_child(g.button, 'text', x=as.character(as.numeric(w.button)/2), y = y.button[1], dy='1.1em', name, 
+                  class='cat-button-text svg-text', fill='black','stroke'='none',
+                  'text-anchor'='middle')
     xml_add_child(g.button, 'rect', y = y.button[1], height=h.button, width=w.button,
                   class='cat-button', id=id,
                   onclick=sprintf("setCategory('%s')", id))
