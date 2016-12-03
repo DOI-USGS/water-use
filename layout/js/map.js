@@ -29,6 +29,19 @@ var animate_resize_map = function(data) {
   });
 };
 
+var animate_update_tooltips = function(data) {
+  $.each(data, function() {
+    // create the tooltip text
+    var newtip = this.state_name + ': ' + this.value + ' million gallons per day'
+    // this section doesn't work. trying to assign that text to the hovertext 
+    // call for onmousemove for each object, but haven't found the way. help!
+    var newtipobj = {
+      "onmousemove": "hovertext('" + newtip + "', evt);"
+    };
+    $("#" + this.state_name + "-mouseover").mousemove = hovertext(newtip);
+  });
+}
+
 var animate_bars = function(data) {
 
   $.each(data, function(prop, val) {
@@ -72,6 +85,7 @@ var animate = function() {
   var statesTransform = transformData["totState"][year][category];
   var barsTransform = transformData["totNat"];
   animate_resize_map(statesTransform);
+  animate_update_tooltips(statesTransform);
   animate_bars(barsTransform);
 };
 
