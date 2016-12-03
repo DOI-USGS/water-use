@@ -2,6 +2,7 @@ var transformData = undefined;
 var svg = undefined;
 var pt = undefined;
 var stateVal = " ";
+var mousedState = " ";
 var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
@@ -17,7 +18,7 @@ var colors = {
 var animate_resize_map = function(data) {
   var color = colors[category];
   $.each(data, function(index, val) {
-    var scale = val.scaleFactor;
+    var scale = Math.sqrt(val.scaleFactor);
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
@@ -121,10 +122,13 @@ function hovertext(text, evt){
     tooltip_bg.setAttribute("x",0);
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
+    mousedState = " ";
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '')
-    setStateValue(stateName);
+    if (stateName !== mousedState){
+      setStateValue(stateName);
+    }
     text = text + ': ' + Math.round(stateVal);
     pt = cursorPoint(evt);
     pt.x = Math.round(pt.x);
