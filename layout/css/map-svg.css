@@ -43,14 +43,15 @@ line, polyline, path{
 }
     
 .cat-button {
-  fill:#cccccc;
-  stroke:#2d2d67;
+  fill:#e5e5e5;
+  stroke:#262626;
+  stroke-width: 1;
   cursor:pointer;
 }
 
 .cat-button:hover {
   fill:#404040;
-  stroke-width: 1;
+  stroke-width: 1.5;
   stroke-opacity:1;
 }
 
