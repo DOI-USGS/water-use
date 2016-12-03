@@ -19,14 +19,16 @@ visualize.states_svg <- function(viz){
 
   library(xml2)
 
-
+  top.buffer <- 36
   # let this thing scale:
   xml_attr(svg, "preserveAspectRatio") <- "xMidYMid meet"
   xml_attr(svg, "xmlns") <- 'http://www.w3.org/2000/svg'
   xml_attr(svg, "xmlns:xlink") <- 'http://www.w3.org/1999/xlink'
   xml_attr(svg, "id") <- "water-use-svg"
   vb.num <- as.numeric(strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]])
-
+  vb.num[4] <- vb.num[4] + top.buffer
+  vb.num[2] <- -top.buffer
+  xml_attr(svg, 'viewBox') <- paste(vb.num, collapse = ' ')
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
   r <- xml_find_all(svg, '//*[local-name()="rect"]')
 
