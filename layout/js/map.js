@@ -1,8 +1,7 @@
 var transformData = undefined;
 var svg = undefined;
 var pt = undefined;
-var stateVal = " ";
-var mousedState = " ";
+
 var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
@@ -13,6 +12,12 @@ var colors = {
   "Irrigation": "#61B4A9",
   "Total": "#92C5EA"
 };
+
+$(document).ready(function(){
+  get_data();
+  svg = document.querySelector("svg");
+  pt = svg.createSVGPoint();
+});
 
 /* depends on jquery */
 var animate_resize_map = function(data) {
@@ -57,30 +62,46 @@ var animate_bars = function(data) {
   });
 };
 
+var get_state_value = (function() {
+  var prevState = "";
+  var prevCat = "";
+  var prevYear = "";
+  var prevVal = "";
+  var sameHover = function(state) {
+    return (prevState === state &&
+            prevCat === category &&
+            prevYear == year);
+  }
+  return function(state) {
+    if (transformData !== undefined && !sameHover(state)) {
+        prevState = state;
+        prevCat = category;
+        prevYear = year;
 
-var setStateValue = function(state) {
-  $.get( "js/scaleFactors.json", function( data ) {
-      var allData = transformData["totState"][year][category];
-      for (var i = 0; i < allData.length; i++) {
-        if (allData[i]['state_name'] === state){
-          stateVal = allData[i]['value'];
-          break;
-        }
-      }
-  });
-};
+        var stateData = transformData["totState"][year][category];
+        prevVal = function(allData) {
+          for (var i = 0; i < allData.length; i++) {
+            if (allData[i]['state_name'] === state){
+              return allData[i]['value'];
+            }
+          }
+        }(stateData);
+    }
+    return prevVal;
+  }
+})();
 
-var get_resize_data = function() {
+var get_data = function() {
   $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
-
-    animate();
 
     var slider = document.getElementById('slider');
     slider.noUiSlider.on('update', function( values, handle ) {
   	  var year = "" + Math.round(values[handle]);
     	setYear(year);
     });
+
+    setCategory(category);
   });
 };
 
@@ -105,12 +126,6 @@ var setYear = function(yr) {
   animate();
 };
 
-$(document).ready(function(){
-  get_resize_data();
-  svg = document.querySelector("svg");
-  pt = svg.createSVGPoint();
-  setCategory(category);
-});
 
 function hovertext(text, evt){
   var tooltip = document.getElementById("tooltip-text");
@@ -122,14 +137,10 @@ function hovertext(text, evt){
     tooltip_bg.setAttribute("x",0);
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
-    mousedState = " ";
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '')
-    if (stateName !== mousedState){
-      setStateValue(stateName);
-    }
-    text = text + ': ' + Math.round(stateVal);
+    text = text + ': ' + Math.round(get_state_value(stateName));
     pt = cursorPoint(evt);
     pt.x = Math.round(pt.x);
     pt.y = Math.round(pt.y);
