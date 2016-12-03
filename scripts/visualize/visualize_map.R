@@ -85,7 +85,7 @@ visualize.states_svg <- function(viz){
                   class=sprintf('%s-button',id))
     xml_add_child(g.button, 'text', x=as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), dy='1em', name, class='cat-button-text', fill='black','stroke'='none')
     xml_add_child(g.button, 'rect', x = as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), height='20', width=as.character(bump.width*.7),
-                  class='disabled-button', id=id,
+                  class='cat-button', id=id,
                   onclick=sprintf("setCategory('%s', evt)", id))
     y.button <- y.button+30
   }

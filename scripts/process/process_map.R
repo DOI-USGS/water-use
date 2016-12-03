@@ -38,7 +38,7 @@ process.state_map <- function(viz){
   
   # resize: c('district of columbia', 'maryland', 'deleware')
   
-  conus <- shift_state(conus, 'district of columbia', 3, c(300000,100000))
+  conus <- shift_state(conus, 'district of columbia', 5, c(300000,100000))
   
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   

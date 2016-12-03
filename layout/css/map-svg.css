@@ -39,16 +39,9 @@ line, polyline, path{
 	cursor: default;
 }
     
-.disabled-button {
+.cat-button {
   fill:black;
   stroke:none;
-  opacity:0.4;
-}
-
-.enabled-button {
-  fill:white;
-  stroke:none;
-  opacity:0;
 }
 
 .Thermoelectric-button {
