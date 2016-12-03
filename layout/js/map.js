@@ -34,10 +34,6 @@ var animate_bars = function(data) {
   $.each(data, function(prop, val) {
     var myYear = prop;
     var color = colors[category];
-    if (myYear > year) {
-      color = "#E0E0E0";
-    }
-
     var scale = val[category][0]["barScale"];
     // if we want tooltips
     var value = val[category][0]["value"];
@@ -50,6 +46,11 @@ var animate_bars = function(data) {
     var bar = $("#bar-" + myYear);
     if (bar !== undefined) {
       bar.css(style);
+      if (myYear !== year) {
+        bar.css('opacity','0.25');
+      } else {
+        bar.css('opacity','1.0');
+      }
     }
   });
 };
