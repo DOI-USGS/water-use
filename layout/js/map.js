@@ -75,8 +75,10 @@ var animate = function() {
   animate_bars(barsTransform);
 };
 
-var setCategory = function(cat, evt) {
+var setCategory = function(cat) {
   category = cat;
+  $('.cat-button').css("opacity", '0.4');
+  $('#' + cat).css("opacity", "0.0");
   animate();
 };
 
@@ -87,9 +89,9 @@ var setYear = function(yr) {
 
 $(document).ready(function(){
   get_resize_data();
-
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
+  setCategory(category);
 });
 
 function hovertext(text, evt){

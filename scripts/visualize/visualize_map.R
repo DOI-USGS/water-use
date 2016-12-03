@@ -68,7 +68,9 @@ visualize.states_svg <- function(viz){
 
 
     xml_add_child(xml_add_child(gf, 'g', transform=transform),
-                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground')
+                  'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
+                  onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
+                  onmouseout="hovertext(' ');")
     xml_add_child(xml_add_child(gm, 'g', transform=transform), # this sits on top but only for mouseover
                   'use', 'xlink:href'=paste0("#", id.use), opacity='0',
                   onmousemove=sprintf("hovertext('%s',evt);", state.name[i]),
@@ -85,14 +87,14 @@ visualize.states_svg <- function(viz){
                   class=sprintf('%s-button',id))
     xml_add_child(g.button, 'text', x=as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), dy='1em', name, class='cat-button-text', fill='black','stroke'='none')
     xml_add_child(g.button, 'rect', x = as.character(vb.num[3]-bump.width*.8), y = as.character(y.button), height='20', width=as.character(bump.width*.7),
-                  class='disabled-button', id=id,
-                  onclick=sprintf("setCategory('%s', evt)", id))
+                  class='cat-button', id=id,
+                  onclick=sprintf("setCategory('%s')", id))
     y.button <- y.button+30
   }
 
 
   xml_add_child(g.tool, 'rect', id="tooltip-box", height="24", class="tooltip-box")
-  xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-11 l6,10 l6,-11", class="tooltip-box")
+  xml_add_child(g.tool, 'path', id="tooltip-point", d="M-6,-12 l6,10 l6,-10", class="tooltip-box", 'stroke-linecap'="butt")
   xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
 
   xml_remove(p)
