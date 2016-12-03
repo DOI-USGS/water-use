@@ -18,6 +18,9 @@ line, polyline, path{
   stroke:none;
 }
 
+.cat-button-text {
+  font-size: 0.8em;
+}
 .hidden {
   opacity: 0;
 }
@@ -40,8 +43,16 @@ line, polyline, path{
 }
     
 .cat-button {
-  fill:black;
-  stroke:none;
+  fill:#e5e5e5;
+  stroke:#262626;
+  stroke-width: 1;
+  cursor:pointer;
+}
+
+.cat-button:hover {
+  fill:#404040;
+  stroke-width: 1.5;
+  stroke-opacity:1;
 }
 
 .Thermoelectric-button {

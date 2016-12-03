@@ -77,8 +77,10 @@ var animate = function() {
 
 var setCategory = function(cat) {
   category = cat;
-  $('.cat-button').css("opacity", '0.4');
-  $('#' + cat).css("opacity", "0.0");
+  $('.cat-button').css("fill-opacity", '0.7');
+  $('.cat-button').css("stroke-opacity","0.0");
+  $('#' + cat).css("fill-opacity", "0.0");
+  $('#' + cat).css("stroke-opacity","1.0");
   animate();
 };
 
