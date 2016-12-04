@@ -14,8 +14,8 @@ line, polyline, path{
   stroke-width:0.2;
 }
 .state-foreground {
-  fill:lightgreen;
-  stroke:none;
+  fill:white; /* only used for initial*/
+  stroke-width:1.5;
 }
 .legend-title-text{
   fill:#666666;
@@ -25,8 +25,8 @@ line, polyline, path{
 }
 
 .nodata-lines{
-  stroke:#8b8b8b; 
-  stroke-width:1;
+  stroke:#a6a6a6; 
+  stroke-width:2;
 }
 
 .nodata-fill{
@@ -72,21 +72,4 @@ line, polyline, path{
   fill:#404040;
   stroke-width: 0.5;
   stroke-opacity:1;
-}
-
-.Thermoelectric-button {
-  fill:#EFBA5A;
-}
-.Public_Supply-button {
-  fill:#857EB0;
-}
-.Industrial-button{
-  fill:#A38775;
-}
-.Irrigation-button{
-  fill:#61B4A9;
-}
-
-.Total-button{
-  fill:#92C5EA;
 }
