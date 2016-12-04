@@ -14,7 +14,7 @@ line, polyline, path{
   stroke-width:0.2;
 }
 .state-foreground {
-  fill:lightgreen;
+  fill:white;
   stroke:none;
 }
 .legend-title-text{
@@ -26,7 +26,7 @@ line, polyline, path{
 
 .nodata-lines{
   stroke:#8b8b8b; 
-  stroke-width:1;
+  stroke-width:2;
 }
 
 .nodata-fill{
