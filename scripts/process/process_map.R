@@ -50,12 +50,19 @@ process.state_map <- function(viz){
   conus <- shift_state(conus, 'vermont', 0.8, c(6,9))
   conus <- shift_state(conus, 'new york', 1.2, c(-1,6))
   
+  centroid.nudge <- list(
+    'florida'=c(3,13),
+    'california'=c(-10,18),
+    'michigan'=c(12,-12),
+    'maryland'=c(0,7),
+    'louisiana'=c(0,-2))
+  
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   
   # shifting states to be located at (0,0) in svg-space:
-  shifted.states <- zero_shift_sp(states.out)
-  shifted.centroids <- zero_shift_sp(shifted.states)
-  state.centroids <- state_centroids(states.out) # keeps plot order
+  shifted.states <- zero_shift_sp(states.out, centroid.nudge)
+  shifted.centroids <- zero_shift_sp(shifted.states, centroid.nudge)
+  state.centroids <- state_centroids(states.out, centroid.nudge) # keeps plot order
   
   out <- list(states = states.out, 
               shifted.states = shifted.states, 
@@ -84,11 +91,11 @@ shift_state <- function(sp, state, scale, shift){
   return(rbind(obj.out, obj))
 }
 
-state_centroids <- function(sp){
+state_centroids <- function(sp, shifts){
   state.centroids <- NULL
   ordered.names <- names(sp)[sp@plotOrder]
   for (name in ordered.names){
-    obj <- rgeos::gCentroid(sp[names(sp) == name,],byid=TRUE)
+    obj <- calc_centroid(sp[names(sp) == name,], shifts)
     if (name == ordered.names[1]){
       state.centroids <- obj
     } else {
@@ -97,11 +104,22 @@ state_centroids <- function(sp){
   }
   return(state.centroids)
 }
-zero_shift_sp <- function(sp){
+
+
+calc_centroid <- function(sp, shifts){
+  obj <- rgeos::gCentroid(sp, byid=TRUE)
+  name <- names(sp)
+  if (!is.null(shifts[[name]])){
+    obj@coords <- obj@coords + shifts[[name]]*10000
+  }
+  return(obj)
+}
+
+zero_shift_sp <- function(sp, shifts){
   sp.shifted <- NULL
   for (name in names(sp)){
     obj <- sp[names(sp) == name,]
-    centroid <- c(unlist(rgeos::gCentroid(obj,byid=TRUE)@coords))
+    centroid <- c(unlist(calc_centroid(obj,  shifts)@coords))
     zero.coord <- c(bbox(sp)[1,1], bbox(sp)[2,2]) # min x, but max y
     if (name == names(sp)[1]){
       sp.shifted <- elide(obj, shift=zero.coord-centroid)
