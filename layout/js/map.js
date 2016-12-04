@@ -41,7 +41,7 @@ var animate_resize_map = function(data) {
           "fill":"url(#nodata)",
           "transform": "scale3d(1,1,1)",
           "stroke":"#f1f1f1",
-          "transition": "all " + transitionTime + " ease-in-out"
+          "transition": "all 0s"
         };
       } 
       state.css(style);
