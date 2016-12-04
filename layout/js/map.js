@@ -6,17 +6,21 @@ var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
 var colors = {
-  "Thermoelectric": "#EFBA5A",
-  "Public_Supply": "#857EB0",
-  "Industrial": "#A38775",
-  "Irrigation": "#61B4A9",
-  "Total": "#92C5EA"
+ "Thermoelectric": "#DBD56E",
+ "Public_Supply": "#BA3228",
+ "Industrial": "#8A716A",
+ "Irrigation": "#9BC53D",
+ "Total": "#2E86AB"
 };
 
 $(document).ready(function(){
   get_data();
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
+  for (cat in colors){
+    var catButton = $("#" + cat + '-button');
+    catButton.css({'fill': colors[cat]});
+  }
 });
 
 /* depends on jquery */

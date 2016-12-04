@@ -73,20 +73,3 @@ line, polyline, path{
   stroke-width: 0.5;
   stroke-opacity:1;
 }
-
-.Thermoelectric-button {
-  fill:#EFBA5A;
-}
-.Public_Supply-button {
-  fill:#857EB0;
-}
-.Industrial-button{
-  fill:#A38775;
-}
-.Irrigation-button{
-  fill:#61B4A9;
-}
-
-.Total-button{
-  fill:#92C5EA;
-}

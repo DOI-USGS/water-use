@@ -95,7 +95,7 @@ visualize.states_svg <- function(viz){
   for (name in category.names){
     id <- gsub(pattern = ' ','_',name)
     xml_add_child(g.button, 'rect',  y = y.button[1], height=h.button, width=w.button,
-                  class=sprintf('%s-button',id))
+                  id=sprintf('%s-button',id))
     xml_add_child(g.button, 'text', x=x.text, y = y.button[1], dy='1.1em', name, 
                   class='cat-button-text svg-text')
     xml_add_child(g.button, 'rect', y = y.button[1], height=h.button, width=w.button,
