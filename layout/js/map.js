@@ -157,10 +157,12 @@ function hovertext(text, evt){
     stateVal = " ";
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
-    var stateName = ref.replace(/#/g, '')
+    var stateName = ref.replace(/#/g, '');
     var displayNum = Math.round(get_state_value(stateName));
     if (isNaN(displayNum)){
       displayNum = 'no data';
+    } else {
+      displayNum = displayNum + ' mgd';
     }
     text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
