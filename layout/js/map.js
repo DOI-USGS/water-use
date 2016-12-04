@@ -6,17 +6,21 @@ var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
 var colors = {
-  "Thermoelectric": "#EFBA5A",
-  "Public_Supply": "#857EB0",
-  "Industrial": "#A38775",
-  "Irrigation": "#61B4A9",
-  "Total": "#92C5EA"
+  "Thermoelectric": "#FCBA04",
+  "Public_Supply": "#BA3228",
+  "Industrial": "#8A716A",
+  "Irrigation": "#9BC53D",
+  "Total": "#2E86AB"
 };
 
 $(document).ready(function(){
   get_data();
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
+  for (cat in colors){
+    var catButton = $("#" + cat + '-button');
+    catButton.css({'fill': colors[cat]});
+  }
 });
 
 /* depends on jquery */
@@ -27,6 +31,7 @@ var animate_resize_map = function(data) {
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
+      "stroke":"none",
       "transition": "all " + transitionTime + " ease-in-out"
     };
     var state = $("#" + val.state_name);
@@ -35,7 +40,8 @@ var animate_resize_map = function(data) {
         style = {
           "fill":"url(#nodata)",
           "transform": "scale3d(1,1,1)",
-          "transition": "all " + transitionTime + " ease-in-out"
+          "stroke":"#f1f1f1",
+          "transition": "all 0s"
         };
       } 
       state.css(style);
@@ -152,7 +158,11 @@ function hovertext(text, evt){
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '')
-    text = text + ': ' + Math.round(get_state_value(stateName));
+    var displayNum = Math.round(get_state_value(stateName));
+    if (isNaN(displayNum)){
+      displayNum = 'no data';
+    }
+    text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
     pt.x = Math.round(pt.x);
     pt.y = Math.round(pt.y);
