@@ -41,8 +41,7 @@ process.wuClean <- function(viz){
   wideWU[["Total"]] <- rowSums(data.frame(wideWU$Industrial, 
                                           wideWU$Irrigation, 
                                           wideWU$`Public Supply`,
-                                          wideWU$Thermoelectric), 
-                               na.rm = TRUE)
+                                          wideWU$Thermoelectric))
   
   longWU <- gather(wideWU, category, value, -state_cd, -state_name, -year)
   
