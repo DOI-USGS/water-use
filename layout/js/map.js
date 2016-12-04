@@ -49,7 +49,6 @@ var animate_bars = function(data) {
     var myYear = prop;
     var color = colors[category];
     var scale = val[category][0]["barScale"];
-    // if we want tooltips
     var value = val[category][0]["value"];
     var style = {
       "background": color,
@@ -65,7 +64,13 @@ var animate_bars = function(data) {
       } else {
         bar.css('opacity','1.0');
       }
+      bar.attr("title", value);
     }
+  });
+  // update tooltips
+  $('.hastip').tooltipsy({
+    delay: 50,
+    offset: [0, -10]
   });
 };
 
