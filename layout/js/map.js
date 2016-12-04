@@ -70,6 +70,7 @@ var animate_bars = function(data) {
       } else {
         bar.css('opacity','1.0');
       }
+      value = value.toLocaleString() + ' mgd';
       bar.attr("title", value);
     }
   });
@@ -162,7 +163,7 @@ function hovertext(text, evt){
     if (isNaN(displayNum)){
       displayNum = 'no data';
     } else {
-      displayNum = displayNum + ' mgd';
+      displayNum = displayNum.toLocaleString() + ' mgd';
     }
     text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
