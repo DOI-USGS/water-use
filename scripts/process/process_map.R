@@ -55,7 +55,9 @@ process.state_map <- function(viz){
     'california'=c(-10,18),
     'michigan'=c(12,-12),
     'maryland'=c(0,7),
-    'louisiana'=c(0,-2))
+    'louisiana'=c(0,-2),
+    'hawaii'=c(8.5,-8)
+    )
   
   states.out <- rbind(conus, alaska, hawaii, makeUniqueIDs = TRUE)
   
