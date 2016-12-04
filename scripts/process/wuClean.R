@@ -2,8 +2,6 @@ process.wuClean <- function(viz){
   library(tidyr)
   library(dplyr)
   
-  viz <- getContentInfo("calc-waterData")
-  
   rawWaterUse <- readData(viz[['depends']][['waterUse']])
   
   longWU <- gather(rawWaterUse, category, value, -state_cd, -state_name, -year)
