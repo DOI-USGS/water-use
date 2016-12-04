@@ -5,7 +5,7 @@ process.histWuClean <- function(viz){
   wuExcel <- readData(viz[['depends']][['histWaterUse']])
   wuData <- readData(viz[['depends']][['waterUse']])
 
-  histExDat <- list(list(sheet = "1950", ind = c("sIndGw", "sIndSurf"), iri = "irrTotal", pub = NULL, thr = NULL),
+  histExDat <- list(list(sheet = "1950", ind = c("sIndGw", "sIndSurf"), iri = "irrTotal", pub = c("munigw", "munisw"), thr = NULL),
                     list(sheet = "1955", ind = "sIndTotal", iri = "irrTotal(mgd)", pub = "pubTotal", thr = NULL),
                     list(sheet = "1960", ind = "sIndTotFr", iri = "irrTotal", pub = "pubTotal", thr = "sThmTotFr"),
                     list(sheet = "1965", ind = "sIndTotFr", iri = "irrTot", pub = "pubTotal", thr = "sThmTotFr"),
