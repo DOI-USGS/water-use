@@ -9,7 +9,11 @@ process.scaleStates <- function(viz){
   #read sp, wuClean
   statePoly <- readData(viz[['depends']]$stateMap)$states
   wuClean <- readData(viz[['depends']]$wuClean)
-
+  vals <- expand.grid(state_name = unique(wuClean$state_name),
+                      year = unique(wuClean$year),
+                      category = unique(wuClean$category))
+  wuClean <- merge(vals, wuClean, all=TRUE) %>% 
+    arrange(state_cd, state_name, category)
   wuClean$state_name <- tolower(wuClean$state_name)
   #get areas, join to wuClean
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
