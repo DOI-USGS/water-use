@@ -38,6 +38,12 @@ process.wuClean <- function(viz){
                                                                              na.rm = TRUE)
   wideWU <- select(wideWU, -`Thermoelectric Fossil`, -`Thermoelectric Geothermal`, -`Thermoelectric Nuclear`)
   
+  wideWU[["Total"]] <- rowSums(data.frame(wideWU$Industrial, 
+                                          wideWU$Irrigation, 
+                                          wideWU$`Public Supply`,
+                                          wideWU$Thermoelectric), 
+                               na.rm = TRUE)
+  
   longWU <- gather(wideWU, category, value, -state_cd, -state_name, -year)
   
   saveRDS(longWU, file=viz[["location"]])
