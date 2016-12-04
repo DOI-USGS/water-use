@@ -84,6 +84,9 @@ visualize.states_svg <- function(viz){
   }
 
   g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
+  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(460,365)')
+  xml_add_child(g.legend, 'rect',  height="17", width="17", fill="url(#nodata)",stroke="#f1f1f1")
+  xml_add_child(g.legend, 'text', x="17", y="8.5", dx="0.5em", dy='0.25em', "no data", class='legend-text svg-text')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
   w.button <- "90"
   x.text <- as.character(as.numeric(w.button)/2)
