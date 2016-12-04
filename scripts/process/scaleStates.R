@@ -13,7 +13,7 @@ process.scaleStates <- function(viz){
                       year = c(unique(wuClean$year), 2015),
                       category = unique(wuClean$category))
   wuClean <- merge(vals, wuClean, all=TRUE) %>% 
-    arrange(state_cd, state_name, category)
+    arrange(state_cd, state_name, desc(category))
   wuClean$state_name <- tolower(wuClean$state_name)
   #get areas, join to wuClean
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
