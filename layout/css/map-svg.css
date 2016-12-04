@@ -17,11 +17,13 @@ line, polyline, path{
   fill:white; /* only used for initial*/
   stroke-width:1.5;
 }
-.legend-title-text{
+.legend-title-text, .legend-text{
   fill:#666666;
   stroke:none;
-  text-anchor:middle;
   font-size: 0.75em;
+}
+.legend-title-text{
+  text-anchor:middle;
 }
 
 .nodata-lines{
