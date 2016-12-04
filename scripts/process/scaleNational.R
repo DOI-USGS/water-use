@@ -13,11 +13,12 @@ process.scaleNational <- function(viz) {
 
   scaleNational <- list()
 
-  scaleNational["totData"][[1]] <- gather(nationalData, key = category, value = value, -Year, -Population)
+  scaleNational$totData <- gather(nationalData, key = category, value = value, -Year, -Population) %>% # billion gallons per day
+    mutate(value = value * 1000) # million gallons per day
 
-  scaleNational["pCapData"][[1]] <- scaleNational$totData %>% 
-    mutate(value = value/Population) %>% 
-    mutate(value = value*365)
+  scaleNational$pCapData <- scaleNational$totData %>% # billion gallons per year
+    mutate(value = value/Population) %>% # thousand gallons per year per person
+    mutate(value = value*365) # thousand gallons per day per person
 
   maxList <- list(totData = list(), pCapData = list())
   
