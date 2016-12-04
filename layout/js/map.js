@@ -6,11 +6,11 @@ var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
 var colors = {
- "Thermoelectric": "#DBD56E",
- "Public_Supply": "#BA3228",
- "Industrial": "#8A716A",
- "Irrigation": "#9BC53D",
- "Total": "#2E86AB"
+  "Thermoelectric": "#FCBA04",
+  "Public_Supply": "#BA3228",
+  "Industrial": "#8A716A",
+  "Irrigation": "#9BC53D",
+  "Total": "#2E86AB"
 };
 
 $(document).ready(function(){
@@ -39,6 +39,7 @@ var animate_resize_map = function(data) {
         style = {
           "fill":"url(#nodata)",
           "transform": "scale3d(1,1,1)",
+          "stroke":"white",
           "transition": "all " + transitionTime + " ease-in-out"
         };
       } 
