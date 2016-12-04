@@ -31,6 +31,7 @@ var animate_resize_map = function(data) {
     var style = {
       "fill": color,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
+      "stroke":"none",
       "transition": "all " + transitionTime + " ease-in-out"
     };
     var state = $("#" + val.state_name);
@@ -39,7 +40,7 @@ var animate_resize_map = function(data) {
         style = {
           "fill":"url(#nodata)",
           "transform": "scale3d(1,1,1)",
-          "stroke":"white",
+          "stroke":"#f1f1f1",
           "transition": "all " + transitionTime + " ease-in-out"
         };
       } 
@@ -157,7 +158,11 @@ function hovertext(text, evt){
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '')
-    text = text + ': ' + Math.round(get_state_value(stateName));
+    var displayNum = Math.round(get_state_value(stateName));
+    if (isNaN(displayNum)){
+      displayNum = 'no data';
+    }
+    text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
     pt.x = Math.round(pt.x);
     pt.y = Math.round(pt.y);
