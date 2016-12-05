@@ -69,7 +69,6 @@ fetch:
     id: histWaterUse-data
     fetcher: histWaterUse
     location: cache/histWaterUse.rds
-    mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUse.R
     refetch: FALSE
@@ -77,7 +76,6 @@ fetch:
     id: histWaterUseAWUDS-data
     fetcher: histWaterUseAWUDS
     location: cache/histWaterUseAWUDS.rds
-    mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUseAWUDS.R
     refetch: FALSE
