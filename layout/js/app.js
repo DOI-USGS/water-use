@@ -1,7 +1,7 @@
 $(document).ready(function () {
-	
+
 	var slider = document.getElementById('slider');
-	
+
 	var range_all_sliders = {
 		'min': [1950],
 		'7.6923076923%': [1955, 500],
@@ -18,7 +18,7 @@ $(document).ready(function () {
 		'92.307692308%': [2010, 2000],
 		'max': [2015, 2500],
 	};
-	
+
 	noUiSlider.create(slider, {
 		range: range_all_sliders,
 		start: 0,
@@ -31,4 +31,5 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
+
 });

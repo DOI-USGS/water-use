@@ -28,16 +28,12 @@ body{
 }
 
 .dataBar{
-  background:lime;
+  background:white;
   height:100%;
   width:2%;
   margin-right:10px;
   position:absolute;
-}
-
-.dataBar rect{
-  width:100%;
-  height:100%;
+  outline: 1px solid transparent;
 }
 
 #bar-1950{
@@ -90,6 +86,15 @@ body{
 
 #bar-2010{
   left:91.2%;
+}
+
+.tooltipsy
+{
+    padding: 10px;
+    max-width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    opacity: 0.85;
 }
 
 .timeslider{
@@ -145,26 +150,26 @@ body{
 
 
 @media screen and (min-width:1024px){
-	
+
 	.container{
 		width:960px;
 		margin:0 auto;
 	}
-	
+
 }
 
 @media screen and (min-width:1500px){
-	
+
 	.container{
 		width:1200px;
 	}
-	
+
 }
 
 @media screen and (min-width:2000px){
-	
+
 	.container{
 		width:1800px;
 	}
-	
+
 }

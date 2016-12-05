@@ -13,16 +13,31 @@ process.scaleNational <- function(viz) {
 
   scaleNational <- list()
 
-  scaleNational["totData"][[1]] <- gather(nationalData, key = category, value = value, -Year, -Population)
+  scaleNational$totData <- gather(nationalData, key = category, value = value, -Year, -Population) %>% # billion gallons per day
+    mutate(value = value * 1000) # million gallons per day
 
-  scaleNational["pCapData"][[1]] <- scaleNational$totData %>% 
-    mutate(value = value/Population) %>% 
-    mutate(value = value*365)
+  scaleNational$pCapData <- scaleNational$totData %>% # billion gallons per year
+    mutate(value = value/Population) %>% # thousand gallons per year per person
+    mutate(value = value*365) # thousand gallons per day per person
 
-  maxList <- list(totData = 500, pCapData = 800)
-
+  maxList <- list(totData = list(), pCapData = list())
+  
+  breaks <- function(x) {
+    for(i in 1:length(x)) {
+      if(x[i]<=50) x[i] <- 50
+      if(x[i]>50) x[i] <- ceiling(x[i]/100)*100
+    }
+    return(x)
+  }
+  
   for(col in c("totData", "pCapData")) {
-    scaleNational[col][[1]] <- mutate(scaleNational[col][[1]], barScale = value / maxList[col][[1]])
+      maxList[[col]] <- aggregate(value ~ category, data = scaleNational$totData, max) %>% 
+        mutate(maxCat = breaks(value)) %>%
+        select(-value)
+      scaleNational[col][[1]] <- left_join(scaleNational[col][[1]], maxList[[col]], by = "category") %>%
+        group_by(category) %>%
+        mutate(barScale = value / maxCat) %>%
+        select(-maxCat)
   }
   
   saveRDS(scaleNational,
