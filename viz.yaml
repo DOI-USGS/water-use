@@ -118,6 +118,12 @@ process:
     scripts: scripts/process/process_map.R
     reader: rds
   -
+    id: watermark
+    location: cache/watermark.rds
+    processor: watermark
+    scripts: scripts/process/process_map.R
+    reader: rds
+  -
     id: wateruse-treemap
     location: cache/treemaps_list.rds
     processor: treemap
@@ -149,7 +155,7 @@ visualize:
     id: states-svg
     location: figures/states_map.svg
     visualizer: states_svg
-    depends: ["state-map", "calc-scaleFactors"]
+    depends: ["state-map", "calc-scaleFactors", "watermark"]
     scripts: scripts/visualize/visualize_map.R
     mimetype: image/svg+xml
     inline: true
