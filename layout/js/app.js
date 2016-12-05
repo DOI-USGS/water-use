@@ -31,5 +31,11 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
+	
+	$(document).on('click', function(){
+	 $('.tooltipsy').hide();
+	});
+	
+	
 
 });
