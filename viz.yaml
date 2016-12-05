@@ -192,7 +192,7 @@ publish:
     context:
       sections: [ "header-section", "figure-section", "footer-section" ]
       resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
-        "tooltipsy", "nouislider", "appJS", "mapJS" ]
+        "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>" ]
   -
     id: figure-section
     template: layout/templates/simple.mustache
