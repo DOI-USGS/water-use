@@ -145,19 +145,19 @@ footer:after {
 @media screen and (min-width:1024px){
 	
 	#logo{
-		width:760px;
+		width:770px;
 		margin:0 auto;
 	}
 	
 	#vizlabPromo {
-      width:760px;
+      width:770px;
   }
   	
   #relatedVizzies{
-    width: 760px;
+    width: 770px;
   }
   #relatedBlogs{
-    width: 760px;
+    width: 770px;
   }
 	
 }
@@ -165,18 +165,18 @@ footer:after {
 @media screen and (min-width:1500px){
 	
 	#logo{
-		width:780px;
+		width:890px;
 	}
 	
 	#vizlabPromo {
-      width:780px;
+      width:890px;
   }
   	
   #relatedVizzies{
-    width: 780px;
+    width: 890px;
   }
   #relatedBlogs{
-    width: 780px;
+    width: 890px;
   }
 	
 }
@@ -184,18 +184,18 @@ footer:after {
 @media screen and (min-width:2000px){
 	
 	#logo{
-		width:1300px;
+		width:1510px;
 	}
 	
 	#vizlabPromo {
-      width:1300px;
+      width:1510px;
   }
   	
   #relatedVizzies{
-    width: 1300px;
+    width: 1510px;
   }
   #relatedBlogs{
-    width: 1300px;
+    width: 1510px;
   }
 	
 }
