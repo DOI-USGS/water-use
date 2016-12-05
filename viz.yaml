@@ -54,6 +54,9 @@ info:
     jsonlite:
       repo: CRAN
       version: 1.1
+    wateRuse:
+      repo: GRAN
+      version: 1.0.4
 fetch:
   -
     id: waterUse-data
@@ -69,6 +72,14 @@ fetch:
     mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUse.R
+    refetch: FALSE
+  -
+    id: histWaterUseAWUDS-data
+    fetcher: histWaterUseAWUDS
+    location: cache/histWaterUseAWUDS.rds
+    mimetype: rds
+    reader: rds
+    scripts: scripts/fetch/histWaterUseAWUDS.R
     refetch: FALSE
   -
     id: nationalUse-data
@@ -91,6 +102,15 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
+  -
+    id: calc-awudsOldClean
+    location: cache/awudsOldClean.rds
+    processor: awudsOldClean
+    scripts: scripts/process/awudsOldClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUseAWUDS-data
   -
     id: calc-histWaterData
     location: cache/histWuClean.rds
