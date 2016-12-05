@@ -307,12 +307,12 @@ publish:
       logo: vizlab-logo
     blogsInFooter: FALSE
     vizzies:
-      - name: Microplastics in the Great Lakes
-        org: USGS-VIZLAB
-        repo: great-lakes-microplastics
-      - name: Hurricane Matthew
-        org: USGS-VIZLAB
-        repo: hurricane-matthew
+      - name: Lower Colorado Drought
+        org: USGS-CIDA
+        repo: OWDI-Lower-Colorado-Drought-Vis
+      - name: California Drought
+        org: USGS-CIDA
+        repo: CIDA-Viz
     blogs:
       - name:
         url:
