@@ -25,7 +25,13 @@ line, polyline, path{
 .legend-title-text{
   text-anchor:middle;
 }
-
+.watermark {
+  cursor: pointer;
+  fill: #DCDCDC;
+  stroke: #c6c6c6;
+  stroke-width:0.5;
+  opacity: 0.4;
+}
 .nodata-lines{
   stroke:#a6a6a6; 
   stroke-width:2;
