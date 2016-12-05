@@ -5,19 +5,44 @@ line, polyline, path{
 }
 
 .map-background {
-  fill:#3f3f3f;
+  fill:white;
   stroke:none;
 }
 .state-background {
   fill:#f1f1f1;
-  stroke:white;
-  stroke-width:2;
+  stroke:#bdbdbd;
+  stroke-width:0.2;
 }
 .state-foreground {
-  fill:lightgreen;
+  fill:white; /* only used for initial*/
+  stroke-width:1.5;
+}
+.legend-title-text, .legend-text{
+  fill:#666666;
+  stroke:none;
+  font-size: 0.75em;
+}
+.legend-title-text{
+  text-anchor:middle;
+}
+
+.nodata-lines{
+  stroke:#a6a6a6; 
+  stroke-width:2;
+}
+
+.nodata-fill{
+  fill:#b9b9b9;
   stroke:none;
 }
 
+
+.cat-button-text {
+  fill:black;
+  stroke:none;
+  text-anchor:middle;
+  font-size: 0.8em;
+}
 .hidden {
   opacity: 0;
 }
@@ -25,10 +50,9 @@ line, polyline, path{
   opacity: 1;
 }
 .tooltip-box{
-  stroke-width: 1;
-  stroke: grey;
-  opacity: 0.9;
-  fill: #E8E8E8;
+  stroke: none;
+  opacity: 0.85;
+  fill: white;
 }
 .svg-text {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -39,31 +63,15 @@ line, polyline, path{
 	cursor: default;
 }
     
-.disabled-button {
-  fill:black;
-  stroke:none;
-  opacity:0.4;
+.cat-button {
+  fill:#e5e5e5;
+  stroke:#262626;
+  stroke-width: 0.0;
+  cursor:pointer;
 }
 
-.enabled-button {
-  fill:white;
-  stroke:none;
-  opacity:0;
-}
-
-.Thermoelectric-button {
-  fill:red;
-}
-.Public_Supply-button {
-  fill:green;
-}
-.Industrial-button{
-  fill:blue;
-}
-.Irrigation-button{
-  fill:lightblue;
-}
-
-.Total-button{
-  fill:lightgreen;
+.cat-button:hover {
+  fill:#404040;
+  stroke-width: 0.5;
+  stroke-opacity:1;
 }
