@@ -37,7 +37,7 @@ process.awudsOldClean <- function(viz){
                           Total = as.numeric(),
                           stringsAsFactors = FALSE)
   
-  for(i in 3:7){#seq_along(histExDat)){
+  for(i in seq_along(histExDat)){
     dataYear <- filter(wuAwuds, year == as.numeric(histExDat[[i]][["sheet"]]))
     
     if(!is.null(histExDat[[i]][["ind"]])){
@@ -73,7 +73,9 @@ process.awudsOldClean <- function(viz){
     
   }
   
-  wuAwudsLong <- gather(full.data, category, value, -state_cd, -state_name, -year) 
+  wuAwudsLong <- rename(full.data, `Public Supply` = public) %>%
+    gather(category, value, -state_cd, -state_name, -year) 
+    
   
   full.out <- bind_rows(wuData, wuAwudsLong) %>%
     arrange(state_name, category, year)
