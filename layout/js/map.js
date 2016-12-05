@@ -14,11 +14,11 @@ var colors = {
 };
 
 var legendVals = {
-  "Thermoelectric": 1915,
-  "Public_Supply": 351,
-  "Industrial": 1414,
-  "Irrigation": 1503,
-  "Total": 2657
+  "Thermoelectric": 961,
+  "Public_Supply": 175,
+  "Industrial": 362,
+  "Irrigation": 752,
+  "Total": 1332
 };
 
 $(document).ready(function(){
@@ -73,7 +73,7 @@ var animate_resize_map = function(data) {
       state.css(style);
     }
   });
-  document.getElementById('category-area-text').firstChild.data = legendVals[category].toLocaleString() + ' mgd water withdrawls ';// + category.replace(/_/g, ' '); removing because redundant w/ selector
+  document.getElementById('category-area-text').firstChild.data = legendVals[category].toLocaleString() + ' mgd water withdrawals';
 };
 
 var animate_bars = function(data) {

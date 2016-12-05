@@ -9,7 +9,8 @@ process.scaleStates <- function(viz){
   #read sp, wuClean
   depends <- readDepends(viz)
   statePoly <- depends[['state-map']]$states
-  wuClean <- depends[["calc-histWaterData"]]
+  legend.circles <- depends[['state-map']]$legend.circles
+  wuClean <- depends[["calc-awudsOldClean"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
                       year = c(unique(wuClean$year), 2015),
                       category = unique(wuClean$category))
@@ -17,7 +18,7 @@ process.scaleStates <- function(viz){
     arrange(state_cd, state_name, desc(category))
   wuClean$state_name <- tolower(wuClean$state_name)
   #get areas, join to wuClean
-  legend.area <- gArea(depends[['state-map']]$legend.circles)[1]
+  legend.area <- gArea(legend.circles, byid = TRUE)[1]
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
   areas$state_name <- rownames(areas)
   wuAreas <- left_join(wuClean, areas, by = 'state_name')
