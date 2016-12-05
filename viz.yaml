@@ -161,7 +161,7 @@ process:
     reader: rds
     depends:
       stateMap: state-map
-      wuClean: calc-histWaterData
+      wuClean: calc-awudsOldClean
   -
     id: scaleFactors2json
     location: cache/scaleFactors.json
