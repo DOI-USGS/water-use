@@ -17,9 +17,21 @@ $(document).ready(function(){
   get_data();
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
-  for (cat in colors){
+  for (var cat in colors) {
     var catButton = $("#" + cat + '-button');
     catButton.css({'fill': colors[cat]});
+  }
+
+  var set_slider_click = function(x) {
+    $("#bar-" + x).on("click", function(){
+      $("#slider")[0].noUiSlider.set(x);
+    });
+  };
+
+  var yr = 1950;
+  while (yr <= 2015) {
+    set_slider_click(yr);
+    yr += 5;
   }
 });
 
@@ -43,7 +55,7 @@ var animate_resize_map = function(data) {
           "stroke":"#f1f1f1",
           "transition": "all 0s"
         };
-      } 
+      }
       state.css(style);
     }
   });
@@ -74,11 +86,7 @@ var animate_bars = function(data) {
       bar.attr("title", value);
     }
   });
-  // update tooltips
-  $('.hastip').tooltipsy({
-    delay: 50,
-    offset: [0, -10]
-  });
+  update_bar_tips();
 };
 
 var get_state_value = (function() {
@@ -145,6 +153,19 @@ var setYear = function(yr) {
   animate();
 };
 
+var update_bar_tips = function() {
+  $.each($(".dataBar"), function(prop, val){
+    $(val).off("mouseenter mouseleave");
+
+    if ($(val).data("tooltipsy") !== undefined) {
+      $(val).data("tooltipsy").destroy()
+    }
+  });
+  $('.hastip').tooltipsy({
+    delay: 50,
+    offset: [0, -10]
+  });
+}
 
 function hovertext(text, evt){
   var tooltip = document.getElementById("tooltip-text");
