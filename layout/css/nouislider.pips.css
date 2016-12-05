@@ -22,6 +22,7 @@
 	font-family:Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
 	font-size:.6em;
 	cursor:default;
+	color:#000;
 }
 .noUi-value-sub {
 	color: #ccc;
@@ -33,13 +34,13 @@
  */
 .noUi-marker {
 	position: absolute;
-	background: #CCC;
+	background: #000;
 }
 .noUi-marker-sub {
-	background: #AAA;
+	background: #000;
 }
 .noUi-marker-large {
-	background: #AAA;
+	background: #000;
 }
 
 /* Horizontal layout;
