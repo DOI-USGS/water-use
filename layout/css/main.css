@@ -1,5 +1,12 @@
 *{padding:0; margin:0;}
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+    .map{
+      width:100%;
+      height:608px;
+    }
+}
+
 body{
 	font-family:Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
 }
