@@ -4,6 +4,7 @@ visualize.states_svg <- function(viz){
   data <- readDepends(viz)
   state.map <- data$`state-map`
   category.names <- unique(data[['calc-scaleFactors']]$category)
+  watermark <- data[['watermark']]
   states <- state.map$states
   shifts <- state.map$shifted.states
   centroids <- state.map$state.centroids
@@ -85,6 +86,7 @@ visualize.states_svg <- function(viz){
 
   g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
   g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(460,365)')
+  g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
   xml_add_child(g.legend, 'rect',  height="17", width="17", fill="url(#nodata)",stroke="#f1f1f1")
   xml_add_child(g.legend, 'text', x="17", y="8.5", dx="0.5em", dy='0.25em', "no data", class='legend-text svg-text')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
@@ -114,6 +116,10 @@ visualize.states_svg <- function(viz){
   
   xml_add_child(g.tool, 'text', id="tooltip-text", dy="-1.1em", 'text-anchor'="middle", class="svg-text", " ")
 
+  xml_add_child(g.watermark,'path', d=watermark[['usgs']], onclick="window.open('https://www2.usgs.gov/water/','_blank')", 'class'='watermark')
+  xml_add_child(g.watermark,'path', d=watermark[['wave']], onclick="window.open('https://www2.usgs.gov/water/','_blank')", 'class'='watermark')
+  
+  
   xml_remove(p)
   xml_remove(cr)
 
