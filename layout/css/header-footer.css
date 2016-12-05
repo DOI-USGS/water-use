@@ -140,7 +140,7 @@ footer:after {
 @media screen and (min-width:1024px){
 	
 	#logo{
-		width:960px;
+		width:760px;
 		margin:0 auto;
 	}
 	
@@ -149,7 +149,7 @@ footer:after {
 @media screen and (min-width:1500px){
 	
 	#logo{
-		width:1200px;
+		width:780px;
 	}
 	
 }
@@ -157,7 +157,7 @@ footer:after {
 @media screen and (min-width:2000px){
 	
 	#logo{
-		width:1800px;
+		width:1300px;
 	}
 	
 }

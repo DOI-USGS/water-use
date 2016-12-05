@@ -20,6 +20,18 @@ body{
   margin:5px 0;
 }
 
+.title h3{
+  font-size:1.1em;
+}
+
+.caption p{
+  font-size:1em;
+}
+
+.bottom{
+  margin-top:20px;
+}
+
 .map{
 	min-height:100px;
 }
@@ -121,11 +133,11 @@ body{
 
 .event{
 	min-height:20px;
-	font-size:.9em;
+	font-size:.7em;
 }
 
 .eventStatLine{
-	height:3px;
+	height:2px;
 	margin-bottom:3px;
 }
 
@@ -163,7 +175,7 @@ body{
 @media screen and (min-width:1024px){
 
 	.container{
-		width:960px;
+		width:760px;
 		margin:0 auto;
 	}
 
@@ -172,7 +184,7 @@ body{
 @media screen and (min-width:1500px){
 
 	.container{
-		width:1200px;
+		width:780px;
 	}
 
 }
@@ -180,7 +192,7 @@ body{
 @media screen and (min-width:2000px){
 
 	.container{
-		width:1800px;
+		width:1300px;
 	}
 
 }
