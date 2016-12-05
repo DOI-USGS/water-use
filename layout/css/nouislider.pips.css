@@ -20,10 +20,9 @@
 	text-align: center;
 	top:20px;
 	font-family:Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
-	font-size:.7em;
-	-webkit-transform: rotate(45deg) !important;
-	-moz-transform: rotate(45deg) !important;
-	transform: rotate(45deg) !important;
+	font-size:.6em;
+	cursor:default;
+	color:#000;
 }
 .noUi-value-sub {
 	color: #ccc;
@@ -35,13 +34,13 @@
  */
 .noUi-marker {
 	position: absolute;
-	background: #CCC;
+	background: #000;
 }
 .noUi-marker-sub {
-	background: #AAA;
+	background: #000;
 }
 .noUi-marker-large {
-	background: #AAA;
+	background: #000;
 }
 
 /* Horizontal layout;
@@ -96,4 +95,10 @@
 }
 .noUi-marker-vertical.noUi-marker-large {
 	width: 15px;
+}
+
+@media screen and (min-width:768px){
+  .noUi-value{
+    font-size:.9em;
+  } 
 }

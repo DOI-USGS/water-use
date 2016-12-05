@@ -9,6 +9,10 @@ body{
 	padding:10px;
 }
 
+.title{
+  margin:5px 0;
+}
+
 .map{
 	min-height:100px;
 }
