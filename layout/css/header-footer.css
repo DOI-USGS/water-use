@@ -105,18 +105,15 @@ footer:after {
   	}
   	
   	#vizlabPromo {
-      width:660px;
       margin:10px auto;
     }
   	
   	#relatedVizzies{
-    width: 660px;
-    margin: 0 auto;
+      margin: 0 auto;
     }
     #relatedBlogs{
-    width: 660px;
-    margin: 0 auto;
-    clear:both;
+      margin: 0 auto;
+      clear:both;
     }
   .relatedItem {
     width: 49%;
@@ -144,6 +141,17 @@ footer:after {
 		margin:0 auto;
 	}
 	
+	#vizlabPromo {
+      width:760px;
+  }
+  	
+  #relatedVizzies{
+    width: 760px;
+  }
+  #relatedBlogs{
+    width: 760px;
+  }
+	
 }
 
 @media screen and (min-width:1500px){
@@ -152,6 +160,17 @@ footer:after {
 		width:780px;
 	}
 	
+	#vizlabPromo {
+      width:780px;
+  }
+  	
+  #relatedVizzies{
+    width: 780px;
+  }
+  #relatedBlogs{
+    width: 780px;
+  }
+	
 }
 
 @media screen and (min-width:2000px){
@@ -159,5 +178,16 @@ footer:after {
 	#logo{
 		width:1300px;
 	}
+	
+	#vizlabPromo {
+      width:1300px;
+  }
+  	
+  #relatedVizzies{
+    width: 1300px;
+  }
+  #relatedBlogs{
+    width: 1300px;
+  }
 	
 }
