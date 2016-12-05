@@ -9,6 +9,8 @@
 
 body{
 	font-family:"Open Sans", Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
+	position:relative;
+	padding-bottom:450px;
 }
 
 .container{
