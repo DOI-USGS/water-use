@@ -105,6 +105,13 @@ footer:after {
   		font-size:1.2em;
   	}
   	
+  	footer{
+  	  position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  	}
+  	
   	#vizlabPromo {
       margin:10px auto;
     }
