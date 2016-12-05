@@ -65,12 +65,18 @@ process.state_map <- function(viz){
   shifted.states <- zero_shift_sp(states.out, centroid.nudge)
   shifted.centroids <- zero_shift_sp(shifted.states, centroid.nudge)
   state.centroids <- state_centroids(states.out, centroid.nudge) # keeps plot order
+  x.0 <- bbox(conus)[1,1]
+  y.0 <- bbox(conus)[2,2]
+  legend.circles <- rbind(create_legend(x.0, y.0,'nodata'),
+                          create_legend(x.0, y.0,'categoryFill')
+  )
   
   out <- list(states = states.out, 
               shifted.states = shifted.states, 
               shifted.centroids = shifted.centroids,
               state.centroids = state.centroids, 
-              bbox = bbox(states.out)) # then spatial points for centroids, and other things
+              bbox = bbox(states.out),
+              legend.circles=legend.circles) 
   
   saveRDS(out, file = viz[['location']])
 }
@@ -107,6 +113,12 @@ state_centroids <- function(sp, shifts){
   return(state.centroids)
 }
 
+create_legend <- function(x, y, row.name, r = 50000, n = 100){
+  pts <- seq(0, 2 * pi, length.out = n)
+  xy <- cbind(x + r * sin(pts), y + r * cos(pts))
+  sp <- SpatialPolygons(list(Polygons(list(Polygon(xy)), row.name)))
+  return(sp)
+}
 
 calc_centroid <- function(sp, shifts){
   obj <- rgeos::gCentroid(sp, byid=TRUE)

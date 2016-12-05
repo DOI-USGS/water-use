@@ -4,6 +4,7 @@ visualize.states_svg <- function(viz){
   data <- readDepends(viz)
   state.map <- data$`state-map`
   category.names <- unique(data[['calc-scaleFactors']]$category)
+  legend.circles <- state.map$`legend.circles`
   watermark <- data[['watermark']]
   states <- state.map$states
   shifts <- state.map$shifted.states
@@ -17,6 +18,7 @@ visualize.states_svg <- function(viz){
     par(mai=c(0,0,0,0), omi=c(0,0,0,0))
     sp::plot(shifts, ylim=bbox(states)[2,], xlim=bbox(states)[1,], setParUsrBB = TRUE)
     sp::plot(centroids, add=TRUE, pch=1)
+    sp::plot(legend.circles, add=TRUE)
   }, width = size[1], height = size[2])
 
   library(xml2)
@@ -42,7 +44,7 @@ visualize.states_svg <- function(viz){
   .junk <- lapply(r, xml_remove)
   p <- xml_find_all(svg, '//*[local-name()="path"]')
   cr <- xml_find_all(svg, '//*[local-name()="circle"]')
-  if (length(p) != length(states)){
+  if (length(p) != (length(states) + length(legend.circles))){
     stop('something is wrong, the number of states and polys is different')
   }
 
@@ -83,12 +85,16 @@ visualize.states_svg <- function(viz){
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
 
   }
-
+  
   g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
-  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(460,365)')
+  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(360,355)')
   g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
-  xml_add_child(g.legend, 'rect',  height="17", width="17", fill="url(#nodata)",stroke="#f1f1f1")
-  xml_add_child(g.legend, 'text', x="17", y="8.5", dx="0.5em", dy='0.25em', "no data", class='legend-text svg-text')
+  d.nodata <- xml_attr(p[i + which(names(legend.circles) == 'nodata')], 'd')
+  d.fill <- xml_attr(p[i + which(names(legend.circles) == 'categoryFill')], 'd')
+  xml_add_child(g.legend, 'path',  d=d.nodata, fill="url(#nodata)", stroke="#f1f1f1")
+  xml_add_child(g.legend, 'path',  d=d.fill, class='category-area-fill', transform='translate(0,20)')
+  xml_add_child(g.legend, 'text', dx="10", dy='0.25em', "no data", class='legend-text svg-text')
+  xml_add_child(g.legend, 'text', y="20", dx="10", dy='0.25em', "**something something category**", class='legend-text svg-text')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
   w.button <- "90"
   x.text <- as.character(as.numeric(w.button)/2)
