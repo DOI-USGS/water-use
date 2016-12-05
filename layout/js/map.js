@@ -43,7 +43,7 @@ var animate_resize_map = function(data) {
           "stroke":"#f1f1f1",
           "transition": "all 0s"
         };
-      } 
+      }
       state.css(style);
     }
   });
@@ -74,11 +74,7 @@ var animate_bars = function(data) {
       bar.attr("title", value);
     }
   });
-  // update tooltips
-  $('.hastip').tooltipsy({
-    delay: 50,
-    offset: [0, -10]
-  });
+  update_bar_tips();
 };
 
 var get_state_value = (function() {
@@ -145,6 +141,18 @@ var setYear = function(yr) {
   animate();
 };
 
+var update_bar_tips = function() {
+  $.each($(".dataBar"), function(prop, val){
+    $(val).off();
+    if ($(val).data("tooltipsy") !== undefined) {
+      $(val).data("tooltipsy").destroy()
+    }
+  });
+  $('.hastip').tooltipsy({
+    delay: 50,
+    offset: [0, -10]
+  });
+}
 
 function hovertext(text, evt){
   var tooltip = document.getElementById("tooltip-text");
