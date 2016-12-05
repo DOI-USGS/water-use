@@ -12,11 +12,54 @@ info:
     summarized to.  This visualization shows that change over time as this dataset has become
     more powerful, and attempts to illustrate where the data can go in the future to be a more
     useful dataset going forward.
+  keywords: >-
+    water, USGS, VIZLAB
+  audience: General public
+  url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
     url: images/tmp_thumbnail_map.png
     width: 250
     height: 250
+    type: image/png
     alttext: National water use map
+  contributors:
+    -
+      name: Alison Appling
+      email: aappling@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Blodgett
+      email: dblodgett@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Lindsay Carr
+      email: lcarr@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Laura DeCicco
+      email: ldecicco@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Emily Read
+      email: eread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Read
+      email: jread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Walker
+      email: jiwalker@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Watkins
+      email: wwatkins@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Marty Wernimont
+      email: mwernimont@usgs.gov
+      affiliation: U.S. Geological Survey
+  twitter: "@USGS_R"
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -89,6 +132,7 @@ fetch:
   -
     id: siteText
     location: data/siteText.yaml
+    scripts: 
     reader: md
     mimetype: text/yaml
 process:
@@ -161,7 +205,7 @@ process:
     reader: rds
     depends:
       stateMap: state-map
-      wuClean: calc-histWaterData
+      wuClean: calc-awudsOldClean
   -
     id: scaleFactors2json
     location: cache/scaleFactors.json
@@ -206,10 +250,7 @@ publish:
   -
     id: vizlab-favicon
     location: images/favicon.ico
-    mimetype: image/png
-    comment: saying it is a png to get it in right spot, need handler for ico
-    title: icon
-    alttext: icon
+    mimetype: image/ico
   -
     id: water-use-page
     name: index
