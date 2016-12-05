@@ -75,6 +75,10 @@ process.awudsOldClean <- function(viz){
   
   wuAwudsLong <- rename(full.data, `Public Supply` = public) %>%
     gather(category, value, -state_cd, -state_name, -year) 
+  
+  wuAwudsLong$state_name[wuAwudsLong$state_name == "District of Columbia"] <- "district of columbia"
+  
+  wuData$state_name[wuData$state_name == "Dist. of Columbia"] <- "district of columbia"
     
   
   full.out <- bind_rows(wuData, wuAwudsLong) %>%
