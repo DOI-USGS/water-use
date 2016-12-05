@@ -21,9 +21,7 @@
 	top:20px;
 	font-family:Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
 	font-size:.6em;
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	transform: rotate(45deg);
+	cursor:default;
 }
 .noUi-value-sub {
 	color: #ccc;
