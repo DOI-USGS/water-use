@@ -12,24 +12,27 @@ body{
 }
 
 .container{
-	min-height:200px;
-	padding:10px;
+	min-height:30px;
+	padding: 0 10px;
 }
 
-.title{
+.container h3{
   margin:5px 0;
-}
-
-.title h3{
   font-size:1em;
 }
 
-.caption p{
-  font-size:1em;
+.container p{
+  font-size:.9em;
+  margin-top:10px;
 }
 
-.bottom{
-  margin-top:20px;
+.container a{
+  color:rgb(0,51,102);
+  font-weight:700;
+}
+
+.container a:hover{
+  text-decoration:none;
 }
 
 .map{
@@ -133,7 +136,12 @@ body{
 
 .event{
 	min-height:20px;
-	font-size:.7em;
+	
+}
+
+.event p{
+  margin-top:0;
+  font-size:.7em;
 }
 
 .eventStatLine{

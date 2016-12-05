@@ -77,6 +77,11 @@ fetch:
     mimetype: text/csv
     scripts: scripts/fetch/nationalUse.R
     refetch: FALSE
+  -
+    id: siteText
+    location: data/siteText.yaml
+    reader: md
+    mimetype: text/yaml
 process:
   -
     id: calc-waterData
@@ -193,12 +198,26 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
+    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
       "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
     context:
-      sections: [ "header-section", "figure-section", "footer-section" ]
+      sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
       resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>" ]
+  -
+    id: intro
+    template: layout/templates/intro.mustache
+    publisher: section
+    depends: siteText
+    context:
+      data: ["siteText.title", "siteText.introText"]
+  -
+    id: explanation
+    template: layout/templates/intro.mustache
+    publisher: section
+    depends: siteText
+    context:
+      data: ["siteText.explanationText", "siteText.dataSources"]
   -
     id: figure-section
     template: layout/templates/simple.mustache
