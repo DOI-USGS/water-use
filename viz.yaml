@@ -54,6 +54,9 @@ info:
     jsonlite:
       repo: CRAN
       version: 1.1
+    wateRuse:
+      repo: GRAN
+      version: 1.0.4
 fetch:
   -
     id: waterUse-data
@@ -66,9 +69,15 @@ fetch:
     id: histWaterUse-data
     fetcher: histWaterUse
     location: cache/histWaterUse.rds
-    mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUse.R
+    refetch: FALSE
+  -
+    id: histWaterUseAWUDS-data
+    fetcher: histWaterUseAWUDS
+    location: cache/histWaterUseAWUDS.rds
+    reader: rds
+    scripts: scripts/fetch/histWaterUseAWUDS.R
     refetch: FALSE
   -
     id: nationalUse-data
@@ -91,6 +100,15 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
+  -
+    id: calc-awudsOldClean
+    location: cache/awudsOldClean.rds
+    processor: awudsOldClean
+    scripts: scripts/process/awudsOldClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUseAWUDS-data
   -
     id: calc-histWaterData
     location: cache/histWuClean.rds
@@ -287,12 +305,12 @@ publish:
       logo: vizlab-logo
     blogsInFooter: FALSE
     vizzies:
-      - name: Microplastics in the Great Lakes
-        org: USGS-VIZLAB
-        repo: great-lakes-microplastics
-      - name: Hurricane Matthew
-        org: USGS-VIZLAB
-        repo: hurricane-matthew
+      - name: Lower Colorado Drought
+        org: USGS-CIDA
+        repo: OWDI-Lower-Colorado-Drought-Vis
+      - name: California Drought
+        org: USGS-CIDA
+        repo: CIDA-Viz
     blogs:
       - name:
         url:
