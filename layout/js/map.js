@@ -13,6 +13,14 @@ var colors = {
   "Total": "#2E86AB"
 };
 
+var legendVals = {
+  "Thermoelectric": 1915,
+  "Public_Supply": 351,
+  "Industrial": 1414,
+  "Irrigation": 1503,
+  "Total": 2657
+};
+
 $(document).ready(function(){
   get_data();
   svg = document.querySelector("svg");
@@ -38,6 +46,12 @@ $(document).ready(function(){
 /* depends on jquery */
 var animate_resize_map = function(data) {
   var color = colors[category];
+  $("#category-area-legend").css(
+    {
+    "fill": color,
+    "stroke":"none",
+    "transition": "all " + transitionTime + " ease-in-out"
+  });
   $.each(data, function(index, val) {
     var scale = Math.sqrt(val.scaleFactor);
     var style = {
@@ -59,6 +73,7 @@ var animate_resize_map = function(data) {
       state.css(style);
     }
   });
+  document.getElementById('category-area-text').firstChild.data = legendVals[category].toLocaleString() + ' mgd water withdrawls ';// + category.replace(/_/g, ' '); removing because redundant w/ selector
 };
 
 var animate_bars = function(data) {
