@@ -89,6 +89,7 @@ fetch:
   -
     id: siteText
     location: data/siteText.yaml
+    scripts: 
     reader: md
     mimetype: text/yaml
 process:
