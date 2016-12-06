@@ -11,17 +11,17 @@ introText: |
 explanationText: |
   How and where Americans use water has changed with our population growth and many technological, 
   environmental, and regulatory drivers. In this figure, the area and color of each state polygon 
-  show the amount of water withdrawn in that state, either in total (blue) or by use category. 
-  Mouse over the legend to see maps for specific water use categories, and slide the time bar left 
-  or right to see different years.
+  show the amount of water withdrawn in that state, either in total for the four categories shown
+  (blue) or broken out by use category. Mouse over the legend to see maps for specific water use 
+  categories, and slide the time bar left or right to see different years.
 
-  Every 5 years since 1950, the USGS compiles and estimates water-use information in cooperation with State, 
-  Federal, and local agencies to document how the Nation's water resources are used. Water use data has been 
-  collected and compiled by the USGS since 1950 in five year increments. This information is essential to accurately 
-  understand how future water demands will be met while maintaining adequate water quality and quantities for human 
-  and ecosystem needs. This figure shows state-level data, but data at the site, county, and major watershed levels 
-  are also being collected wherever possible. The USGS Water Availability and Use Program hopes to move toward even 
-  higher spatial resolution and more frequent reports in the future.
+  Every 5 years since 1950, the USGS has compiled and estimated water-use information in cooperation with State, 
+  Federal, and local agencies to document how the Nation's water resources are used in the year preceding the 
+  comilation. This information is essential to accurately understand how future water demands will be met while 
+  maintaining adequate water quality and quantities for human and ecosystem needs. This figure shows state-level 
+  data, but data at the site, county, and major watershed levels have also been collected variously over the years. 
+  The USGS Water Availability and Use Science Program hopes to move toward even higher spatial resolution and more
+  frequent reports in the future.
 
 dataSources: |
   Data sources:
