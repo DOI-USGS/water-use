@@ -1,0 +1,34 @@
+title: "### How much water do we use? U.S. water withdrawals, 1950-present"
+
+introText: |
+  The USGS Water-Use Information Program has documented how and 
+  where we use water for the last 65 years. Below, total state water use, 
+  and water use by category, is represented by the size (area) of each state. 
+  National water use for each year and by category are shown as bars above the timeline. 
+  Drag the timeline to see data for available years, and mouse over states and bars above 
+  timeline for water use values.
+
+explanationText: |
+  How and where Americans use water has changed with our population growth and many technological, 
+  environmental, and regulatory drivers. In this figure, the area and color of each state polygon 
+  show the amount of water withdrawn in that state, either in total (blue) or by use category. 
+  Mouse over the legend to see maps for specific water use categories, and slide the time bar left 
+  or right to see different years.
+
+  Every 5 years since 1950, the USGS compiles and estimates water-use information in cooperation with State, 
+  Federal, and local agencies to document how the Nation's water resources are used. Water use data has been 
+  collected and compiled by the USGS since 1950 in five year increments. This information is essential to accurately 
+  understand how future water demands will be met while maintaining adequate water quality and quantities for human 
+  and ecosystem needs. This figure shows state-level data, but data at the site, county, and major watershed levels 
+  are also being collected wherever possible. The USGS Water Availability and Use Program hopes to move toward even 
+  higher spatial resolution and more frequent reports in the future.
+
+dataSources: |
+  Data sources:
+
+  Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014, 
+  Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p., 
+  [http://dx.doi.org/10.3133/cir1405](http://dx.doi.org/10.3133/cir1405).
+
+  Estimated use of water in the United States, various years: 
+  [http://water.usgs.gov/watuse/50years.html](http://water.usgs.gov/watuse/50years.html)

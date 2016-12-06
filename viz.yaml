@@ -12,11 +12,54 @@ info:
     summarized to.  This visualization shows that change over time as this dataset has become
     more powerful, and attempts to illustrate where the data can go in the future to be a more
     useful dataset going forward.
+  keywords: >-
+    water, USGS, VIZLAB
+  audience: General public
+  url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
     url: images/tmp_thumbnail_map.png
     width: 250
     height: 250
+    type: image/png
     alttext: National water use map
+  contributors:
+    -
+      name: Alison Appling
+      email: aappling@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Blodgett
+      email: dblodgett@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Lindsay Carr
+      email: lcarr@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Laura DeCicco
+      email: ldecicco@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Emily Read
+      email: eread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Read
+      email: jread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Walker
+      email: jiwalker@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Watkins
+      email: wwatkins@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Marty Wernimont
+      email: mwernimont@usgs.gov
+      affiliation: U.S. Geological Survey
+  twitter: "@USGS_R"
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -54,6 +97,9 @@ info:
     jsonlite:
       repo: CRAN
       version: 1.1
+    wateRuse:
+      repo: GRAN
+      version: 1.0.4
 fetch:
   -
     id: waterUse-data
@@ -66,10 +112,17 @@ fetch:
     id: histWaterUse-data
     fetcher: histWaterUse
     location: cache/histWaterUse.rds
-    mimetype: rds
     reader: rds
     scripts: scripts/fetch/histWaterUse.R
     refetch: FALSE
+  -
+    id: histWaterUseAWUDS-data
+    location: cache/awuds.zip
+    fetcher: sciencebase
+    remoteItemId: "5845ffaae4b04fc80e523664"
+    remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
+    reader: histWaterUseAWUDS
+    scripts: scripts/read/histWaterUseAWUDS.R
   -
     id: nationalUse-data
     fetcher: nationalUse
@@ -77,6 +130,12 @@ fetch:
     mimetype: text/csv
     scripts: scripts/fetch/nationalUse.R
     refetch: FALSE
+  -
+    id: siteText
+    location: data/siteText.yaml
+    scripts:
+    reader: md
+    mimetype: text/yaml
 process:
   -
     id: calc-waterData
@@ -86,6 +145,15 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
+  -
+    id: calc-awudsOldClean
+    location: cache/awudsOldClean.rds
+    processor: awudsOldClean
+    scripts: scripts/process/awudsOldClean.R
+    reader: rds
+    depends:
+      waterUse: calc-waterData
+      histWaterUse: histWaterUseAWUDS-data
   -
     id: calc-histWaterData
     location: cache/histWuClean.rds
@@ -131,6 +199,13 @@ process:
     depends:
       waterUse_clean: calc-nationalData
   -
+    id: catValues 
+    location: cache/categoryValues.rds
+    processor: categoryValues
+    scripts: scripts/process/scaleStates.R
+    depends: ["calc-scaleFactors","state-map"]
+    reader: rds
+  -
     id: calc-scaleFactors
     location: cache/stateScaleFactors.rds
     processor: scaleStates
@@ -138,7 +213,7 @@ process:
     reader: rds
     depends:
       stateMap: state-map
-      wuClean: calc-histWaterData
+      wuClean: calc-awudsOldClean
   -
     id: scaleFactors2json
     location: cache/scaleFactors.json
@@ -149,6 +224,7 @@ process:
     depends:
       scaleFactors: calc-scaleFactors
       scaleFactorsNational: calc-scaleNational
+      catScaleValues: catValues
 
 visualize:
   -
@@ -183,22 +259,33 @@ publish:
   -
     id: vizlab-favicon
     location: images/favicon.ico
-    mimetype: image/png
-    comment: saying it is a png to get it in right spot, need handler for ico
-    title: icon
-    alttext: icon
+    mimetype: image/ico
   -
     id: water-use-page
     name: index
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
+    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon" ]
     context:
-      sections: [ "header-section", "figure-section", "footer-section" ]
-      resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
+      sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>" ]
+  -
+    id: intro
+    template: layout/templates/intro.mustache
+    publisher: section
+    depends: siteText
+    context:
+      data: ["siteText.title", "siteText.introText"]
+  -
+    id: explanation
+    template: layout/templates/intro.mustache
+    publisher: section
+    depends: siteText
+    context:
+      data: ["siteText.explanationText", "siteText.dataSources"]
   -
     id: figure-section
     template: layout/templates/simple.mustache

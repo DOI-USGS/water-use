@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 	noUiSlider.create(slider, {
 		range: range_all_sliders,
-		start: 0,
+		start: 2010,
 		snap: true,
 		pips: {
 			mode: 'positions',
@@ -31,5 +31,11 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
+	
+	$(document).on('click', function(){
+	 $('.tooltipsy').hide();
+	});
+	
+	
 
 });

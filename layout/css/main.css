@@ -9,27 +9,32 @@
 
 body{
 	font-family:"Open Sans", Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
+	position:relative;
+	padding-bottom:450px;
 }
 
 .container{
-	min-height:200px;
-	padding:10px;
+	min-height:30px;
+	padding: 0 10px;
 }
 
-.title{
+.container h3{
   margin:5px 0;
-}
-
-.title h3{
   font-size:1em;
 }
 
-.caption p{
-  font-size:1em;
+.container p{
+  font-size:.9em;
+  margin-top:10px;
 }
 
-.bottom{
-  margin-top:20px;
+.container a{
+  color:rgb(0,51,102);
+  font-weight:700;
+}
+
+.container a:hover{
+  text-decoration:none;
 }
 
 .map{
@@ -121,48 +126,7 @@ body{
 }
 
 .timeslider{
-	margin:10px auto 50px auto;
-}
-
-.eventHolder{
-	min-height:20px;
-	width:95%;
-	margin:0 auto 5px auto;
-	position:relative;
-}
-
-.event{
-	min-height:20px;
-	font-size:.7em;
-}
-
-.eventStatLine{
-	height:2px;
-	margin-bottom:3px;
-}
-
-.black{
-	background:#000;
-}
-
-.red{
-	background:red;
-}
-
-#mpf{
-	margin-left: 15.384615385%;
-}
-
-#cwa{
-	margin-left: 32%;
-}
-
-#cadrought .eventStatLine{
-	margin-left: 92%;
-}
-
-#cadrought{
-	text-align:right;
+	margin:10px auto 70px auto;
 }
 
 @media screen and (min-width:768px){
@@ -184,7 +148,7 @@ body{
 @media screen and (min-width:1500px){
 
 	.container{
-		width:780px;
+		width:880px;
 	}
 
 }
@@ -192,7 +156,7 @@ body{
 @media screen and (min-width:2000px){
 
 	.container{
-		width:1300px;
+		width:1500px;
 	}
 
 }
