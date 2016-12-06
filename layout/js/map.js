@@ -96,6 +96,8 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
+var stateHoverDelay = 2000; // ms
+var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
   var prevCat = "";
@@ -121,8 +123,18 @@ var get_state_value = (function() {
           }
         }(stateData);
     }
+    
+     if(stateHoverTimer){ 
+      clearTimeout(stateHoverTimer);
+     }
+     stateHoverTimer = setTimeout(function(){
+      //could send cateogory and year here too?
+       ga('send', 'event', 'figure', 'Hovered on ' + state);
+      }, stateHoverDelay);
+    
     return prevVal;
   }
+  
 })();
 
 var get_data = function() {
@@ -156,17 +168,17 @@ var setCategory = function(cat) {
   ga('send', 'event', 'figure', 'Category changed to ' + category);
 };
 
-var setTimer = null;
-var sendDelay = 1000; //ms
+var setYrTimer = null;
+var sendYrDelay = 1000; //ms
 var setYear = function(yr) {
   year = yr;
   animate();
-  if(setTimer){ 
-    clearTimeout(setTimer);
+  if(setYrTimer){ 
+    clearTimeout(setYrTimer);
   }
-  setTimer = setTimeout(function(){
-     ga('send', 'event', 'figure', 'Year changed to ' + year);
-  }, sendDelay);
+  setYrTimer = setTimeout(function(){
+     ga('send', 'event', 'figure', 'Year changed to ' + year + ' ' + category);
+  }, sendYrDelay);
  };
 
 var update_bar_tips = function() {
