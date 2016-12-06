@@ -73,7 +73,7 @@ var animate_resize_map = function(data) {
       state.css(style);
     }
   });
-  document.getElementById('category-area-text').firstChild.data = legendVals[category].toLocaleString() + ' mgd water withdrawals';
+  document.getElementById('category-area-text').firstChild.data = transformData['catVals'][category].toLocaleString() + ' mgd water withdrawal';
 };
 
 var animate_bars = function(data) {

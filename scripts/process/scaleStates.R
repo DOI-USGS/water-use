@@ -9,7 +9,6 @@ process.scaleStates <- function(viz){
   #read sp, wuClean
   depends <- readDepends(viz)
   statePoly <- depends[['state-map']]$states
-  legend.circles <- depends[['state-map']]$legend.circles
   wuClean <- depends[["calc-awudsOldClean"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
                       year = c(unique(wuClean$year), 2015),
@@ -18,7 +17,6 @@ process.scaleStates <- function(viz){
     arrange(state_cd, state_name, desc(category))
   wuClean$state_name <- tolower(wuClean$state_name)
   #get areas, join to wuClean
-  legend.area <- gArea(legend.circles, byid = TRUE)[1]
   areas <- data.frame(gArea(statePoly, byid = TRUE), stringsAsFactors = FALSE)
   areas$state_name <- rownames(areas)
   wuAreas <- left_join(wuClean, areas, by = 'state_name')
@@ -26,7 +24,6 @@ process.scaleStates <- function(viz){
 
   #compute ratios
   wuAreas <- mutate(wuAreas, wuPerArea = value/area)
-  catvalues <- list()
   finalScaleFactors <- data.frame()
   #per category
   for(cat in unique(wuAreas$category)){
@@ -37,14 +34,25 @@ process.scaleStates <- function(viz){
     thisCat <- mutate(thisCat, scaleFactor = newArea / area)
 
     finalScaleFactors <- bind_rows(finalScaleFactors, thisCat)
-    catvalues[[cat]] = legend.area * magicState$value / magicState$area
   }
-  wuAreas
-  # *** export catvalues somehow or include in json!!! ***
   #save
   saveRDS(finalScaleFactors, file = viz[['location']])
 }
 
+process.categoryValues <- function(viz){
+  data.in <- readDepends(viz)
+  legend.circles <- data.in[['state-map']]$`legend.circles`
+  legend.area <- unname(gArea(legend.circles, byid = TRUE)[1])
+  scale.factors <- data.in[["calc-scaleFactors"]]
+  catvalues <- list()
+  for(cat in unique(scale.factors$category)){
+    thisCat <- filter(scale.factors, category == cat)
+    magicState <- thisCat[which.max(thisCat$wuPerArea), ]
+    catvalues[[cat]] = round(legend.area * magicState$value / magicState$area)
+  }
+  names(catvalues)[names(catvalues) == 'Public Supply'] <- "Public_Supply"
+  saveRDS(catvalues, file = viz[['location']])
+}
 
 #convert the rds from above to appropriately-formatted json
 library(jsonlite)
@@ -52,7 +60,7 @@ library(jsonlite)
 process.scaleFactors2json <- function(viz){
   scaleFactors <- readData(viz[['depends']]$scaleFactors)
   scaleFactorsNational <- readData(viz[['depends']]$scaleFactorsNational)
-
+  catVals <- readData(viz[['depends']]$catScaleValues)
   scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
 
   #replace spaces with underscore and remove &
@@ -97,7 +105,7 @@ process.scaleFactors2json <- function(viz){
     natScaleTypes[type][[1]] <- natJson
   }
 
-  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData)
+  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData, catVals=catVals)
 
   jsOut <- toJSON(allJson)
   write(jsOut, viz[['location']])
