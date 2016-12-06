@@ -156,9 +156,6 @@ var setCategory = function(cat) {
   ga('send', 'event', 'figure', 'Category changed to ' + category);
 };
 
-
-
-
 var setTimer = null;
 var sendDelay = 1000; //ms
 var setYear = function(yr) {
