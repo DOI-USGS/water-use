@@ -13,14 +13,6 @@ var colors = {
   "Total": "#2E86AB"
 };
 
-var legendVals = {
-  "Thermoelectric": 961,
-  "Public_Supply": 175,
-  "Industrial": 362,
-  "Irrigation": 752,
-  "Total": 1332
-};
-
 $(document).ready(function(){
   get_data();
   svg = document.querySelector("svg");
