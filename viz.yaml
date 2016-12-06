@@ -199,6 +199,13 @@ process:
     depends:
       waterUse_clean: calc-nationalData
   -
+    id: catValues 
+    location: cache/categoryValues.rds
+    processor: categoryValues
+    scripts: scripts/process/scaleStates.R
+    depends: ["calc-scaleFactors","state-map"]
+    reader: rds
+  -
     id: calc-scaleFactors
     location: cache/stateScaleFactors.rds
     processor: scaleStates
@@ -217,6 +224,7 @@ process:
     depends:
       scaleFactors: calc-scaleFactors
       scaleFactorsNational: calc-scaleNational
+      catScaleValues: catValues
 
 visualize:
   -
