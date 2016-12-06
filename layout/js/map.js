@@ -113,7 +113,14 @@ var get_state_value = (function() {
         prevState = state;
         prevCat = category;
         prevYear = year;
-
+        if(stateHoverTimer){ 
+          clearTimeout(stateHoverTimer);
+        }
+        stateHoverTimer = setTimeout(function(){
+          //could send cateogory and year here too?
+          ga('send', 'event', 'figure', 'Hovered on ' + state);
+        }, stateHoverDelay);
+        
         var stateData = transformData["totState"][year][category];
         prevVal = function(allData) {
           for (var i = 0; i < allData.length; i++) {
@@ -124,17 +131,11 @@ var get_state_value = (function() {
         }(stateData);
     }
     
-     if(stateHoverTimer){ 
-      clearTimeout(stateHoverTimer);
-     }
-     stateHoverTimer = setTimeout(function(){
-      //could send cateogory and year here too?
-       ga('send', 'event', 'figure', 'Hovered on ' + state);
-      }, stateHoverDelay);
+     
     
     return prevVal;
   }
-  
+  clearTimeout(stateHoverTimer);
 })();
 
 var get_data = function() {
