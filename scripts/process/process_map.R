@@ -115,7 +115,7 @@ state_centroids <- function(sp, shifts){
   return(state.centroids)
 }
 
-create_legend <- function(x, y, row.name, r = 50000, n = 100){
+create_legend <- function(x, y, row.name, r = 53060, n = 100){
   pts <- seq(0, 2 * pi, length.out = n)
   xy <- cbind(x + r * sin(pts), y + r * cos(pts))
   sp <- SpatialPolygons(list(Polygons(list(Polygon(xy)), row.name)), proj4string = CRS(proj.string))
