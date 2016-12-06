@@ -1,4 +1,4 @@
-process.histWaterUseAWUDS <- function(viz){
+readData.histWaterUseAWUDS <- function(viz){
 
   library(wateRuse)
   library(tidyr)
