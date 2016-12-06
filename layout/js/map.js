@@ -153,12 +153,24 @@ var setCategory = function(cat) {
   $('#' + cat).css("fill-opacity", "0.0");
   $('#' + cat).css("stroke-opacity","1.0");
   animate();
+  ga('send', 'event', 'figure', 'Category changed to ' + category);
 };
 
+
+
+
+var setTimer = null;
+var sendDelay = 1000; //ms
 var setYear = function(yr) {
   year = yr;
   animate();
-};
+  if(setTimer){ 
+    clearTimeout(setTimer);
+  }
+  setTimer = setTimeout(function(){
+     ga('send', 'event', 'figure', 'Year changed to ' + year);
+  }, sendDelay);
+ };
 
 var update_bar_tips = function() {
   $.each($(".dataBar"), function(prop, val){

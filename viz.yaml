@@ -123,6 +123,7 @@ fetch:
     remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
     reader: histWaterUseAWUDS
     scripts: scripts/read/histWaterUseAWUDS.R
+    refetch: FALSE
   -
     id: nationalUse-data
     fetcher: nationalUse
