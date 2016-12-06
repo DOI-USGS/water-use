@@ -2,11 +2,11 @@ title: "### How much water do we use? U.S. water withdrawals, 1950-present"
 
 introText: |
   The USGS Water-Use Information Program has documented how and 
-  where we use water for the last 65 years. Below, total state water use, 
-  and water use by category, is represented by the size (area) of each state. 
-  National water use for each year and by category are shown as bars above the timeline. 
-  Drag the timeline to see data for available years, and mouse over states and bars above 
-  timeline for water use values.
+  where we use water for the last 65 years. State water use is shown by the size (area) 
+  of each state. National water use for years it was estimated is shown as bars above the 
+  timeline. Drag the timeline to see data for available years, and mouse over states and bars 
+  to see water use values. The values shown are in million gallons per day (mgd). As a reference, 
+  a million gallons of water would cover a football field about 2.8 feet deep.
 
 explanationText: |
   How and where Americans use water has changed with our population growth and many technological, 
