@@ -259,10 +259,10 @@ publish:
     publisher: page
     mimetype: text/html
     depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
+      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon" ]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
-      resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>" ]
   -
     id: intro
