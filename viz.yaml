@@ -3,7 +3,7 @@ info:
   id: water-use
   name: Visualizing water use by region and time
   date: 2016-11-30
-  publish-date: 2016-12-06
+  publish-date: 2016-12-13
   path: /water-use
   analytics-id: UA-78530187-5
   description: >-
@@ -12,11 +12,54 @@ info:
     summarized to.  This visualization shows that change over time as this dataset has become
     more powerful, and attempts to illustrate where the data can go in the future to be a more
     useful dataset going forward.
+  keywords: >-
+    water, USGS, VIZLAB
+  audience: General public
+  url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
     url: images/tmp_thumbnail_map.png
     width: 250
     height: 250
+    type: image/png
     alttext: National water use map
+  contributors:
+    -
+      name: Alison Appling
+      email: aappling@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Blodgett
+      email: dblodgett@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Lindsay Carr
+      email: lcarr@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Laura DeCicco
+      email: ldecicco@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Emily Read
+      email: eread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Read
+      email: jread@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Jordan Walker
+      email: jiwalker@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: David Watkins
+      email: wwatkins@usgs.gov
+      affiliation: U.S. Geological Survey
+    -
+      name: Marty Wernimont
+      email: mwernimont@usgs.gov
+      affiliation: U.S. Geological Survey
+  twitter: "@USGS_R"
   required-packages:
     dataRetrieval:
       repo: CRAN
@@ -74,11 +117,12 @@ fetch:
     refetch: FALSE
   -
     id: histWaterUseAWUDS-data
-    fetcher: histWaterUseAWUDS
-    location: cache/histWaterUseAWUDS.rds
-    reader: rds
-    scripts: scripts/fetch/histWaterUseAWUDS.R
-    refetch: FALSE
+    location: cache/awuds.zip
+    fetcher: sciencebase
+    remoteItemId: "5845ffaae4b04fc80e523664"
+    remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
+    reader: histWaterUseAWUDS
+    scripts: scripts/read/histWaterUseAWUDS.R
   -
     id: nationalUse-data
     fetcher: nationalUse
@@ -89,6 +133,7 @@ fetch:
   -
     id: siteText
     location: data/siteText.yaml
+    scripts:
     reader: md
     mimetype: text/yaml
 process:
@@ -154,6 +199,13 @@ process:
     depends:
       waterUse_clean: calc-nationalData
   -
+    id: catValues
+    location: cache/categoryValues.rds
+    processor: categoryValues
+    scripts: scripts/process/scaleStates.R
+    depends: ["calc-scaleFactors","state-map"]
+    reader: rds
+  -
     id: calc-scaleFactors
     location: cache/stateScaleFactors.rds
     processor: scaleStates
@@ -161,7 +213,7 @@ process:
     reader: rds
     depends:
       stateMap: state-map
-      wuClean: calc-histWaterData
+      wuClean: calc-awudsOldClean
   -
     id: scaleFactors2json
     location: cache/scaleFactors.json
@@ -172,6 +224,7 @@ process:
     depends:
       scaleFactors: calc-scaleFactors
       scaleFactorsNational: calc-scaleNational
+      catScaleValues: catValues
 
 visualize:
   -
@@ -206,10 +259,7 @@ publish:
   -
     id: vizlab-favicon
     location: images/favicon.ico
-    mimetype: image/png
-    comment: saying it is a png to get it in right spot, need handler for ico
-    title: icon
-    alttext: icon
+    mimetype: image/ico
   -
     id: water-use-page
     name: index
@@ -217,10 +267,10 @@ publish:
     publisher: page
     mimetype: text/html
     depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json" ]
+      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon" ]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
-      resources: [ "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
         "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>" ]
   -
     id: intro

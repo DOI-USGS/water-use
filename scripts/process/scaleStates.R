@@ -7,8 +7,9 @@ library(dplyr)
 process.scaleStates <- function(viz){
 
   #read sp, wuClean
-  statePoly <- readData(viz[['depends']]$stateMap)$states
-  wuClean <- readData(viz[['depends']]$wuClean)
+  depends <- readDepends(viz)
+  statePoly <- depends[['state-map']]$states
+  wuClean <- depends[["calc-awudsOldClean"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
                       year = c(unique(wuClean$year), 2015),
                       category = unique(wuClean$category))
@@ -34,11 +35,24 @@ process.scaleStates <- function(viz){
 
     finalScaleFactors <- bind_rows(finalScaleFactors, thisCat)
   }
-
   #save
   saveRDS(finalScaleFactors, file = viz[['location']])
 }
 
+process.categoryValues <- function(viz){
+  data.in <- readDepends(viz)
+  legend.circles <- data.in[['state-map']]$`legend.circles`
+  legend.area <- unname(gArea(legend.circles, byid = TRUE)[1])
+  scale.factors <- data.in[["calc-scaleFactors"]]
+  catvalues <- list()
+  for(cat in unique(scale.factors$category)){
+    thisCat <- filter(scale.factors, category == cat)
+    magicState <- thisCat[which.max(thisCat$wuPerArea), ]
+    catvalues[[cat]] = round(legend.area * magicState$value / magicState$area)
+  }
+  names(catvalues)[names(catvalues) == 'Public Supply'] <- "Public_Supply"
+  saveRDS(catvalues, file = viz[['location']])
+}
 
 #convert the rds from above to appropriately-formatted json
 library(jsonlite)
@@ -46,7 +60,7 @@ library(jsonlite)
 process.scaleFactors2json <- function(viz){
   scaleFactors <- readData(viz[['depends']]$scaleFactors)
   scaleFactorsNational <- readData(viz[['depends']]$scaleFactorsNational)
-
+  catVals <- readData(viz[['depends']]$catScaleValues)
   scaleFactors <- select(scaleFactors, -area, -wuPerArea, -newArea)
 
   #replace spaces with underscore and remove &
@@ -91,7 +105,7 @@ process.scaleFactors2json <- function(viz){
     natScaleTypes[type][[1]] <- natJson
   }
 
-  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData)
+  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData, catVals=catVals)
 
   jsOut <- toJSON(allJson)
   write(jsOut, viz[['location']])

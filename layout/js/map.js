@@ -38,6 +38,12 @@ $(document).ready(function(){
 /* depends on jquery */
 var animate_resize_map = function(data) {
   var color = colors[category];
+  $("#category-area-legend").css(
+    {
+    "fill": color,
+    "stroke":"none",
+    "transition": "all " + transitionTime + " ease-in-out"
+  });
   $.each(data, function(index, val) {
     var scale = Math.sqrt(val.scaleFactor);
     var style = {
@@ -59,6 +65,7 @@ var animate_resize_map = function(data) {
       state.css(style);
     }
   });
+  document.getElementById('category-area-text').firstChild.data = transformData['catVals'][category].toLocaleString() + ' mgd water withdrawal';
 };
 
 var animate_bars = function(data) {
