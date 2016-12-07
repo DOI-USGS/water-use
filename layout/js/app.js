@@ -32,14 +32,8 @@ $(document).ready(function () {
 		}
 	});
 	
-	$(document).on('click', function(){
+	$(document).on('click scroll', function(){
 	 $('.tooltipsy').hide();
 	});
-	
-	$(document).on('scroll', function(){
-	 $('.tooltipsy').hide();
-	});
-	
-	
 
 });
