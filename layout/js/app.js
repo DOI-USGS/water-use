@@ -36,6 +36,10 @@ $(document).ready(function () {
 	 $('.tooltipsy').hide();
 	});
 	
+	$(document).on('scroll', function(){
+	 $('.tooltipsy').hide();
+	});
+	
 	
 
 });
