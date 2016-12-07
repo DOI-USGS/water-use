@@ -96,7 +96,7 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
-var stateHoverDelay = 2000; // ms
+var stateHoverDelay = 1500; // ms
 var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
@@ -106,7 +106,7 @@ var get_state_value = (function() {
   var sameHover = function(state) {
     return (prevState === state &&
             prevCat === category &&
-            prevYear == year);
+            prevYear === year);
   }
   return function(state) {
     if (transformData !== undefined && !sameHover(state)) {
@@ -135,7 +135,6 @@ var get_state_value = (function() {
     
     return prevVal;
   }
-  clearTimeout(stateHoverTimer);
 })();
 
 var get_data = function() {
