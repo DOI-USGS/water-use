@@ -267,7 +267,7 @@ publish:
     publisher: page
     mimetype: text/html
     depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon" ]
+      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json"]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
       resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
