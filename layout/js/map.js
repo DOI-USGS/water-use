@@ -129,7 +129,7 @@ var get_state_value = (function() {
             }
           }
         }(stateData);
-    }
+    } 
     
      
     
@@ -205,6 +205,7 @@ function hovertext(text, evt){
     tooltip_bg.setAttribute("x",0);
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
+    clearTimeout(stateHoverTimer); // stop ga for edge states 
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '');
