@@ -96,7 +96,7 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
-var stateHoverDelay = 1500; // ms
+var stateHoverDelay = 1000; // ms
 var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
@@ -205,7 +205,9 @@ function hovertext(text, evt){
     tooltip_bg.setAttribute("x",0);
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
-    clearTimeout(stateHoverTimer); // stop ga for edge states 
+    if (stateHoverTimer){
+      clearTimeout(stateHoverTimer); // stop ga for edge states 
+    }
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '');
