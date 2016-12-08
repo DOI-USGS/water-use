@@ -14,6 +14,20 @@ var colors = {
 };
 
 $(document).ready(function(){
+  //IE Fix
+  var ua = window.navigator.userAgent;
+  //IE10 and Below
+  var msie = ua.indexOf("MSIE ");
+  //IE11
+  var trident = ua.indexOf('Trident/');
+  //IE Edge
+  var edge = ua.indexOf('Edge/');
+  if(msie > 0 || trident > 0 || edge > 0){
+    console.log('Internet Explorer');
+  }else{
+    console.log('Other Browser');
+  }
+  
   get_data();
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
