@@ -110,6 +110,8 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
+var stateHoverDelay = 1000; // ms
+var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
   var prevCat = "";
@@ -118,14 +120,21 @@ var get_state_value = (function() {
   var sameHover = function(state) {
     return (prevState === state &&
             prevCat === category &&
-            prevYear == year);
+            prevYear === year);
   }
   return function(state) {
     if (transformData !== undefined && !sameHover(state)) {
         prevState = state;
         prevCat = category;
         prevYear = year;
-
+        if(stateHoverTimer){ 
+          clearTimeout(stateHoverTimer);
+        }
+        stateHoverTimer = setTimeout(function(){
+          //could send cateogory and year here too?
+          ga('send', 'event', 'figure', 'Hovered on ' + state);
+        }, stateHoverDelay);
+        
         var stateData = transformData["totState"][year][category];
         prevVal = function(allData) {
           for (var i = 0; i < allData.length; i++) {
@@ -134,7 +143,10 @@ var get_state_value = (function() {
             }
           }
         }(stateData);
-    }
+    } 
+    
+     
+    
     return prevVal;
   }
 })();
@@ -167,12 +179,21 @@ var setCategory = function(cat) {
   $('#' + cat).css("fill-opacity", "0.0");
   $('#' + cat).css("stroke-opacity","1.0");
   animate();
+  ga('send', 'event', 'figure', 'Category changed to ' + category);
 };
 
+var setYrTimer = null;
+var sendYrDelay = 1000; //ms
 var setYear = function(yr) {
   year = yr;
   animate();
-};
+  if(setYrTimer){ 
+    clearTimeout(setYrTimer);
+  }
+  setYrTimer = setTimeout(function(){
+     ga('send', 'event', 'figure', 'Year changed to ' + year + ' ' + category);
+  }, sendYrDelay);
+ };
 
 var update_bar_tips = function() {
   $.each($(".dataBar"), function(prop, val){
@@ -198,6 +219,9 @@ function hovertext(text, evt){
     tooltip_bg.setAttribute("x",0);
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
+    if (stateHoverTimer){
+      clearTimeout(stateHoverTimer); // stop ga for edge states 
+    }
   } else {
     var ref = evt.target.getAttribute('xlink:href').split('-')[0];
     var stateName = ref.replace(/#/g, '');
