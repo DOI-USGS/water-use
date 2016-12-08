@@ -23,9 +23,9 @@ $(document).ready(function(){
   //IE Edge
   var edge = ua.indexOf('Edge/');
   if(msie > 0 || trident > 0 || edge > 0){
-    alert('Internet Explorer');
+    console.log('Internet Explorer');
   }else{
-    alert('Other Browser');
+    console.log('Other Browser');
   }
   
   get_data();
