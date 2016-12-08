@@ -2,26 +2,26 @@ title: "### How much water do we use? U.S. water withdrawals, 1950-present"
 
 introText: |
   The USGS Water-Use Information Program has documented how and 
-  where we use water for the last 65 years. Below, total state water use, 
-  and water use by category, is represented by the size (area) of each state. 
-  National water use for each year and by category are shown as bars above the timeline. 
-  Drag the timeline to see data for available years, and mouse over states and bars above 
-  timeline for water use values.
+  where we use water for the last 65 years. State water use is shown by the size (area) 
+  of each state. National water use for years it was estimated is shown as bars above the 
+  timeline. Drag the timeline to see data for available years, and mouse over states and bars 
+  to see water use values. The values shown are in million gallons per day (mgd). As a reference, 
+  a million gallons of water would cover a football field about 2.8 feet deep.
 
 explanationText: |
   How and where Americans use water has changed with our population growth and many technological, 
   environmental, and regulatory drivers. In this figure, the area and color of each state polygon 
-  show the amount of water withdrawn in that state, either in total (blue) or by use category. 
-  Mouse over the legend to see maps for specific water use categories, and slide the time bar left 
-  or right to see different years.
+  show the amount of water withdrawn in that state, either in total for the four categories shown
+  (blue) or broken out by use category. Click a category label to see a water withdrawal map for that 
+  category, and slide the time bar left or right to see different years.
 
-  Every 5 years since 1950, the USGS compiles and estimates water-use information in cooperation with State, 
-  Federal, and local agencies to document how the Nation's water resources are used. Water use data has been 
-  collected and compiled by the USGS since 1950 in five year increments. This information is essential to accurately 
-  understand how future water demands will be met while maintaining adequate water quality and quantities for human 
-  and ecosystem needs. This figure shows state-level data, but data at the site, county, and major watershed levels 
-  are also being collected wherever possible. The USGS Water Availability and Use Program hopes to move toward even 
-  higher spatial resolution and more frequent reports in the future.
+  Every 5 years since 1950, the USGS has compiled source data and produced complete water-use estimates in 
+  cooperation with State, Federal, and local agencies to document how the Nation's water resources are 
+  used in the year preceding the compilation. This information is essential to accurately understand how 
+  future water demands will be met while maintaining adequate water quality and quantities for human and 
+  ecosystem needs. This figure shows state-level data, but data at the site, county, and major watershed 
+  levels have also been collected to a varied extent over the years. The USGS Water Availability and Use 
+  Science Program hopes to move toward even higher spatial resolution and more frequent reports in the future.
 
 dataSources: |
   Data sources:
