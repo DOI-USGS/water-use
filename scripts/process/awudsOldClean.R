@@ -13,8 +13,8 @@ process.awudsOldClean <- function(viz){
            state_name = stateCdLookup(state_cd, outputType = "fullName")) %>%
     select(state_cd, state_name, year, everything())
   
-  histExDat <- list(list(sheet = "1950", ind = NULL, iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
-                    list(sheet = "1955", ind = NULL, iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
+  histExDat <- list(list(sheet = "1950", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
+                    list(sheet = "1955", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
                     list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
                          pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
                     list(sheet = "1965", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
@@ -64,7 +64,12 @@ process.awudsOldClean <- function(viz){
       Thermoelectric <- NA
     }
 
-    Total <- rowSums(data.frame(Industrial, Irrigation, public, Thermoelectric), na.rm = FALSE)
+    Total <- rowSums(data.frame(Industrial, Irrigation, public, Thermoelectric), na.rm = TRUE)
+    
+    if(as.numeric(histExDat[[i]][["sheet"]]) == 1950 || as.numeric(histExDat[[i]][["sheet"]]) == 1955) {
+      Thermoelectric <- NA
+      Industrial <- NA
+    } 
     
     dataClean <- bind_cols(select(dataYear, state_cd, state_name, year ),
                            data.frame(Industrial, Irrigation, public, Thermoelectric, Total)) 
