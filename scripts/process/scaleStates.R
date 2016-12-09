@@ -90,15 +90,29 @@ process.scaleFactors2json <- function(viz){
   dat <- scaleFactorsNational
   uniqYears <- unique(dat$year)
   natJson <- vector("list", length(uniqYears))
+  
+  roundUp <- function(x) ceiling(max(x)/10)*10
+  
   for(i in 1:length(uniqYears)){
     thisYear <- filter(dat, year == uniqYears[i])
 
+    Thermoelectric = data.frame(filter(thisYear, category == "Thermoelectric")) %>%
+      mutate(value = roundUp(value))
+    Industrial = data.frame(filter(thisYear, category == "Industrial"))%>%
+      mutate(value = roundUp(value))
+    Public_Supply = data.frame(filter(thisYear, category == "Public Supply"))%>%
+      mutate(value = roundUp(value))
+    Irrigation = data.frame(filter(thisYear, category == "Irrigation"))%>%
+      mutate(value = roundUp(value))
+    Total = data.frame(filter(thisYear, category == "Total"))%>%
+      mutate(value = roundUp(value))
+    
     #convert to list of dfs for each category
-    natJson[[i]] <- list(Thermoelectric = data.frame(filter(thisYear, category == "Thermoelectric")),
-                         Industrial = data.frame(filter(thisYear, category == "Industrial")),
-                         Public_Supply = data.frame(filter(thisYear, category == "Public Supply")),
-                         Irrigation = data.frame(filter(thisYear, category == "Irrigation")),
-                         Total = data.frame(filter(thisYear, category == "Total")))
+    natJson[[i]] <- list(Thermoelectric = Thermoelectric,
+                         Industrial = Industrial,
+                         Public_Supply = Public_Supply,
+                         Irrigation = Irrigation,
+                         Total = Total)
   }
   names(natJson) <- uniqYears
 
