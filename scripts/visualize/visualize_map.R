@@ -60,7 +60,7 @@ visualize.states_svg <- function(viz){
   xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
   gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
   gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
-  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
+  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(605,250)')
   g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
   g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(380,355)')
   g.tool <- xml_add_child(svg,'g',id='tooltip-group')
@@ -79,11 +79,11 @@ visualize.states_svg <- function(viz){
 
     xml_add_child(xml_add_child(gf, 'g', transform=transform),
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
-                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
+                  onmousemove=sprintf("hovertext('%s',evt, '%s');", state.hovertext[i], id.name),
                   onmouseout="hovertext(' ');")
     xml_add_child(xml_add_child(gm, 'g', transform=transform), # this sits on top but only for mouseover
                   'use', 'xlink:href'=paste0("#", id.use), opacity='0',
-                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
+                  onmousemove=sprintf("hovertext('%s',evt, '%s');", state.hovertext[i], id.name),
                   onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
 
