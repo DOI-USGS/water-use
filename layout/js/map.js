@@ -1,6 +1,7 @@
 var transformData = undefined;
 var svg = undefined;
 var pt = undefined;
+var smoothTransform = undefined;
 
 var category = "Total";
 var year = "1950";
@@ -23,9 +24,9 @@ $(document).ready(function(){
   //IE Edge
   var edge = ua.indexOf('Edge/');
   if(msie > 0 || trident > 0 || edge > 0){
-    console.log('Internet Explorer');
+    smoothTransform = false;
   }else{
-    console.log('Other Browser');
+    smoothTransform = true;
   }
   
   get_data();
@@ -60,26 +61,36 @@ var animate_resize_map = function(data) {
   });
   $.each(data, function(index, val) {
     var scale = Math.sqrt(val.scaleFactor);
+    var fillCol = color;
+    var stateTranT = transitionTime;
+    var stroke = "none";
+    if (isNaN(scale)){ 
+      fillCol = "url(#nodata)";
+      scale = 1;
+      stroke = '#f1f1f1';
+      stateTranT = "0s";
+    }
+    
     var style = {
-      "fill": color,
+      "fill": fillCol,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
-      "stroke":"none",
-      "transition": "all " + transitionTime + " ease-in-out"
+      "stroke":stroke,
+      "transition": "all " + stateTranT + " ease-in-out"
     };
     var state = $("#" + val.state_name);
     if (state !== undefined) {
-      if (isNaN(scale)){ // doesn't seem to work?
-        style = {
-          "fill":"url(#nodata)",
-          "transform": "scale3d(1,1,1)",
-          "stroke":"#f1f1f1",
-          "transition": "all 0s"
-        };
+      if (!smoothTransform){
+        var stateDyno = document.getElementById(val.state_name);
+        if (stateDyno !== null){
+          stateDyno.setAttribute('style', "fill:"+ fillCol +"; stroke:"+stroke+";");
+          stateDyno.setAttribute('transform', "scale(" + scale + ")");
+        }
+      } else {
+        state.css(style); 
       }
-      state.css(style);
     }
   });
-  document.getElementById('category-area-text').firstChild.data = transformData['catVals'][category].toLocaleString() + ' mgd water withdrawal';
+  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' mgd water withdrawal';
 };
 
 var animate_bars = function(data) {
