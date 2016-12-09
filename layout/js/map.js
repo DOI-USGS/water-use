@@ -98,23 +98,40 @@ var animate_bars = function(data) {
   $.each(data, function(prop, val) {
     var myYear = prop;
     var color = colors[category];
+
     var scale = val[category][0]["barScale"];
     var value = val[category][0]["value"];
-    var style = {
-      "background": color,
-      "transform": "scale3d(1," + scale + ",1)",
-      "transform-origin": "100% 100%",
-      "transition": "all " + transitionTime + " ease-in-out"
-    };
+
     var bar = $("#bar-" + myYear);
+    var style = undefined;
+
     if (bar !== undefined) {
+      if (isNaN(scale)){ 
+        style = {
+          "background": "grey",
+          "transform": "scale3d(1,0,1)",
+          "transform-origin": "100% 100%",
+          "transition": "all " + transitionTime + " ease-in-out"
+        };
+      } else {
+        style = {
+          "background": color,
+          "transform": "scale3d(1," + scale + ",1)",
+          "transform-origin": "100% 100%",
+          "transition": "all " + transitionTime + " ease-in-out"
+        };
+      }
       bar.css(style);
       if (myYear !== year) {
         bar.css('opacity','0.25');
       } else {
         bar.css('opacity','1.0');
       }
-      value = value.toLocaleString() + ' mgd';
+      console.log(value)
+      if(value !== undefined){
+        value = value.toLocaleString() + ' mgd';
+      }
+      
       bar.attr("title", value);
     }
   });
