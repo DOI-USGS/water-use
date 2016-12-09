@@ -70,7 +70,7 @@ var animate_resize_map = function(data) {
       stroke = '#f1f1f1';
       stateTranT = "0s";
     }
-    smoothTransform = false;
+    
     var style = {
       "fill": fillCol,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
@@ -79,7 +79,18 @@ var animate_resize_map = function(data) {
     };
     var state = $("#" + val.state_name);
     if (state !== undefined) {
-      state.css(style);
+      //state.css(style);
+      if (!smoothTransform){
+        var scaleTransform = "scale(" + scale + ")";
+        //state.attr('transform', scaleTransform);
+        var stateDyno = document.getElementById(val.state_name);
+        if (stateDyno !== null){
+          stateDyno.setAttribute('style', "fill:"+ fillCol +"; stroke:"+stroke+";");
+          stateDyno.setAttribute('transform', scaleTransform);
+        }
+      } else {
+        state.css(style); // just for debugging!
+      }
     }
   });
   document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' mgd water withdrawal';
