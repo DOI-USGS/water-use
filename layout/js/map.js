@@ -127,7 +127,7 @@ var animate_bars = function(data) {
       } else {
         bar.css('opacity','1.0');
       }
-      console.log(value)
+
       if(value !== undefined){
         value = value.toLocaleString() + ' mgd';
       }
