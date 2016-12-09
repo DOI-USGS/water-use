@@ -87,25 +87,22 @@ process.scaleFactors2json <- function(viz){
 
   natScaleTypes <- list()
 
-  for(type in names(scaleFactorsNational)) {
-    dat <- scaleFactorsNational[type][[1]]
-    uniqYears <- unique(dat$Year)
-    natJson <- vector("list", length(uniqYears))
-    for(i in 1:length(uniqYears)){
-      thisYear <- filter(dat, Year == uniqYears[i])
+  dat <- scaleFactorsNational
+  uniqYears <- unique(dat$year)
+  natJson <- vector("list", length(uniqYears))
+  for(i in 1:length(uniqYears)){
+    thisYear <- filter(dat, year == uniqYears[i])
 
-      #convert to list of dfs for each category
-      natJson[[i]] <- list(Thermoelectric = filter(thisYear, category == "Thermoelectric"),
-                           Industrial = filter(thisYear, category == "Industrial"),
-                           Public_Supply = filter(thisYear, category == "Public Supply"),
-                           Irrigation = filter(thisYear, category == "Irrigation"),
-                           Total = filter(thisYear, category == "Total"))
-    }
-    names(natJson) <- uniqYears
-    natScaleTypes[type][[1]] <- natJson
+    #convert to list of dfs for each category
+    natJson[[i]] <- list(Thermoelectric = data.frame(filter(thisYear, category == "Thermoelectric")),
+                         Industrial = data.frame(filter(thisYear, category == "Industrial")),
+                         Public_Supply = data.frame(filter(thisYear, category == "Public Supply")),
+                         Irrigation = data.frame(filter(thisYear, category == "Irrigation")),
+                         Total = data.frame(filter(thisYear, category == "Total")))
   }
+  names(natJson) <- uniqYears
 
-  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData, catVals=catVals)
+  allJson <- list(totState = forJson, totNat = natJson, catVals=catVals)
 
   jsOut <- toJSON(allJson)
   write(jsOut, viz[['location']])

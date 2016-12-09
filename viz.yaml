@@ -167,7 +167,7 @@ process:
     scripts: scripts/process/nationalClean.R
     reader: rds
     depends:
-      nationalUse: nationalUse-data
+      stateData: calc-histWaterData
   -
     id: calc-scaleNational
     location: cache/scaleNational.rds
