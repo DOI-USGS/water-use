@@ -96,7 +96,7 @@ visualize.states_svg <- function(viz){
   xml_add_child(g.legend, 'text', dx="10", dy='0.33em', "no data", class='legend-text svg-text')
   xml_add_child(g.legend, 'text', y="20", dx="10", dy='0.33em', " ", class='legend-text svg-text', id='category-area-text')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
-  w.button <- "90"
+  w.button <- "98"
   x.text <- as.character(as.numeric(w.button)/2)
   h.button <- "20"
   xml_add_child(g.button, 'text', x=x.text, dy='-1.5em', "Water withdrawal", 
