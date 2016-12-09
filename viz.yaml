@@ -119,7 +119,7 @@ fetch:
     id: histWaterUseAWUDS-data
     location: cache/awuds.zip
     fetcher: sciencebase
-    remoteItemId: "5845ffaae4b04fc80e523664"
+    remoteItemId: "584aa8b4e4b07e29c706dd57"
     remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
     reader: histWaterUseAWUDS
     scripts: scripts/read/histWaterUseAWUDS.R
