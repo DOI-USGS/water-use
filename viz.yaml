@@ -70,9 +70,6 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
-    treemap:
-      repo: CRAN
-      version: 2.4-1
     svglite:
       repo: CRAN
       version: 1.2.0
@@ -191,13 +188,6 @@ process:
     processor: watermark
     scripts: scripts/process/process_map.R
     reader: rds
-  -
-    id: wateruse-treemap
-    location: cache/treemaps_list.rds
-    processor: treemap
-    scripts: scripts/process/treemap.R
-    depends:
-      waterUse_clean: calc-nationalData
   -
     id: catValues
     location: cache/categoryValues.rds
