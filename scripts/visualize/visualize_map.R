@@ -60,6 +60,9 @@ visualize.states_svg <- function(viz){
   xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
   gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
   gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
+  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
+  g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
+  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(380,355)')
   g.tool <- xml_add_child(svg,'g',id='tooltip-group')
   gm <- xml_add_child(svg, 'g', 'id' = 'state-mouseovers')
 
@@ -85,10 +88,7 @@ visualize.states_svg <- function(viz){
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
 
   }
-  
-  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
-  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(380,355)')
-  g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
+
   d.nodata <- xml_attr(p[i + which(names(legend.circles) == 'nodata')], 'd')
   d.fill <- xml_attr(p[i + which(names(legend.circles) == 'categoryFill')], 'd')
   xml_add_child(g.legend, 'path',  d=d.nodata, fill="url(#nodata)", stroke="#f1f1f1")
