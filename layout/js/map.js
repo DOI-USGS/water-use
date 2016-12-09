@@ -220,7 +220,7 @@ var update_bar_tips = function() {
   });
 }
 
-function hovertext(text, evt){
+function hovertext(text, evt, stateName){
   var tooltip = document.getElementById("tooltip-text");
   var tooltip_bg = document.getElementById("tooltip-box");
   var tool_pt = document.getElementById("tooltip-point");
@@ -234,8 +234,6 @@ function hovertext(text, evt){
       clearTimeout(stateHoverTimer); // stop ga for edge states 
     }
   } else {
-    var ref = evt.target.getAttribute('xlink:href').split('-')[0];
-    var stateName = ref.replace(/#/g, '');
     var displayNum = Math.round(get_state_value(stateName));
     if (isNaN(displayNum)){
       displayNum = 'no data';
