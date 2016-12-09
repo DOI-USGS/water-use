@@ -74,6 +74,10 @@ process.awudsOldClean <- function(viz){
     dataClean <- bind_cols(select(dataYear, state_cd, state_name, year ),
                            data.frame(Industrial, Irrigation, public, Thermoelectric, Total)) 
     
+    if(as.numeric(histExDat[[i]][["sheet"]]) == 1950 || as.numeric(histExDat[[i]][["sheet"]]) == 1955) { 
+      dataClean[which(dataClean$state_name == "Hawaii" | dataClean$state_name == "Alaska"), 3:8] <- NA
+    }
+    
     full.data <- bind_rows(full.data, dataClean)
     
   }
