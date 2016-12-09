@@ -79,17 +79,14 @@ var animate_resize_map = function(data) {
     };
     var state = $("#" + val.state_name);
     if (state !== undefined) {
-      //state.css(style);
       if (!smoothTransform){
-        var scaleTransform = "scale(" + scale + ")";
-        //state.attr('transform', scaleTransform);
         var stateDyno = document.getElementById(val.state_name);
         if (stateDyno !== null){
           stateDyno.setAttribute('style', "fill:"+ fillCol +"; stroke:"+stroke+";");
-          stateDyno.setAttribute('transform', scaleTransform);
+          stateDyno.setAttribute('transform', "scale(" + scale + ")");
         }
       } else {
-        state.css(style); // just for debugging!
+        state.css(style); 
       }
     }
   });
