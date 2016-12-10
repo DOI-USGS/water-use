@@ -1,21 +1,35 @@
 process.histWuClean <- function(viz){
   library(tidyr)
   library(dplyr)
+  library(dataRetrieval)
   
-  wuExcel <- readData(viz[['depends']][['histWaterUse']])
+  wuAwuds <- readData(viz[['depends']][['histWaterUse']])
   wuData <- readData(viz[['depends']][['waterUse']])
-
-  histExDat <- list(list(sheet = "1950", ind = c("sIndGw", "sIndSurf"), iri = "irrTotal", pub = c("munigw", "munisw"), thr = NULL),
-                    list(sheet = "1955", ind = "sIndTotal", iri = "irrTotal(mgd)", pub = "pubTotal", thr = NULL),
-                    list(sheet = "1960", ind = "sIndTotFr", iri = "irrTotal", pub = "pubTotal", thr = "sThmTotFr"),
-                    list(sheet = "1965", ind = "sIndTotFr", iri = "irrTot", pub = "pubTotal", thr = "sThmTotFr"),
-                    list(sheet = "1970", ind = c("sIndGwFr", "sIndSurfFr"), iri = "irrTot", pub = "pubTotal", thr = "sThmTotFr"),
-                    list(sheet = "1975", ind = "sIndTotFr" , iri = "irrTot", pub = "pubTotal", thr = "sThmTotFr"),
-                    list(sheet = "1980", ind = c("sIndGwFr", "sIndSurfFr"), iri = "irrTot", pub = "pubTotal", thr = "sThmTotFr"))
   
-  full.data <- data.frame(Year = as.integer(),
-                          StateCode = as.character(),
-                          StateName = as.character(),
+  wuAwuds <- wuAwuds %>%
+    rename(state_cd = Area, 
+           year = YEAR) %>%
+    mutate(year = as.numeric(year),
+           state_name = stateCdLookup(state_cd, outputType = "fullName")) %>%
+    select(state_cd, state_name, year, everything())
+  
+  histExDat <- list(list(sheet = "1950", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
+                    list(sheet = "1955", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
+                    list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.Wtot"), 
+                         pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
+                    list(sheet = "1965", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
+                         pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
+                    list(sheet = "1970", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
+                         pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
+                    list(sheet = "1975", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
+                         pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
+                    list(sheet = "1980", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
+                         pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")))
+  
+  
+  full.data <- data.frame(year = as.integer(),
+                          state_cd = as.character(),
+                          state_name = as.character(),
                           Industrial = as.numeric(),
                           Irrigation = as.numeric(),
                           public = as.numeric(),
@@ -24,15 +38,15 @@ process.histWuClean <- function(viz){
                           stringsAsFactors = FALSE)
   
   for(i in seq_along(histExDat)){
-    dataYear <- wuExcel[[i]]
-
+    dataYear <- filter(wuAwuds, year == as.numeric(histExDat[[i]][["sheet"]]))
+    
     if(!is.null(histExDat[[i]][["ind"]])){
       Industrial <- rowSums(dataYear[,histExDat[[i]][["ind"]]], na.rm = TRUE)
     } else {
       Industrial <- NA
     }
-
-    if(!is.null(histExDat[[i]][["iri"]])){
+    
+    if(!is.null(histExDat[[i]][["iri"]]) && length(histExDat[[i]][["iri"]])>1){
       Irrigation <- rowSums(dataYear[,histExDat[[i]][["iri"]]], na.rm = TRUE)
     } else {
       Irrigation <- NA
@@ -49,37 +63,36 @@ process.histWuClean <- function(viz){
     } else {
       Thermoelectric <- NA
     }
-      
-    if(dataYear$Year[1] == 1950){
-      Irrigation <- Irrigation*0.8921
-    }
-    
+
     Total <- rowSums(data.frame(Industrial, Irrigation, public, Thermoelectric), na.rm = TRUE)
     
-    dataClean <- bind_cols(dataYear[,c("Year", "StateCode", "StateName")] ,
-                           data.frame(Industrial, Irrigation, public, Thermoelectric, Total)) %>%
-      filter(StateName != "Total")
+    if(as.numeric(histExDat[[i]][["sheet"]]) == 1950 || as.numeric(histExDat[[i]][["sheet"]]) == 1955) {
+      Thermoelectric <- NA
+      Industrial <- NA
+    } 
+    
+    dataClean <- bind_cols(select(dataYear, state_cd, state_name, year ),
+                           data.frame(Industrial, Irrigation, public, Thermoelectric, Total)) 
+    
+    if(as.numeric(histExDat[[i]][["sheet"]]) == 1950 || as.numeric(histExDat[[i]][["sheet"]]) == 1955) { 
+      dataClean[which(dataClean$state_name == "Hawaii" | dataClean$state_name == "Alaska"), 3:8] <- NA
+    }
     
     full.data <- bind_rows(full.data, dataClean)
     
   }
   
-  full.long <- full.data %>%
-    rename(`Public Supply` = public) %>%
-    gather(category, value, -Year, -StateCode, -StateName) %>%
-    rename(state_cd = StateCode,
-           state_name = StateName,
-           year = Year)
+  wuAwudsLong <- rename(full.data, `Public Supply` = public) %>%
+    gather(category, value, -state_cd, -state_name, -year) 
   
-  full.long$state_name[full.long$state_name == "D.C."] <- "district of columbia"
-  full.long$state_name[full.long$state_name == "Dist. of Columbia"] <- "district of columbia"
+  wuAwudsLong$state_name[wuAwudsLong$state_name == "District of Columbia"] <- "district of columbia"
   
   wuData$state_name[wuData$state_name == "Dist. of Columbia"] <- "district of columbia"
+    
   
-  full.out <- bind_rows(wuData, full.long) %>%
+  full.out <- bind_rows(wuData, wuAwudsLong) %>%
     arrange(state_name, category, year)
   
-  
-  saveRDS(full.out, viz[["location"]])
+  saveRDS(full.out, file = viz[["location"]])
   
 }
