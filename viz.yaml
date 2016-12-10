@@ -107,26 +107,12 @@ fetch:
     refetch: FALSE
   -
     id: histWaterUse-data
-    fetcher: histWaterUse
-    location: cache/histWaterUse.rds
-    reader: rds
-    scripts: scripts/fetch/histWaterUse.R
-    refetch: FALSE
-  -
-    id: histWaterUseAWUDS-data
     location: cache/awuds.zip
     fetcher: sciencebase
     remoteItemId: "584aa8b4e4b07e29c706dd57"
     remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
-    reader: histWaterUseAWUDS
-    scripts: scripts/read/histWaterUseAWUDS.R
-  -
-    id: nationalUse-data
-    fetcher: nationalUse
-    location: cache/nationalUse.csv
-    mimetype: text/csv
-    scripts: scripts/fetch/nationalUse.R
-    refetch: FALSE
+    reader: histWaterUse
+    scripts: scripts/read/histWaterUse.R
   -
     id: siteText
     location: data/siteText.yaml
@@ -142,15 +128,6 @@ process:
     reader: rds
     depends:
       waterUse: waterUse-data
-  -
-    id: calc-awudsOldClean
-    location: cache/awudsOldClean.rds
-    processor: awudsOldClean
-    scripts: scripts/process/awudsOldClean.R
-    reader: rds
-    depends:
-      waterUse: calc-waterData
-      histWaterUse: histWaterUseAWUDS-data
   -
     id: calc-histWaterData
     location: cache/histWuClean.rds
@@ -203,7 +180,7 @@ process:
     reader: rds
     depends:
       stateMap: state-map
-      wuClean: calc-awudsOldClean
+      wuClean: calc-histWaterData
   -
     id: scaleFactors2json
     location: cache/scaleFactors.json

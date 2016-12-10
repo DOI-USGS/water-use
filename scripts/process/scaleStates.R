@@ -9,7 +9,7 @@ process.scaleStates <- function(viz){
   #read sp, wuClean
   depends <- readDepends(viz)
   statePoly <- depends[['state-map']]$states
-  wuClean <- depends[["calc-awudsOldClean"]]
+  wuClean <- depends[["calc-histWaterData"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
                       year = c(unique(wuClean$year), 2015),
                       category = unique(wuClean$category))
