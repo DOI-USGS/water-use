@@ -70,9 +70,6 @@ info:
     tidyr:
       repo: CRAN
       version: 0.6.0
-    treemap:
-      repo: CRAN
-      version: 2.4-1
     svglite:
       repo: CRAN
       version: 1.2.0
@@ -119,7 +116,7 @@ fetch:
     id: histWaterUseAWUDS-data
     location: cache/awuds.zip
     fetcher: sciencebase
-    remoteItemId: "5845ffaae4b04fc80e523664"
+    remoteItemId: "584aa8b4e4b07e29c706dd57"
     remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
     reader: histWaterUseAWUDS
     scripts: scripts/read/histWaterUseAWUDS.R
@@ -170,7 +167,7 @@ process:
     scripts: scripts/process/nationalClean.R
     reader: rds
     depends:
-      nationalUse: nationalUse-data
+      stateData: calc-histWaterData
   -
     id: calc-scaleNational
     location: cache/scaleNational.rds
@@ -191,13 +188,6 @@ process:
     processor: watermark
     scripts: scripts/process/process_map.R
     reader: rds
-  -
-    id: wateruse-treemap
-    location: cache/treemaps_list.rds
-    processor: treemap
-    scripts: scripts/process/treemap.R
-    depends:
-      waterUse_clean: calc-nationalData
   -
     id: catValues
     location: cache/categoryValues.rds
