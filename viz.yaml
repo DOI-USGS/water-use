@@ -114,13 +114,6 @@ fetch:
     reader: histWaterUse
     scripts: scripts/read/histWaterUse.R
   -
-    id: nationalUse-data
-    fetcher: nationalUse
-    location: cache/nationalUse.csv
-    mimetype: text/csv
-    scripts: scripts/fetch/nationalUse.R
-    refetch: FALSE
-  -
     id: siteText
     location: data/siteText.yaml
     scripts:
