@@ -99,11 +99,10 @@ var animate_bars = function(data) {
     var myYear = prop;
     var color = colors[category];
 
-    var scale = val[category][0]["barScale"];
-    var value = val[category][0]["value"];
-
+    var scale = val[category][0].barScale;
+    var value = val[category][0].value;
+    var nodataOp = "0.0";
     var bar = $("#bar-" + myYear);
-    var style = undefined;
 
     if (bar !== undefined) {
       if (isNaN(scale)){ 
@@ -122,10 +121,19 @@ var animate_bars = function(data) {
       } else {
         bar.css('opacity','1.0');
       }
+      var nodatabar = $("#nodataBar-" + myYear);
+      
       if(value !== undefined){
         value = value.toLocaleString() + ' Mgal/d';
+      } else {
+        nodataOp = "1.0";
       }
-      bar.attr("title", value);
+      style = {
+        "transition": "all " + transitionTime + " ease-in-out",
+        "opacity": nodataOp
+      };
+      nodatabar.css(style);
+      bar.attr("title", "US: " + value);
     }
   });
   update_bar_tips();
