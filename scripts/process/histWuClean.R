@@ -46,8 +46,10 @@ process.histWuClean <- function(viz){
       Industrial <- NA
     }
     
-    if(!is.null(histExDat[[i]][["iri"]]) && length(histExDat[[i]][["iri"]])>1){
+    if(!is.null(histExDat[[i]][["iri"]]) && length(histExDat[[i]][["iri"]])>1) {
       Irrigation <- rowSums(dataYear[,histExDat[[i]][["iri"]]], na.rm = TRUE)
+    } else if(!is.null(histExDat[[i]][["iri"]]) ) {
+      Irrigation <- dataYear[,histExDat[[i]][["iri"]]]
     } else {
       Irrigation <- NA
     }
