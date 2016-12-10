@@ -3,10 +3,10 @@
 		<div class="map">{{{ map }}}</div>
 		<div class="dataBars">
 		  {{#bars}}
-		  <div id="bar-{{.}}" class="dataBar hastip">
-		  </div>
-		  <div id="nodataBar-{{.}}" class="nodataBar noUi-value">
+		  <div id="nodataBar-{{.}}" class="nodataBar" style="opacity:0.0";>
 		    <p id="nodata-{{.}}" class="nodataText">no data</p>
+		  </div>
+		  <div id="bar-{{.}}" class="dataBar hastip">
 		  </div>
 		  {{/bars}}
 		</div>

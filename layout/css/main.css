@@ -80,6 +80,12 @@ body{
   -o-transform: rotate(-90deg);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   white-space: nowrap;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  cursor: default;
 }
 
 #bar-1950, #nodataBar-1950 {
