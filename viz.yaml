@@ -224,6 +224,12 @@ publish:
     title: "Vizlab Logo"
     alttext: "Vizlab Logo"
   -
+    id: github-logo
+    location: images/github.svg
+    mimetype: image/svg+xml
+    title: "GitHub Logo"
+    alttext: "GitHub Logo"
+  -
     id: vizlab-favicon
     location: images/favicon.ico
     mimetype: image/ico
@@ -317,21 +323,15 @@ publish:
     id: footer-section
     template: layout/templates/footer.mustache
     publisher: footer
-    depends: [ "header-footer-css", "vizlab-logo" ]
+    depends: [ "header-footer-css", "vizlab-logo", "github-logo" ]
     context:
       logo: vizlab-logo
+      github: github-logo
     blogsInFooter: FALSE
     vizzies:
-      - name: Lower Colorado Drought
+      - name: Drought in the Lower Colorado Basin
         org: USGS-CIDA
         repo: OWDI-Lower-Colorado-Drought-Vis
-      - name: California Drought
+      - name: California Drought, Visualized with Open Data
         org: USGS-CIDA
         repo: CIDA-Viz
-    blogs:
-      - name:
-        url:
-        thumbLoc:
-      - name:
-        url:
-        thumbLoc:
