@@ -1,1 +1,27 @@
-<div id="{{id}}"></div>
+<footer>
+  <div id="dataSources">
+    <h3>Data sources:</h3>
+    {{{dataSources}}}
+  </div>
+  <div id="vizlabPromo">
+  	{{{logo}}}
+  </div>
+  
+  <div id="relatedVizzies">
+  	<h3>Related Visualizations:</h3>
+  	
+  	{{#vizzies}}
+  		<a href="{{url}}" target="_blank">
+  			<div class="relatedItem">
+  			  <div class="titleHandler">
+  				  <h4>{{name}}</h4>
+  				</div>
+  				<div class="footerThumnail">
+  					<img src="{{thumbLoc}}" alt=""/>
+  				</div>
+  			</div>
+  		</a>
+  	{{/vizzies}}
+  	
+  </div>
+</footer>

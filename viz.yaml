@@ -315,7 +315,7 @@ publish:
       caption: Exploring trends in water use from National Water-Use Information Program historic data.
   -
     id: footer-section
-    template: footer
+    template: layout/templates/footer.mustache
     publisher: footer
     depends: [ "header-footer-css", "vizlab-logo" ]
     context:
