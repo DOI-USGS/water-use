@@ -90,7 +90,7 @@ var animate_resize_map = function(data) {
       }
     }
   });
-  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' mgd water withdrawal';
+  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' million gallons per day (Mgal/d) water withdrawal';
 };
 
 var animate_bars = function(data) {
@@ -107,31 +107,24 @@ var animate_bars = function(data) {
 
     if (bar !== undefined) {
       if (isNaN(scale)){ 
-        style = {
-          "background": "grey",
-          "transform": "scale3d(1,0,1)",
-          "transform-origin": "100% 100%",
-          "transition": "all " + transitionTime + " ease-in-out"
-        };
-      } else {
-        style = {
-          "background": color,
-          "transform": "scale3d(1," + scale + ",1)",
-          "transform-origin": "100% 100%",
-          "transition": "all " + transitionTime + " ease-in-out"
-        };
+        scale = 0;
+        color = 'grey';
       }
+      style = {
+        "background": color,
+        "transform": "scale3d(1," + scale + ",1)",
+        "transform-origin": "100% 100%",
+        "transition": "all " + transitionTime + " ease-in-out"
+      };
       bar.css(style);
       if (myYear !== year) {
         bar.css('opacity','0.25');
       } else {
         bar.css('opacity','1.0');
       }
-
       if(value !== undefined){
-        value = value.toLocaleString() + ' mgd';
+        value = value.toLocaleString() + ' Mgal/d';
       }
-      
       bar.attr("title", value);
     }
   });
@@ -255,7 +248,7 @@ function hovertext(text, evt, stateName){
     if (isNaN(displayNum)){
       displayNum = 'no data';
     } else {
-      displayNum = displayNum.toLocaleString() + ' mgd';
+      displayNum = displayNum.toLocaleString() + ' Mgal/d';
     }
     text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
