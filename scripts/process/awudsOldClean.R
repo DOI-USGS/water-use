@@ -15,7 +15,7 @@ process.awudsOldClean <- function(viz){
   
   histExDat <- list(list(sheet = "1950", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
                     list(sheet = "1955", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
-                    list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
+                    list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.Wtot"), 
                          pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
                     list(sheet = "1965", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
                          pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
@@ -46,7 +46,7 @@ process.awudsOldClean <- function(viz){
       Industrial <- NA
     }
     
-    if(!is.null(histExDat[[i]][["iri"]])){
+    if(!is.null(histExDat[[i]][["iri"]]) && length(histExDat[[i]][["iri"]])>1){
       Irrigation <- rowSums(dataYear[,histExDat[[i]][["iri"]]], na.rm = TRUE)
     } else {
       Irrigation <- NA
