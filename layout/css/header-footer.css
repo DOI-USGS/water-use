@@ -142,60 +142,46 @@ footer:after {
   }
 }
 
+@media screen and (min-width:768px){
+  #logo{
+    margin:0 auto;
+  }
+  
+  #logo,
+  #vizlabPromo,
+	#relatedVizzies,
+	#relatedBlogs{
+    width:560px;
+  }
+}
+
 @media screen and (min-width:1024px){
 	
-	#logo{
+	#logo,
+	#vizlabPromo,
+	#relatedVizzies,
+	#relatedBlogs{
 		width:770px;
-		margin:0 auto;
 	}
-	
-	#vizlabPromo {
-      width:770px;
-  }
-  	
-  #relatedVizzies{
-    width: 770px;
-  }
-  #relatedBlogs{
-    width: 770px;
-  }
-	
 }
 
 @media screen and (min-width:1500px){
 	
-	#logo{
-		width:890px;
+	#logo,
+	#vizlabPromo,
+	#relatedVizzies,
+	#relatedBlogs{
+		width:810px;
 	}
-	
-	#vizlabPromo {
-      width:890px;
-  }
-  	
-  #relatedVizzies{
-    width: 890px;
-  }
-  #relatedBlogs{
-    width: 890px;
-  }
-	
 }
 
 @media screen and (min-width:2000px){
 	
-	#logo{
-		width:1510px;
+	#logo,
+	#vizlabPromo,
+	#relatedVizzies,
+	#relatedBlogs{
+		width:1210px;
 	}
-	
-	#vizlabPromo {
-      width:1510px;
-  }
-  	
-  #relatedVizzies{
-    width: 1510px;
-  }
-  #relatedBlogs{
-    width: 1510px;
-  }
 	
 }
