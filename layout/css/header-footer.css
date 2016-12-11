@@ -45,9 +45,12 @@ footer:after {
      height: 0;
      }
 
-#vizlabPromo, #github-link {
-  height:30px;
-  margin-bottom: 15px;
+#github-link {
+  height:40px;
+}
+
+#vizlabPromo{
+  height:20px;
 }
 #vizlabPromo #vizlab-logo, #github-link #github-logo{
   height: 100%;
@@ -104,18 +107,12 @@ footer:after {
   		padding-top:0;
   		font-size:1.2em;
   	}
-  	
   	footer{
   	  position: absolute;
       right: 0;
       bottom: 0;
       left: 0;
   	}
-  	
-  	#vizlabPromo, #github-link {
-      margin:10px auto;
-    }
-  	
   	#relatedVizzies{
       margin: 0 auto;
     }
@@ -144,7 +141,7 @@ footer:after {
 
 @media screen and (min-width:1024px){
 	
-	#logo{
+	#logo, #github-link, #vizlabPromo {
 		width:770px;
 		margin:0 auto;
 	}
@@ -161,13 +158,10 @@ footer:after {
 
 @media screen and (min-width:1500px){
 	
-	#logo{
+	#logo, #github-link, #vizlabPromo{
 		width:890px;
 	}
 	
-	#vizlabPromo, #github-link {
-      height:20px;
-  }
   	
   #relatedVizzies{
     width: 890px;
@@ -180,12 +174,15 @@ footer:after {
 
 @media screen and (min-width:2000px){
 	
-	#logo{
+	#logo, #github-link, #vizlabPromo{
 		width:1510px;
 	}
 	
-	#vizlabPromo, #github-link {
+	#vizlabPromo {
       height:30px;
+  }
+  #github-link {
+    height:40px;
   }
   	
   #relatedVizzies{
