@@ -156,15 +156,6 @@ footer:after {
 	#relatedBlogs{
 		width:770px;
 	}
-
-  	
-  #relatedVizzies{
-    width: 770px;
-  }
-  #relatedBlogs{
-    width: 770px;
-  }
-	
 }
 
 @media screen and (min-width:1500px){
