@@ -45,17 +45,12 @@ footer:after {
      height: 0;
      }
 
-#github-link {
-  height:40px;
+#github-logo {
+  max-height:40px;
 }
-
-#vizlabPromo{
-  height:20px;
+#vizlab-logo {
+  max-height:20px;
 }
-#vizlabPromo #vizlab-logo, #github-link #github-logo{
-  height: 100%;
-}
-
 #relatedVizzies,
 #relatedBlogs{
   font-family: "Source Sans Pro", sans-serif;
@@ -177,13 +172,6 @@ footer:after {
 	#logo, #github-link, #vizlabPromo{
 		width:1510px;
 	}
-	
-	#vizlabPromo {
-      height:30px;
-  }
-  #github-link {
-    height:40px;
-  }
   	
   #relatedVizzies{
     width: 1510px;
