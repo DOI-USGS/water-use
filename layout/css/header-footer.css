@@ -134,11 +134,27 @@ footer:after {
   }
 }
 
+@media screen and (min-width:768px){
+  #logo{
+    margin:0 auto;
+  }
+  
+  #logo,
+  #vizlabPromo,
+	#relatedVizzies,
+	#relatedBlogs{
+    width:560px;
+  }
+}
+
 @media screen and (min-width:1024px){
 	
-	#logo, #github-link, #vizlabPromo {
+	#logo,
+	#vizlabPromo,
+	#relatedVizzies,
+	#github-link,
+	#relatedBlogs{
 		width:770px;
-		margin:0 auto;
 	}
 
   	
@@ -153,31 +169,23 @@ footer:after {
 
 @media screen and (min-width:1500px){
 	
-	#logo, #github-link, #vizlabPromo{
-		width:890px;
+	#logo,
+	#vizlabPromo,
+	#github-link,
+	#relatedVizzies,
+	#relatedBlogs{
+		width:810px;
 	}
-	
-  	
-  #relatedVizzies{
-    width: 890px;
-  }
-  #relatedBlogs{
-    width: 890px;
-  }
-	
 }
 
 @media screen and (min-width:2000px){
-	
-	#logo, #github-link, #vizlabPromo{
-		width:1510px;
+
+	#logo,
+	#vizlabPromo,
+	#github-link,
+	#relatedVizzies,
+	#relatedBlogs{
+		width:1210px;
 	}
-  	
-  #relatedVizzies{
-    width: 1510px;
-  }
-  #relatedBlogs{
-    width: 1510px;
-  }
 	
 }
