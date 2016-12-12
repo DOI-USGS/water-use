@@ -185,11 +185,12 @@ var get_data = function() {
     transformData = data;
 
     var slider = document.getElementById('slider');
-    slider.noUiSlider.on('update', function( values, handle ) {
-  	  var year = "" + Math.round(values[handle]);
-    	setYear(year);
-    });
-
+    if(slider.noUiSlider){
+      slider.noUiSlider.on('update', function( values, handle ) {
+  	    var year = "" + Math.round(values[handle]);
+      	setYear(year);
+      });
+    }
     setCategory(category);
   });
 };
