@@ -45,14 +45,12 @@ footer:after {
      height: 0;
      }
 
-#vizlabPromo {
-  height: 100px;
-  margin-bottom: 15px;
+#github-logo {
+  max-height:40px;
 }
-#vizlabPromo #vizlab-logo {
-  height: 100%;
+#vizlab-logo {
+  max-height:20px;
 }
-
 #relatedVizzies,
 #relatedBlogs{
   font-family: "Source Sans Pro", sans-serif;
@@ -104,18 +102,12 @@ footer:after {
   		padding-top:0;
   		font-size:1.2em;
   	}
-  	
   	footer{
   	  position: absolute;
       right: 0;
       bottom: 0;
       left: 0;
   	}
-  	
-  	#vizlabPromo {
-      margin:10px auto;
-    }
-  	
   	#relatedVizzies{
       margin: 0 auto;
     }
@@ -160,6 +152,7 @@ footer:after {
 	#logo,
 	#vizlabPromo,
 	#relatedVizzies,
+	#github-link,
 	#relatedBlogs{
 		width:770px;
 	}
@@ -169,6 +162,7 @@ footer:after {
 	
 	#logo,
 	#vizlabPromo,
+	#github-link,
 	#relatedVizzies,
 	#relatedBlogs{
 		width:810px;
@@ -176,9 +170,10 @@ footer:after {
 }
 
 @media screen and (min-width:2000px){
-	
+
 	#logo,
 	#vizlabPromo,
+	#github-link,
 	#relatedVizzies,
 	#relatedBlogs{
 		width:1210px;
