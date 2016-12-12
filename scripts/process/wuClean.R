@@ -37,7 +37,7 @@ process.wuClean <- function(viz){
   
   wideWU <- spread(longWU, category, value) 
   
-  wideWU$Industrial <- rowSums(wideWU[,uglyCats$shortName[3:9]], na.rm = TRUE)
+  wideWU$Industrial <- rowSums(wideWU[,uglyCats$shortName[3:8]], na.rm = TRUE)
   
   wideWU$`Thermoelectric`[is.na(wideWU$`Thermoelectric`)] <- rowSums(data.frame(wideWU$`Thermoelectric Fossil`[is.na(wideWU$`Thermoelectric`)] ,
                                                                                 wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric`)] ,
