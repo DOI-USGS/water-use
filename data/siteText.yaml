@@ -15,13 +15,22 @@ explanationText: |
   and the bars for water use values in million gallons of water per day (Mgal/d).
   One million gallons of water covers a football field in about 2.8 feet of water. 
   
+  Every 5 years since 1950, the USGS has compiled and estimated water-use information in cooperation with State, 
+  Federal, and local agencies to document how the Nation's water resources are used.  
+  Compilation of water-use data for 2015 is underway. This information is essential to accurately understand how future water demands will be met while maintaining 
+  adequate water quality and quantities for human and ecosystem needs. The USGS Water Availability and Use Program 
+  hopes to move toward even higher spatial resolution and more frequent reports in the future.
+  
   The categories used for assessing water use have varied through time, as shown [here](http://water.usgs.gov/watuse/WU-Category-Changes.html). 
   In the figure above, data on freshwater withdrawals for thermoelectric power, public supply, irrigation, and industrial withdrawals are shown; 
   these categories have been assessed consistently through time, with the following caveats for thermoelectric power and industrial. Prior to 1985, 
   thermoelectric power was included as a subcategory of industrial and for 1950-55 the State data were presented as an "industrial" total, 
   although national totals by subcategory were published. From 1985 to present, the self-supplied industrial category was further subdivided 
   into industrial, mining, and commercial, and the values shown on this figure are the total of these categories. The figure excludes self-supplied 
-  withdrawals for domestic and livestock use, and instream use for hydroelectric power.
+  withdrawals for domestic and livestock use, and instream use for hydroelectric power. Data at the site, county, and 
+  major watershed levels are available for some years, but not for the full period of record.
+  
+  
   
  
 
