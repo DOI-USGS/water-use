@@ -109,8 +109,8 @@ fetch:
     id: histWaterUse-data
     location: cache/awuds.zip
     fetcher: sciencebase
-    remoteItemId: "584aa8b4e4b07e29c706dd57"
-    remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
+    remoteItemId: "584ee0f1e4b0260a37381904"
+    remoteFilename: "Export.1950-1980-United-States-Compilation-metadata.zip"
     reader: histWaterUse
     scripts: scripts/read/histWaterUse.R
   -
