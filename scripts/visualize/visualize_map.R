@@ -60,6 +60,9 @@ visualize.states_svg <- function(viz){
   xml_add_child(cp, 'rect', width=vb[3], height=vb[4])
   gb <- xml_add_child(svg, 'g', 'id' = 'state-backgrounds')
   gf <- xml_add_child(svg, 'g', 'id' = 'state-foregrounds')
+  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(605,250)')
+  g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
+  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(170,-10)')
   g.tool <- xml_add_child(svg,'g',id='tooltip-group')
   gm <- xml_add_child(svg, 'g', 'id' = 'state-mouseovers')
 
@@ -76,27 +79,24 @@ visualize.states_svg <- function(viz){
 
     xml_add_child(xml_add_child(gf, 'g', transform=transform),
                   'use', 'xlink:href'=paste0("#", id.use), id=id.name, class='state-foreground',
-                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
+                  onmousemove=sprintf("hovertext('%s',evt, '%s');", state.hovertext[i], id.name),
                   onmouseout="hovertext(' ');")
     xml_add_child(xml_add_child(gm, 'g', transform=transform), # this sits on top but only for mouseover
                   'use', 'xlink:href'=paste0("#", id.use), opacity='0',
-                  onmousemove=sprintf("hovertext('%s',evt);", state.hovertext[i]),
+                  onmousemove=sprintf("hovertext('%s',evt, '%s');", state.hovertext[i], id.name),
                   onmouseout="hovertext(' ');")
     xml_add_child(defs, 'path', d = xml_attr(p[i], 'd'), id=id.use)
 
   }
-  
-  g.button <- xml_add_child(svg, 'g', 'id' = 'category-buttons', transform='translate(610,250)')
-  g.legend <- xml_add_child(svg, 'g', 'id' = 'legend', transform='translate(380,355)')
-  g.watermark <- xml_add_child(svg, 'g', id='usgs-watermark',transform=sprintf('translate(2,%s)scale(0.20)', as.character(as.numeric(vb[4])-70)))
+
   d.nodata <- xml_attr(p[i + which(names(legend.circles) == 'nodata')], 'd')
   d.fill <- xml_attr(p[i + which(names(legend.circles) == 'categoryFill')], 'd')
   xml_add_child(g.legend, 'path',  d=d.nodata, fill="url(#nodata)", stroke="#f1f1f1")
-  xml_add_child(g.legend, 'path',  d=d.fill, class='category-area-fill', transform='translate(0,20)', id='category-area-legend')
+  xml_add_child(g.legend, 'path',  d=d.fill, class='category-area-fill', transform='translate(70,0)', id='category-area-legend')
   xml_add_child(g.legend, 'text', dx="10", dy='0.33em', "no data", class='legend-text svg-text')
-  xml_add_child(g.legend, 'text', y="20", dx="10", dy='0.33em', " ", class='legend-text svg-text', id='category-area-text')
+  xml_add_child(g.legend, 'text', x="80", dy='0.33em', " ", class='legend-text svg-text', id='category-area-text')
   y.button <- as.character(seq(0, by=25, length.out=length(category.names)))
-  w.button <- "90"
+  w.button <- "98"
   x.text <- as.character(as.numeric(w.button)/2)
   h.button <- "20"
   xml_add_child(g.button, 'text', x=x.text, dy='-1.5em', "Water withdrawal", 

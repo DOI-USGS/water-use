@@ -9,7 +9,7 @@ process.scaleStates <- function(viz){
   #read sp, wuClean
   depends <- readDepends(viz)
   statePoly <- depends[['state-map']]$states
-  wuClean <- depends[["calc-awudsOldClean"]]
+  wuClean <- depends[["calc-histWaterData"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
                       year = c(unique(wuClean$year), 2015),
                       category = unique(wuClean$category))
@@ -87,25 +87,36 @@ process.scaleFactors2json <- function(viz){
 
   natScaleTypes <- list()
 
-  for(type in names(scaleFactorsNational)) {
-    dat <- scaleFactorsNational[type][[1]]
-    uniqYears <- unique(dat$Year)
-    natJson <- vector("list", length(uniqYears))
-    for(i in 1:length(uniqYears)){
-      thisYear <- filter(dat, Year == uniqYears[i])
+  dat <- scaleFactorsNational
+  uniqYears <- unique(dat$year)
+  natJson <- vector("list", length(uniqYears))
+  
+  roundUp <- function(x) ceiling(max(x)/10)*10
+  
+  for(i in 1:length(uniqYears)){
+    thisYear <- filter(dat, year == uniqYears[i])
 
-      #convert to list of dfs for each category
-      natJson[[i]] <- list(Thermoelectric = filter(thisYear, category == "Thermoelectric"),
-                           Industrial = filter(thisYear, category == "Industrial"),
-                           Public_Supply = filter(thisYear, category == "Public Supply"),
-                           Irrigation = filter(thisYear, category == "Irrigation"),
-                           Total = filter(thisYear, category == "Total"))
-    }
-    names(natJson) <- uniqYears
-    natScaleTypes[type][[1]] <- natJson
+    Thermoelectric = data.frame(filter(thisYear, category == "Thermoelectric")) %>%
+      mutate(value = roundUp(value))
+    Industrial = data.frame(filter(thisYear, category == "Industrial"))%>%
+      mutate(value = roundUp(value))
+    Public_Supply = data.frame(filter(thisYear, category == "Public Supply"))%>%
+      mutate(value = roundUp(value))
+    Irrigation = data.frame(filter(thisYear, category == "Irrigation"))%>%
+      mutate(value = roundUp(value))
+    Total = data.frame(filter(thisYear, category == "Total"))%>%
+      mutate(value = roundUp(value))
+    
+    #convert to list of dfs for each category
+    natJson[[i]] <- list(Thermoelectric = Thermoelectric,
+                         Industrial = Industrial,
+                         Public_Supply = Public_Supply,
+                         Irrigation = Irrigation,
+                         Total = Total)
   }
+  names(natJson) <- uniqYears
 
-  allJson <- list(totState = forJson, pCapNat = natScaleTypes$pCapData, totNat = natScaleTypes$totData, catVals=catVals)
+  allJson <- list(totState = forJson, totNat = natJson, catVals=catVals)
 
   jsOut <- toJSON(allJson)
   write(jsOut, viz[['location']])

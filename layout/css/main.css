@@ -64,55 +64,79 @@ body{
   outline: 1px solid transparent;
 }
 
-#bar-1950{
+.nodataBar{
+  background:none;
+  height:2%;
+  width:2%;
+  margin-top:30px;
+  margin-right:10px;
+  position:absolute;
+  outline: 1px solid transparent;
+}
+.nodataText{
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  white-space: nowrap;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  cursor: default;
+}
+
+#bar-1950, #nodataBar-1950 {
   left:-.9%;
 }
 
-#bar-1955{
+#bar-1955, #nodataBar-1955{
   left:6.76%;
 }
 
-#bar-1960{
+#bar-1960, #nodataBar-1960{
   left:14.44%;
 }
 
-#bar-1965{
+#bar-1965, #nodataBar-1965{
   left:22.1%;
 }
 
-#bar-1970{
+#bar-1970, #nodataBar-1970{
   left:29.85%;
 }
 
-#bar-1975{
+#bar-1975, #nodataBar-1975{
   left:37.5%;
 }
 
-#bar-1980{
+#bar-1980, #nodataBar-1980{
   left:45.15%;
 }
 
-#bar-1985{
+#bar-1985, #nodataBar-1985{
   left:52.82%;
 }
 
-#bar-1990{
+#bar-1990, #nodataBar-1990{
   left:60.44%;
 }
 
-#bar-1995{
+#bar-1995, #nodataBar-1995{
   left:68.12%;
 }
 
-#bar-2000{
+#bar-2000, #nodataBar-2000{
   left:75.85%;
 }
 
-#bar-2005{
+#bar-2005, #nodataBar-2005{
   left:83.5%;
 }
 
-#bar-2010{
+#bar-2010, #nodataBar-2010{
   left:91.2%;
 }
 
@@ -130,8 +154,17 @@ body{
 }
 
 @media screen and (min-width:768px){
+  
+  .container{
+		width:560px;
+		margin:0 auto;
+	}
+	
   .dataBars{
     height:90px;
+  }
+  .nodataBar{
+    margin-top:60px;
   }
 }
 
@@ -140,15 +173,14 @@ body{
 
 	.container{
 		width:760px;
-		margin:0 auto;
 	}
-
+	
 }
 
 @media screen and (min-width:1500px){
 
 	.container{
-		width:880px;
+		width:800px;
 	}
 
 }
@@ -156,7 +188,7 @@ body{
 @media screen and (min-width:2000px){
 
 	.container{
-		width:1500px;
+		width:1200px;
 	}
 
 }

@@ -1,6 +1,7 @@
 var transformData = undefined;
 var svg = undefined;
 var pt = undefined;
+var smoothTransform = undefined;
 
 var category = "Total";
 var year = "1950";
@@ -23,9 +24,9 @@ $(document).ready(function(){
   //IE Edge
   var edge = ua.indexOf('Edge/');
   if(msie > 0 || trident > 0 || edge > 0){
-    console.log('Internet Explorer');
+    smoothTransform = false;
   }else{
-    console.log('Other Browser');
+    smoothTransform = true;
   }
   
   get_data();
@@ -60,26 +61,36 @@ var animate_resize_map = function(data) {
   });
   $.each(data, function(index, val) {
     var scale = Math.sqrt(val.scaleFactor);
+    var fillCol = color;
+    var stateTranT = transitionTime;
+    var stroke = "none";
+    if (isNaN(scale)){ 
+      fillCol = "url(#nodata)";
+      scale = 1;
+      stroke = '#f1f1f1';
+      stateTranT = "0s";
+    }
+    
     var style = {
-      "fill": color,
+      "fill": fillCol,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
-      "stroke":"none",
-      "transition": "all " + transitionTime + " ease-in-out"
+      "stroke":stroke,
+      "transition": "all " + stateTranT + " ease-in-out"
     };
     var state = $("#" + val.state_name);
     if (state !== undefined) {
-      if (isNaN(scale)){ // doesn't seem to work?
-        style = {
-          "fill":"url(#nodata)",
-          "transform": "scale3d(1,1,1)",
-          "stroke":"#f1f1f1",
-          "transition": "all 0s"
-        };
+      if (!smoothTransform){
+        var stateDyno = document.getElementById(val.state_name);
+        if (stateDyno !== null){
+          stateDyno.setAttribute('style', "fill:"+ fillCol +"; stroke:"+stroke+";");
+          stateDyno.setAttribute('transform', "scale(" + scale + ")");
+        }
+      } else {
+        state.css(style); 
       }
-      state.css(style);
     }
   });
-  document.getElementById('category-area-text').firstChild.data = transformData['catVals'][category].toLocaleString() + ' mgd water withdrawal';
+  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' million gallons per day (Mgal/d) water withdrawal';
 };
 
 var animate_bars = function(data) {
@@ -87,24 +98,42 @@ var animate_bars = function(data) {
   $.each(data, function(prop, val) {
     var myYear = prop;
     var color = colors[category];
-    var scale = val[category][0]["barScale"];
-    var value = val[category][0]["value"];
-    var style = {
-      "background": color,
-      "transform": "scale3d(1," + scale + ",1)",
-      "transform-origin": "100% 100%",
-      "transition": "all " + transitionTime + " ease-in-out"
-    };
+
+    var scale = val[category][0].barScale;
+    var value = val[category][0].value;
+    var nodataOp = "0.0";
     var bar = $("#bar-" + myYear);
+
     if (bar !== undefined) {
+      if (isNaN(scale)){ 
+        scale = 0;
+        color = 'grey';
+      }
+      style = {
+        "background": color,
+        "transform": "scale3d(1," + scale + ",1)",
+        "transform-origin": "100% 100%",
+        "transition": "all " + transitionTime + " ease-in-out"
+      };
       bar.css(style);
       if (myYear !== year) {
         bar.css('opacity','0.25');
       } else {
         bar.css('opacity','1.0');
       }
-      value = value.toLocaleString() + ' mgd';
-      bar.attr("title", value);
+      var nodatabar = $("#nodataBar-" + myYear);
+      
+      if(value !== undefined){
+        value = value.toLocaleString() + ' Mgal/d';
+      } else {
+        nodataOp = "1.0";
+      }
+      style = {
+        "transition": "all " + transitionTime + " ease-in-out",
+        "opacity": nodataOp
+      };
+      nodatabar.css(style);
+      bar.attr("title", "US: " + value);
     }
   });
   update_bar_tips();
@@ -209,7 +238,7 @@ var update_bar_tips = function() {
   });
 }
 
-function hovertext(text, evt){
+function hovertext(text, evt, stateName){
   var tooltip = document.getElementById("tooltip-text");
   var tooltip_bg = document.getElementById("tooltip-box");
   var tool_pt = document.getElementById("tooltip-point");
@@ -223,13 +252,11 @@ function hovertext(text, evt){
       clearTimeout(stateHoverTimer); // stop ga for edge states 
     }
   } else {
-    var ref = evt.target.getAttribute('xlink:href').split('-')[0];
-    var stateName = ref.replace(/#/g, '');
     var displayNum = Math.round(get_state_value(stateName));
     if (isNaN(displayNum)){
       displayNum = 'no data';
     } else {
-      displayNum = displayNum.toLocaleString() + ' mgd';
+      displayNum = displayNum.toLocaleString() + ' Mgal/d';
     }
     text = text + ': ' + displayNum;
     pt = cursorPoint(evt);

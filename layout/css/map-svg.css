@@ -27,10 +27,9 @@ line, polyline, path{
 }
 .watermark {
   cursor: pointer;
-  fill: #DCDCDC;
-  stroke: #c6c6c6;
+  fill: #f1f1f1;
+  stroke: #bdbdbd;
   stroke-width:0.5;
-  opacity: 0.4;
 }
 .nodata-lines{
   stroke:#a6a6a6; 
