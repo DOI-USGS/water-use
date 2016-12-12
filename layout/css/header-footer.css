@@ -135,47 +135,33 @@ footer:after {
 }
 
 @media screen and (min-width:768px){
-  #logo{
-    margin:0 auto;
+  .footerContentAligner{
+    margin:10px auto 0 auto;
+    text-align:left;
   }
   
-  #logo,
-  #vizlabPromo,
-	#relatedVizzies,
-	#relatedBlogs{
+  .footerContentAligner{
     width:560px;
   }
 }
 
 @media screen and (min-width:1024px){
 	
-	#logo,
-	#vizlabPromo,
-	#relatedVizzies,
-	#github-link,
-	#relatedBlogs{
+	.footerContentAligner{
 		width:770px;
 	}
 }
 
 @media screen and (min-width:1500px){
 	
-	#logo,
-	#vizlabPromo,
-	#github-link,
-	#relatedVizzies,
-	#relatedBlogs{
+	.footerContentAligner{
 		width:810px;
 	}
 }
 
 @media screen and (min-width:2000px){
 
-	#logo,
-	#vizlabPromo,
-	#github-link,
-	#relatedVizzies,
-	#relatedBlogs{
+	.footerContentAligner{
 		width:1210px;
 	}
 	
