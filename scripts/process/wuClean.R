@@ -8,18 +8,15 @@ process.wuClean <- function(viz){
 
   uglyCats <- data.frame(c( "Public Supply" = "Public.Supply.total.self.supplied.withdrawals..fresh..in.Mgal.d",
                  "Irrigation" = "Irrigation..Total.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 
-                 "Industrial Com Fresh" = "Commercial.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Industrial Com Surf" = "Commercial.total.self.supplied.withdrawals..surface.water..in.Mgal.d",
-                 "Industrial Com Ground" = "Commercial.total.self.supplied.withdrawals..groundwater..in.Mgal.d",
-                 
-                 "Industrial Industrial Fresh" = "Industrial.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Industrial Industrial Surf" = "Industrial.total.self.supplied.withdrawals..surface.water..in.Mgal.d",
-                 "Industrial Industrial Ground" = "Industrial.total.self.supplied.withdrawals..groundwater..in.Mgal.d",
-                 
-                 "Industrial Mining Fresh" = "Mining.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Industrial Mining Surf" = "Mining.total.self.supplied.withdrawals..surface.water..in.Mgal.d",
-                 "Industrial Mining Ground" = "Mining.total.self.supplied.withdrawals..groundwater..in.Mgal.d",
+
+                 "Industrial Com Surf" = "Commercial.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Com Ground" = "Commercial.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
+
+                 "Industrial Industrial Surf" = "Industrial.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Industrial Ground" = "Industrial.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
+
+                 "Industrial Mining Surf" = "Mining.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Mining Ground" = "Mining.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
 
                  "Thermoelectric" = "Total.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
                  "Thermoelectric Fossil" = "Fossil.fuel.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
