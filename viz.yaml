@@ -239,11 +239,11 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon", "thumbnail" ]
+    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "jquery-uiCSS", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "jquery-ui", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon", "thumbnail" ]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
-      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "jquery-uiCSS", "nouislidercss", "noiuipipcss", "jquery", "jquery-ui",
         "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>"]
   -
     id: intro
@@ -274,6 +274,10 @@ publish:
     location: layout/css/main.css
     mimetype: text/css
   -
+    id: jquery-uiCSS
+    location: layout/jquery-ui/jquery-ui.css
+    mimetype: text/css
+  -
     id: svg-css-map
     location: layout/css/map-svg.css
     mimetype: text/css
@@ -300,6 +304,10 @@ publish:
   -
     id: jquery
     location: layout/js/jquery311.min.js
+    mimetype: text/javascript
+  -
+    id: jquery-ui
+    location: layout/jquery-ui/jquery-ui.min.js
     mimetype: text/javascript
   -
     id: tooltipsy
