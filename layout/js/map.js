@@ -185,14 +185,15 @@ var get_data = function() {
     transformData = data;
 
     var slider = document.getElementById('slider');
-    if(slider.noUiSlider !== 'undefined'){
+    if(slider.noUiSlider !== undefined){
       slider.noUiSlider.on('update', function( values, handle ) {
   	    var year = "" + Math.round(values[handle]);
       	setYear(year);
       });
-    } else {setTimeout(function(){
-        slider.noUiSlider.on('update', function( values, handle ) {
-  	      var year = "" + Math.round(values[handle]);
+    } else {
+        setTimeout(function(){
+          slider.noUiSlider.on('update', function( values, handle ) {
+  	       var year = "" + Math.round(values[handle]);
       	  setYear(year);
         })
       }, 500);
