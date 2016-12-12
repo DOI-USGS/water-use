@@ -17,7 +17,7 @@ info:
   audience: General public
   url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
-    url: images/thumb_12_8_noSlider.png
+    url: images/thumb_12_12_noSlider.png
     width: 957
     height: 551
     type: image/png
@@ -207,7 +207,7 @@ visualize:
 publish:
   -
     id: thumbnail
-    location: images/thumb_12_8_noSlider.png
+    location: images/thumb_12_12_noSlider.png
     mimetype: image/png
     title: thumbnail
     alttext: "water use thumbnail"
