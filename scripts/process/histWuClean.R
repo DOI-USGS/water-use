@@ -15,7 +15,7 @@ process.histWuClean <- function(viz){
   
   histExDat <- list(list(sheet = "1950", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
                     list(sheet = "1955", ind = c("INPT.WGWFr", "INPT.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), pub = c("PS.WGWFr", "PS.WSWFr"), thr = NULL),
-                    list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.Wtot"), 
+                    list(sheet = "1960", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WFrTo"), 
                          pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),
                     list(sheet = "1965", ind = c("OI.WGWFr", "OI.WSWFr"), iri = c("IR.WGWFr", "IR.WSWFr"), 
                          pub = c("PS.WGWFr", "PS.WSWFr"), thr = c("PT.WGWFr", "PT.WSWFr")),

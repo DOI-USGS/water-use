@@ -6,37 +6,46 @@ process.wuClean <- function(viz){
   
   longWU <- gather(rawWaterUse, category, value, -state_cd, -state_name, -year)
 
-  uglyCats <- c( "Public.Supply.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Irrigation..Total.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Industrial.total.self.supplied.withdrawals..in.Mgal.d",
-                 "Total.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Fossil.fuel.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Geothermal.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 "Nuclear.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d")
-                 # "Thermoelectric.Power..Once.through.cooling..total.self.supplied.withdrawals..fresh..in.Mgal.d",
-                 # "Thermoelectric.Power..Closed.loop.cooling..total.self.supplied.withdrawals..fresh..in.Mgal.d" )
+  uglyCats <- data.frame(c( "Public Supply" = "Public.Supply.total.self.supplied.withdrawals..fresh..in.Mgal.d",
+                 "Irrigation" = "Irrigation..Total.total.self.supplied.withdrawals..fresh..in.Mgal.d",
+
+                 "Industrial Com Surf" = "Commercial.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Com Ground" = "Commercial.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
+
+                 "Industrial Industrial Surf" = "Industrial.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Industrial Ground" = "Industrial.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
+
+                 "Industrial Mining Surf" = "Mining.self.supplied.surface.water.withdrawals..fresh..in.Mgal.d",
+                 "Industrial Mining Ground" = "Mining.self.supplied.groundwater.withdrawals..fresh..in.Mgal.d",
+
+                 "Thermoelectric" = "Total.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
+                 "Thermoelectric Fossil" = "Fossil.fuel.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
+                 "Thermoelectric Geothermal" = "Geothermal.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d",
+                 "Thermoelectric Nuclear" = "Nuclear.Thermoelectric.Power.total.self.supplied.withdrawals..fresh..in.Mgal.d"), stringsAsFactors = FALSE) %>%
+    mutate(shortName = rownames(.)) 
+  
+  names(uglyCats) <- c("longName","shortName")
   
   longWU <- longWU %>%
     mutate(year = as.numeric(year)) %>%
-    filter(category %in% uglyCats) %>%
+    filter(category %in% uglyCats$longName) %>%
     mutate(value = replace(value, value=='-', NA)) %>%
-    mutate(value = as.numeric(value))
-  
-  longWU$category[longWU$category == uglyCats[1]] <- "Public Supply"
-  longWU$category[longWU$category == uglyCats[2]] <- "Irrigation"
-  longWU$category[longWU$category == uglyCats[3]] <- "Industrial"
-  longWU$category[longWU$category == uglyCats[4]] <- "Thermoelectric"
-  longWU$category[longWU$category == uglyCats[5]] <- "Thermoelectric Fossil"
-  longWU$category[longWU$category == uglyCats[6]] <- "Thermoelectric Geothermal"
-  longWU$category[longWU$category == uglyCats[7]] <- "Thermoelectric Nuclear"
+    mutate(value = as.numeric(value)) %>%
+    left_join(uglyCats, by=c("category"="longName")) %>%
+    mutate(category = shortName) %>%
+    select(-shortName)
   
   wideWU <- spread(longWU, category, value) 
   
+  wideWU$Industrial <- rowSums(wideWU[,uglyCats$shortName[3:8]], na.rm = TRUE)
+  
   wideWU$`Thermoelectric`[is.na(wideWU$`Thermoelectric`)] <- rowSums(data.frame(wideWU$`Thermoelectric Fossil`[is.na(wideWU$`Thermoelectric`)] ,
-                                                                             wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric`)] ,
-                                                                             wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric`)] ),
-                                                                             na.rm = TRUE)
-  wideWU <- select(wideWU, -`Thermoelectric Fossil`, -`Thermoelectric Geothermal`, -`Thermoelectric Nuclear`)
+                                                                                wideWU$`Thermoelectric Geothermal`[is.na(wideWU$`Thermoelectric`)] ,
+                                                                                wideWU$`Thermoelectric Nuclear`[is.na(wideWU$`Thermoelectric`)] ),
+                                                                     na.rm = TRUE)
+  
+  wideWU <- wideWU[,c("state_cd","state_name","year",
+                      "Industrial","Irrigation", "Public Supply","Thermoelectric")]
   
   alaska.industrial.fresh.1985 <- 114
   alaska.irrigation.fresh.1985 <- 0
