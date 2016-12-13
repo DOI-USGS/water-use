@@ -22,7 +22,8 @@ info:
     height: 551
     type: image/png
     alttext: National water use map
-  thumbnail-landing: images/thumb_12_8_noSlider.png
+  thumbnail-landing: 
+    url: images/thumb_12_8_noSlider.png
   contributors:
     -
       name: Alison Appling
