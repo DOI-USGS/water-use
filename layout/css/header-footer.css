@@ -47,13 +47,29 @@ footer:after {
 
 #github-logo {
   max-height:40px;
+  float:left;
+  width:40px;
+  margin:0 10px 15px 0;
+}
+#github-link p{
+  padding-top:10px;
+}
+
+#vizlabPromo p,
+#github-link p{
+  font-size:.9em;
+  float:left;
 }
 #vizlab-logo {
   max-height:20px;
+  float:left;
+  width:30px;
+  margin-left:5px;
 }
 #relatedVizzies,
 #relatedBlogs{
   font-family: "Source Sans Pro", sans-serif;
+  clear:both;
 } 
 
 #relatedVizzies h5,
@@ -97,6 +113,10 @@ footer:after {
 }
 	
 	@media screen and (min-width:768px){
+	  
+	  body{
+      padding-bottom:450px;
+    }
 	  /*Header CSS*/
   	#header h3{
   		padding-top:0;

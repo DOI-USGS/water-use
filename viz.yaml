@@ -17,7 +17,7 @@ info:
   audience: General public
   url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
-    url: images/thumb_12_8_noSlider.png
+    url: images/thumb_12_12_noSlider.png
     width: 957
     height: 551
     type: image/png
@@ -109,8 +109,8 @@ fetch:
     id: histWaterUse-data
     location: cache/awuds.zip
     fetcher: sciencebase
-    remoteItemId: "584aa8b4e4b07e29c706dd57"
-    remoteFilename: "Export.1950-1980-United-States-Compilation.zip"
+    remoteItemId: "584f00cee4b0260a373819db"
+    remoteFilename: "Export.1950-1980-United-States-Compilation-metadata.zip"
     reader: histWaterUse
     scripts: scripts/read/histWaterUse.R
   -
@@ -207,7 +207,7 @@ visualize:
 publish:
   -
     id: thumbnail
-    location: images/thumb_12_8_noSlider.png
+    location: images/thumb_12_12_noSlider.png
     mimetype: image/png
     title: thumbnail
     alttext: "water use thumbnail"
@@ -219,7 +219,7 @@ publish:
     alttext: "USGS Logo"
   -
     id: vizlab-logo
-    location: images/usgs-vizlab-long.svg
+    location: images/atom.svg
     mimetype: image/svg+xml
     title: "Vizlab Logo"
     alttext: "Vizlab Logo"
@@ -239,12 +239,24 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "tooltipsy", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon", "thumbnail" ]
+    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "jquery-uiCSS", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "jquery-ui", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon", "thumbnail" ]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
-      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "nouislidercss", "noiuipipcss", "jquery",
-        "tooltipsy", "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>"]
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "jquery-uiCSS", "nouislidercss", "noiuipipcss", "jquery", "jquery-ui",
+        "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>"]
+  -
+    id: water-use-embed
+    name: embed
+    template: fullPage
+    publisher: page
+    mimetype: text/html
+    depends: [ "figure-section", "main-css", "jquery-uiCSS", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "jquery-ui", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon" ]
+    context:
+      sections: [ "figure-section" ]
+      resources: [ "vizlab-favicon", "main-css", "svg-css-map", "jquery-uiCSS", "nouislidercss", "noiuipipcss", "jquery", "jquery-ui",
+        "nouislider", "appJS", "mapJS", "<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700\" rel=\"stylesheet\"/>"]
   -
     id: intro
     template: layout/templates/intro.mustache
@@ -272,6 +284,10 @@ publish:
   -
     id: main-css
     location: layout/css/main.css
+    mimetype: text/css
+  -
+    id: jquery-uiCSS
+    location: layout/jquery-ui/jquery-ui.css
     mimetype: text/css
   -
     id: svg-css-map
@@ -302,8 +318,8 @@ publish:
     location: layout/js/jquery311.min.js
     mimetype: text/javascript
   -
-    id: tooltipsy
-    location: layout/js/tooltipsy.min.js
+    id: jquery-ui
+    location: layout/jquery-ui/jquery-ui.min.js
     mimetype: text/javascript
   -
     id: nouislider
