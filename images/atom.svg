@@ -34,5 +34,5 @@
 	</radialGradient>
 	<circle class="st3" cx="34" cy="129" r="34"/>
 </g>
-<rect onclick="window.open('https://github.com/USGS-VIZLAB','_blank')" opacity="0.0" width="100%" height="100%" class="linkclick" style="cursor:pointer;"/>
+<rect onclick="window.open('https://owi.usgs.gov/vizlab','_blank')" opacity="0.0" width="100%" height="100%" class="linkclick" style="cursor:pointer;"/>
 </svg>
