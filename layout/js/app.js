@@ -31,12 +31,5 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
-	
-	//Jquery UI
-	$( function() {
-    $('.dataBar').tooltip().click(function(){
-      $('.tooltip:last').remove();
-    });
-  });
 
 });
