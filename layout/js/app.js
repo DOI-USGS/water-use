@@ -1,9 +1,8 @@
 var dataPromise = $.Deferred();
 var sliderPromise = $.Deferred();
+var reallyReadyPromise = $.Deferred();
 
 $(document).ready(function () {
-
-	var slider = null;
 
 	var range_all_sliders = {
 		'min': [1950],
@@ -23,22 +22,27 @@ $(document).ready(function () {
 	};
 
   var interval = setInterval(function(){
-    slider = document.getElementById('slider');
-    if (slider !== null) {
+    var checkEle = $('#slider')
+    if (checkEle.length > 0) {
       clearInterval(interval);
-      noUiSlider.create(slider, {
-        range: range_all_sliders,
-        start: 2010,
-        snap: true,
-        pips: {
-          mode: 'positions',
-          behaviour: 'snap',
-          values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
-          density: 20,
-          stepped: true
-        }
-      });
-      sliderPromise.resolve();
+      reallyReadyPromise.resolve();
     }
   }, 25);
+
+  $.when(reallyReadyPromise).then(function(){
+    var slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+          range: range_all_sliders,
+          start: 2010,
+          snap: true,
+          pips: {
+            mode: 'positions',
+            behaviour: 'snap',
+            values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
+            density: 20,
+            stepped: true
+          }
+        });
+        sliderPromise.resolve();
+  });
 });
