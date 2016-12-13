@@ -1,3 +1,6 @@
+var dataPromise = $.Deferred();
+var sliderPromise = $.Deferred();
+
 $(document).ready(function () {
 
 	var slider = document.getElementById('slider');
@@ -31,5 +34,6 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
+	sliderPromise.resolve();
 
 });
