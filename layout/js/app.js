@@ -32,8 +32,11 @@ $(document).ready(function () {
 		}
 	});
 	
-	$(document).on('click scroll', function(){
-	 $('.tooltipsy').hide();
-	});
+	//Jquery UI
+	$( function() {
+    $('.dataBar').tooltip().click(function(){
+      $('.tooltip:last').remove();
+    });
+  });
 
 });
