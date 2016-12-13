@@ -14,7 +14,7 @@ var colors = {
   "Total": "#2E86AB"
 };
 
-$(document).ready(function(){
+$.when(reallyReadyPromise).then(function(){
   //IE Fix
   var ua = window.navigator.userAgent;
   //IE10 and Below
