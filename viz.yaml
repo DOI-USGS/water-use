@@ -4,7 +4,7 @@ info:
   name: Visualizing water use by region and time
   date: 2016-11-30
   publish-date: 2016-12-13
-  path: /water-use
+  path: water-use
   analytics-id: UA-78530187-5
   description: >-
     Water use data has been collected and compiled by the USGS since 1950.  This data has
@@ -22,6 +22,7 @@ info:
     height: 551
     type: image/png
     alttext: National water use map
+  thumbnail-landing: images/thumb_12_8_noSlider.png
   contributors:
     -
       name: Alison Appling
