@@ -3,7 +3,7 @@
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
     .map{
       width:100%;
-      height:608px;
+      height:500px;
     }
 }
 
@@ -139,9 +139,8 @@ body{
   left:91.2%;
 }
 
-.tooltipsy
+.ui-tooltip
 {
-    padding: 10px;
     max-width: 200px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -153,16 +152,12 @@ body{
 }
 
 @media screen and (min-width:768px){
-  
-  body{
-    padding-bottom:450px;
-  }
-  
+
   .container{
 		width:560px;
 		margin:0 auto;
 	}
-	
+
   .dataBars{
     height:90px;
   }
@@ -177,7 +172,7 @@ body{
 	.container{
 		width:760px;
 	}
-	
+
 }
 
 @media screen and (min-width:1500px){

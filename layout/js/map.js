@@ -28,7 +28,7 @@ $(document).ready(function(){
   }else{
     smoothTransform = true;
   }
-  
+
   get_data();
   svg = document.querySelector("svg");
   pt = svg.createSVGPoint();
@@ -43,11 +43,19 @@ $(document).ready(function(){
     });
   };
 
-  var yr = 1950;
-  while (yr <= 2015) {
-    set_slider_click(yr);
-    yr += 5;
-  }
+  $.when(dataPromise, sliderPromise).then(function(){
+    var yr = 1950;
+    while (yr <= 2015) {
+      set_slider_click(yr);
+      yr += 5;
+    }
+    var slider = document.getElementById('slider');
+    slider.noUiSlider.on('update', function( values, handle ) {
+      var year = "" + Math.round(values[handle]);
+      setYear(year);
+    });
+    setCategory(category);
+  });
 });
 
 /* depends on jquery */
@@ -64,13 +72,13 @@ var animate_resize_map = function(data) {
     var fillCol = color;
     var stateTranT = transitionTime;
     var stroke = "none";
-    if (isNaN(scale)){ 
+    if (isNaN(scale)){
       fillCol = "url(#nodata)";
       scale = 1;
       stroke = '#f1f1f1';
       stateTranT = "0s";
     }
-    
+
     var style = {
       "fill": fillCol,
       "transform": "scale3d(" + scale + "," + scale + ",1)",
@@ -86,7 +94,7 @@ var animate_resize_map = function(data) {
           stateDyno.setAttribute('transform', "scale(" + scale + ")");
         }
       } else {
-        state.css(style); 
+        state.css(style);
       }
     }
   });
@@ -105,7 +113,7 @@ var animate_bars = function(data) {
     var bar = $("#bar-" + myYear);
 
     if (bar !== undefined) {
-      if (isNaN(scale)){ 
+      if (isNaN(scale)){
         scale = 0;
         color = 'grey';
       }
@@ -122,7 +130,7 @@ var animate_bars = function(data) {
         bar.css('opacity','1.0');
       }
       var nodatabar = $("#nodataBar-" + myYear);
-      
+
       if(value !== undefined){
         value = value.toLocaleString() + ' Mgal/d';
       } else {
@@ -156,14 +164,14 @@ var get_state_value = (function() {
         prevState = state;
         prevCat = category;
         prevYear = year;
-        if(stateHoverTimer){ 
+        if(stateHoverTimer){
           clearTimeout(stateHoverTimer);
         }
         stateHoverTimer = setTimeout(function(){
           //could send cateogory and year here too?
           ga('send', 'event', 'figure', 'Hovered on ' + state);
         }, stateHoverDelay);
-        
+
         var stateData = transformData["totState"][year][category];
         prevVal = function(allData) {
           for (var i = 0; i < allData.length; i++) {
@@ -172,10 +180,10 @@ var get_state_value = (function() {
             }
           }
         }(stateData);
-    } 
-    
-     
-    
+    }
+
+
+
     return prevVal;
   }
 })();
@@ -183,14 +191,7 @@ var get_state_value = (function() {
 var get_data = function() {
   $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
-
-    var slider = document.getElementById('slider');
-    slider.noUiSlider.on('update', function( values, handle ) {
-  	  var year = "" + Math.round(values[handle]);
-    	setYear(year);
-    });
-
-    setCategory(category);
+    dataPromise.resolve();
   });
 };
 
@@ -216,7 +217,7 @@ var sendYrDelay = 1000; //ms
 var setYear = function(yr) {
   year = yr;
   animate();
-  if(setYrTimer){ 
+  if(setYrTimer){
     clearTimeout(setYrTimer);
   }
   setYrTimer = setTimeout(function(){
@@ -225,16 +226,14 @@ var setYear = function(yr) {
  };
 
 var update_bar_tips = function() {
-  $.each($(".dataBar"), function(prop, val){
-    $(val).off("mouseenter mouseleave");
-
-    if ($(val).data("tooltipsy") !== undefined) {
-      $(val).data("tooltipsy").destroy()
+  if ($('.dataBar').tooltip("instance") !== undefined) {
+    $('.dataBar').tooltip("destroy");
+  }
+  $('.dataBar').tooltip({
+    position: {
+      my: 'center bottom',
+      at: 'center top-5'
     }
-  });
-  $('.hastip').tooltipsy({
-    delay: 50,
-    offset: [0, -10]
   });
 }
 
@@ -249,7 +248,7 @@ function hovertext(text, evt, stateName){
     tool_pt.setAttribute("class","hidden");
     stateVal = " ";
     if (stateHoverTimer){
-      clearTimeout(stateHoverTimer); // stop ga for edge states 
+      clearTimeout(stateHoverTimer); // stop ga for edge states
     }
   } else {
     var displayNum = Math.round(get_state_value(stateName));
