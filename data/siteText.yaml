@@ -1,35 +1,41 @@
 title: "## How much water do we use?"
 
 introText: |
-  ### In the map below, state size (area) is scaled proportionate to state water use. 
+  ### In the map below, State size (area) is scaled proportionally to State freshwater use.
 
 explanationText: |
-  ### U.S. water withdrawals, 1950-present
+  ### U.S. freshwater withdrawals, 1950-present
 
-  How and where Americans use water has changed with our population growth and many technological, environmental, 
-  and regulatory drivers. 
-  The USGS Water Availability and Use Program has documented how and where we use water for the last 65 years. 
-  Above, state size (area) is scaled proportionate to total state water use and water use by category. 
-  National water use for each year and by category are shown as bars above the timeline. Drag the timeline 
-  to see data for available years, click on total or specific water-use categories, then mouse over the States 
+  How and where Americans use water has changed with our population growth and many technological, environmental,
+  and regulatory drivers.
+  The USGS Water Availability and Use Program has documented how and where we use water for the last 65 years.
+  Above, State size (area) is scaled proportionally to total State freshwater use and freshwater use by category.
+  National water use for each year and by category are shown as bars above the timeline. Drag the timeline
+  to see data for available years, click on total or specific water-use categories, then mouse over the States
   and the bars for water use values in million gallons of water per day (Mgal/d).
-  One million gallons of water covers a football field in about 2.8 feet of water. 
-  
-  Every 5 years since 1950, the USGS has compiled and estimated water-use information in cooperation with State, 
-  Federal, and local agencies to document how the Nation's water resources are used. Prior to 1960, Industrial and Thermoelectric 
-  water use categories were not assessed individually. Data at the site, county, 
-  and major watershed levels are available for some years, but not for the full period of record. Compilation of water-use data for 2015 is underway. 
-  This information is essential to accurately understand how future water demands will be met while maintaining 
-  adequate water quality and quantities for human and ecosystem needs. The USGS Water Availability and Use Program hopes to move toward even higher spatial resolution 
-  and more frequent reports in the future.
+  One million gallons of water covers a football field in about 2.8 feet of water.
 
+  Every 5 years since 1950, the USGS has compiled and estimated water-use information in cooperation with State,
+  Federal, and local agencies to document how the Nation's water resources are used.
+  Compilation of water-use data for 2015 is underway. This information is essential to accurately understand how future water demands will be met while maintaining
+  adequate water quality and quantities for human and ecosystem needs. The USGS Water Availability and Use Program
+  hopes to move toward even higher spatial resolution and more frequent reports in the future.
+
+  The categories used for assessing water use have varied through time, as shown [here](https://water.usgs.gov/watuse/WU-Category-Changes.html).
+  In the figure above, data on freshwater withdrawals for thermoelectric power, public supply, irrigation, and industrial withdrawals are shown;
+  these categories have been assessed consistently through time, with the following caveats for thermoelectric power and industrial. Prior to 1985,
+  thermoelectric power was included as a subcategory of industrial and for 1950-55 the State data were presented as an "industrial" total,
+  although national totals by subcategory were published. From 1985 to present, the self-supplied industrial category was further subdivided
+  into industrial, mining, and commercial, and the values shown on this figure are the total of these categories. The figure excludes self-supplied
+  withdrawals for domestic and livestock use, and instream use for hydroelectric power. Data at the site, county, and
+  major watershed levels are available for some years, but not for the full period of record.
 
 dataSources: |
   Data sources:
 
-  Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014, 
-  Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p., 
+  Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014,
+  Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p.,
   [http://dx.doi.org/10.3133/cir1405](http://dx.doi.org/10.3133/cir1405).
 
-  Estimated use of water in the United States, various years: 
-  [http://water.usgs.gov/watuse/50years.html](http://water.usgs.gov/watuse/50years.html)
+  Estimated use of water in the United States, various years:
+  [https://water.usgs.gov/watuse/50years.html](https://water.usgs.gov/watuse/50years.html)
