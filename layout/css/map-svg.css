@@ -16,7 +16,7 @@ line, polyline, path{
   transform: scale3d(0,0,1);
 }
 .state-foreground, .category-area-fill {
-  fill: white; //* only used for initial*/
+  fill: white;
   stroke-width:1.5;
 }
 .legend-title-text, .legend-text{
