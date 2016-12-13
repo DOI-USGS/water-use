@@ -10,8 +10,7 @@ line, polyline, path{
 }
 .state-background {
   fill:#f1f1f1;
-  stroke:#bdbdbd;
-  stroke-width:0.2;
+  stroke:none;
 }
 .state-foreground{
   transform: scale3d(0,0,1);
