@@ -3,7 +3,7 @@ var sliderPromise = $.Deferred();
 
 $(document).ready(function () {
 
-	var slider = document.getElementById('slider');
+	var slider = null;
 
 	var range_all_sliders = {
 		'min': [1950],
@@ -22,18 +22,26 @@ $(document).ready(function () {
 		'max': [2015, 2500],
 	};
 
-	noUiSlider.create(slider, {
-		range: range_all_sliders,
-		start: 2010,
-		snap: true,
-		pips: {
-			mode: 'positions',
-			behaviour: 'snap',
-			values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
-			density: 20,
-			stepped: true
-		}
-	});
-	sliderPromise.resolve();
-
+	var reallyReady = function() {
+    setTimeout(function(){
+      slider = document.getElementById('slider');
+      if (slider === null) {
+        reallyReady();
+      } else {
+        noUiSlider.create(slider, {
+          range: range_all_sliders,
+          start: 2010,
+          snap: true,
+          pips: {
+            mode: 'positions',
+            behaviour: 'snap',
+            values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
+            density: 20,
+            stepped: true
+          }
+        });
+        sliderPromise.resolve();
+      }
+    }, 25);
+  };
 });
