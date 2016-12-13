@@ -10,11 +10,13 @@ line, polyline, path{
 }
 .state-background {
   fill:#f1f1f1;
-  stroke:#bdbdbd;
-  stroke-width:0.2;
+  stroke:none;
+}
+.state-foreground{
+  transform: scale3d(0,0,1);
 }
 .state-foreground, .category-area-fill {
-  fill:white; /* only used for initial*/
+  fill: white;
   stroke-width:1.5;
 }
 .legend-title-text, .legend-text{
