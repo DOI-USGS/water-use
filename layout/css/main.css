@@ -153,10 +153,6 @@ body{
 
 @media screen and (min-width:768px){
 
-  body{
-    padding-bottom:450px;
-  }
-
   .container{
 		width:560px;
 		margin:0 auto;
