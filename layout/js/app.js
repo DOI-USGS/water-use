@@ -31,9 +31,5 @@ $(document).ready(function () {
 			stepped: true
 		}
 	});
-	
-	$(document).on('click scroll', function(){
-	 $('.tooltipsy').hide();
-	});
 
 });
