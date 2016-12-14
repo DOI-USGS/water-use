@@ -169,7 +169,7 @@ var get_state_value = (function() {
         }
         stateHoverTimer = setTimeout(function(){
           //could send cateogory and year here too?
-          ga('send', 'event', 'figure', 'Hovered on ' + state);
+          ga('send', 'event', 'figure', 'Hovered on ' + state + category + year);
         }, stateHoverDelay);
 
         var stateData = transformData["totState"][year][category];
