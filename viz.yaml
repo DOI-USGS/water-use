@@ -18,8 +18,8 @@ info:
   url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
     url: images/thumb_12_12_noSlider.png
-    width: 957
-    height: 551
+    width: 839
+    height: 503
     type: image/png
     alttext: National water use map
   thumbnail-landing: 
