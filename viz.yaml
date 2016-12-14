@@ -17,7 +17,7 @@ info:
   audience: General public
   url: https://owi.usgs.gov/vizlab/water-use/
   thumbnail:
-    url: images/thumb_12_12_noSlider.png
+    url: https://owi.usgs.gov/vizlab/water-use/images/thumb_12_12_noSlider.png
     width: 839
     height: 503
     type: image/png
