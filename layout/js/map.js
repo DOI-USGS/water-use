@@ -147,7 +147,7 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
-var stateHoverDelay = 1000; // ms
+var stateHoverDelay = 700; // ms
 var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
