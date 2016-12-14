@@ -51,6 +51,12 @@ footer:after {
   width:40px;
   margin:0 10px 15px 0;
 }
+#github-link {
+  display:inline-block;
+  visibility: visible;
+  cursor:pointer;
+}
+
 #github-link p{
   padding-top:10px;
 }
