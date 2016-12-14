@@ -51,6 +51,12 @@ footer:after {
   width:40px;
   margin:0 10px 15px 0;
 }
+#github-link {
+  display:inline-block;
+  visibility: visible;
+  cursor:pointer;
+}
+
 #github-link p{
   padding-top:10px;
 }
@@ -113,6 +119,10 @@ footer:after {
 }
 	
 	@media screen and (min-width:768px){
+	  
+	  body{
+      padding-bottom:450px;
+    }
 	  /*Header CSS*/
   	#header h3{
   		padding-top:0;

@@ -14,7 +14,7 @@ var colors = {
   "Total": "#2E86AB"
 };
 
-$(document).ready(function(){
+$.when(reallyReadyPromise).then(function(){
   //IE Fix
   var ua = window.navigator.userAgent;
   //IE10 and Below
@@ -43,11 +43,19 @@ $(document).ready(function(){
     });
   };
 
-  var yr = 1950;
-  while (yr <= 2015) {
-    set_slider_click(yr);
-    yr += 5;
-  }
+  $.when(dataPromise, sliderPromise).then(function(){
+    var yr = 1950;
+    while (yr <= 2015) {
+      set_slider_click(yr);
+      yr += 5;
+    }
+    var slider = document.getElementById('slider');
+    slider.noUiSlider.on('update', function( values, handle ) {
+      var year = "" + Math.round(values[handle]);
+      setYear(year);
+    });
+    setCategory(category);
+  });
 });
 
 /* depends on jquery */
@@ -183,22 +191,7 @@ var get_state_value = (function() {
 var get_data = function() {
   $.get( "js/scaleFactors.json", function( data ) {
     transformData = data;
-
-    var slider = document.getElementById('slider');
-    if(slider.noUiSlider !== undefined){
-      slider.noUiSlider.on('update', function( values, handle ) {
-  	    var year = "" + Math.round(values[handle]);
-      	setYear(year);
-      });
-    } else {
-        setTimeout(function(){
-          slider.noUiSlider.on('update', function( values, handle ) {
-  	       var year = "" + Math.round(values[handle]);
-      	  setYear(year);
-        })
-      }, 500);
-    }
-    setCategory(category);
+    dataPromise.resolve();
   });
 };
 

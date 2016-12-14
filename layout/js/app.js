@@ -1,6 +1,8 @@
-$(document).ready(function () {
+var dataPromise = $.Deferred();
+var sliderPromise = $.Deferred();
+var reallyReadyPromise = $.Deferred();
 
-	var slider = document.getElementById('slider');
+$(document).ready(function () {
 
 	var range_all_sliders = {
 		'min': [1950],
@@ -19,17 +21,28 @@ $(document).ready(function () {
 		'max': [2015, 2500],
 	};
 
-	noUiSlider.create(slider, {
-		range: range_all_sliders,
-		start: 2010,
-		snap: true,
-		pips: {
-			mode: 'positions',
-			behaviour: 'snap',
-			values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
-			density: 20,
-			stepped: true
-		}
-	});
+  var interval = setInterval(function(){
+    var checkEle = $('#slider')
+    if (checkEle.length > 0) {
+      clearInterval(interval);
+      reallyReadyPromise.resolve();
+    }
+  }, 25);
 
+  $.when(reallyReadyPromise).then(function(){
+    var slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+          range: range_all_sliders,
+          start: 2010,
+          snap: true,
+          pips: {
+            mode: 'positions',
+            behaviour: 'snap',
+            values: [0, 7, 15, 23, 30, 38, 46, 53, 61, 69, 76, 84, 92, 100],
+            density: 20,
+            stepped: true
+          }
+        });
+        sliderPromise.resolve();
+  });
 });
