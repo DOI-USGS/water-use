@@ -32,6 +32,10 @@ footer{
 	margin-top:20px;
 	}
 	
+footer a{
+  color:#fff;
+}
+	
 footer .p-share{
   margin-bottom:15px;
 }
@@ -45,7 +49,7 @@ footer:after {
      height: 0;
      }
 
-#github-logo {
+#github-link img {
   max-height:40px;
   float:left;
   width:40px;
@@ -55,6 +59,8 @@ footer:after {
   display:inline-block;
   visibility: visible;
   cursor:pointer;
+  position:relative;
+  z-index:2000;
 }
 
 #github-link p{
