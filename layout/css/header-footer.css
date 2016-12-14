@@ -32,8 +32,10 @@ footer{
 	margin-top:20px;
 	}
 	
-footer a{
+.hotfix{
   color:#fff;
+  height:40px;
+  display:inline-block;
 }
 	
 footer .p-share{
