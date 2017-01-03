@@ -51,11 +51,12 @@ footer:after {
      height: 0;
      }
 
-#github-link img {
+#github-logo{
   max-height:40px;
   float:left;
   width:40px;
   margin:0 10px 15px 0;
+  pointer-events: none;
 }
 #github-link {
   display:inline-block;
