@@ -147,7 +147,7 @@ var animate_bars = function(data) {
   update_bar_tips();
 };
 
-var stateHoverDelay = 1000; // ms
+var stateHoverDelay = 700; // ms
 var stateHoverTimer = null;
 var get_state_value = (function() {
   var prevState = "";
@@ -169,7 +169,7 @@ var get_state_value = (function() {
         }
         stateHoverTimer = setTimeout(function(){
           //could send cateogory and year here too?
-          ga('send', 'event', 'figure', 'Hovered on ' + state);
+          ga('send', 'event', 'figure', 'Hovered on ' + state + category + year);
         }, stateHoverDelay);
 
         var stateData = transformData["totState"][year][category];
