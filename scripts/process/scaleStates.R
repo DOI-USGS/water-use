@@ -11,7 +11,7 @@ process.scaleStates <- function(viz){
   statePoly <- depends[['state-map']]$states
   wuClean <- depends[["calc-histWaterData"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),
-                      year = c(unique(wuClean$year), 2015),
+                      year = c(unique(wuClean$year)),
                       category = unique(wuClean$category))
   wuClean <- merge(vals, wuClean, all=TRUE) %>% 
     arrange(state_cd, state_name, desc(category))
