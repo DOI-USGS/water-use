@@ -17,8 +17,7 @@ process.state_15_wu_data <- function(viz) {
     gather(category, value, -STATEFIPS) %>%
     rename(state_cd = STATEFIPS) %>%
     left_join(select(dataRetrieval::stateCd, state_cd=STATE, state_name=STATE_NAME), by="state_cd") %>%
-    mutate(year = 2015,
-           state_name = tolower(state_name))
+    mutate(year = 2015)
     
   
   saveRDS(wu_df_sel, viz[["location"]])
