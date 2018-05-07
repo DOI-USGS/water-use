@@ -7,7 +7,7 @@ library(dplyr)
 process.scaleStates <- function(viz){
 
   #read sp, wuClean
-  depends <- readDepends(viz)
+  depends <- vizlab::readDepends(viz)
   statePoly <- depends[['state-map']]$states
   wuClean <- depends[["calc-histWaterData"]]
   vals <- expand.grid(state_name = unique(wuClean$state_name),

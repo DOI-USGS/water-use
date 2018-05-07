@@ -1,4 +1,4 @@
-vizlab: "0.1.5"
+vizlab: "0.1.6"
 info:
   id: water-use
   name: Visualizing water use by region and time
@@ -102,6 +102,13 @@ info:
       version: 1.0.4
 fetch:
   -
+    id: wu_data_15
+    location: cache/wu_data_15.xlsx
+    reader: excel
+    fetcher: sciencebase
+    remoteItemId: "5ab154b1e4b081f61ab26420"
+    remoteFilename: "usco2015v2.0_FINAL-dataviz.xlsx"
+  -
     id: waterUse-data
     fetcher: waterUse
     location: cache/waterUse.csv
@@ -124,6 +131,23 @@ fetch:
     mimetype: text/yaml
 process:
   -
+    id: wu_data_15_simple
+    location: cache/wu_data_15_simple.rds
+    reader: rds
+    depends:
+      rawdata: wu_data_15
+    orig_names: ["TO-Wtotl", "PT-Wtotl", "PS-Wtotl", "IR-WFrTo", "IN-Wtotl"]
+    new_names: ["total", "thermoelectric", "publicsupply", "irrigation", "industrial"]
+    processor: simplify_wu_data
+    scripts: [scripts/process/simplify_2015_wu_data.R]
+  -
+    id: wu_state_15
+    location: cache/wu_data_state_15_simple.rds
+    reader: rds
+    depends: wu_data_15_simple
+    processor: state_15_wu_data
+    scripts: [scripts/process/state_2015_wu_data.R]
+  -
     id: calc-waterData
     location: cache/wuClean.rds
     processor: wuClean
@@ -140,6 +164,7 @@ process:
     depends:
       waterUse: calc-waterData
       histWaterUse: histWaterUse-data
+      water15: wu_state_15
   -
     id: calc-nationalData
     location: cache/nationalClean.rds

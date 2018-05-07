@@ -1,7 +1,7 @@
 process.nationalClean <- function(viz){
   library(tidyr)
   library(dplyr)
-  
+
   stateData <- readData(viz[['depends']][["stateData"]])
   
   national <- stateData %>%
