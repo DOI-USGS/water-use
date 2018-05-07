@@ -5,6 +5,9 @@ process.histWuClean <- function(viz){
   
   wuAwuds <- readData(viz[['depends']][['histWaterUse']])
   wuData <- readData(viz[['depends']][['waterUse']])
+  wuData2015 <- readData(viz[['depends']][['water15']])
+  
+  wuData$state_cd <- zeroPad(wuData$state_cd, 2)
   
   wuAwuds <- wuAwuds %>%
     rename(state_cd = Area, 
@@ -92,7 +95,7 @@ process.histWuClean <- function(viz){
   wuData$state_name[wuData$state_name == "Dist. of Columbia"] <- "district of columbia"
     
   
-  full.out <- bind_rows(wuData, wuAwudsLong) %>%
+  full.out <- bind_rows(wuData, wuAwudsLong, wuData2015) %>%
     arrange(state_name, category, year)
   
   saveRDS(full.out, file = viz[["location"]])
