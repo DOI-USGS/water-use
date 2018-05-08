@@ -267,8 +267,8 @@ publish:
     template: fullPage
     publisher: page
     mimetype: text/html
-    depends: [ "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "jquery-uiCSS", "svg-css-map",
-      "nouislidercss", "noiuipipcss", "jquery", "jquery-ui", "nouislider", "appJS", "mapJS", "scaleFactors2json", "vizlab-favicon", "thumbnail" ]
+    depends: ["vizlab-favicon", "figure-section", "header-section", "intro", "explanation", "footer-section", "main-css", "header-footer-css", "jquery-uiCSS", "svg-css-map",
+      "nouislidercss", "noiuipipcss", "jquery", "jquery-ui", "nouislider", "appJS", "mapJS", "scaleFactors2json", "thumbnail" ]
     context:
       sections: [ "header-section", "intro", "figure-section", "explanation", "footer-section" ]
       resources: [ "vizlab-favicon", "main-css", "svg-css-map", "header-footer-css", "jquery-uiCSS", "nouislidercss", "noiuipipcss", "jquery", "jquery-ui",
@@ -307,7 +307,7 @@ publish:
       map: states-svg
     context:
       map: states-svg
-      bars: [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010]
+      bars: [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015]
     comment: "We should consolidate the depends and context now with named dependencies"
   -
     id: main-css
