@@ -67,6 +67,9 @@ info:
     dataRetrieval:
       repo: CRAN
       version: 2.6.2
+    data.table:
+      repo: CRAN
+      version: 1.11.0
     dplyr:
       repo: CRAN
       version: 0.5.0
@@ -97,9 +100,6 @@ info:
     jsonlite:
       repo: CRAN
       version: 1.1
-    wateRuse:
-      repo: GRAN
-      version: 1.0.4
 fetch:
   -
     id: wu_data_15

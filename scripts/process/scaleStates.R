@@ -3,6 +3,7 @@
 # same area
 library(rgeos)
 library(dplyr)
+library(sp)
 
 process.scaleStates <- function(viz){
 
