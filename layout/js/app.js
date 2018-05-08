@@ -33,7 +33,7 @@ $(document).ready(function () {
     var slider = document.getElementById('slider');
     noUiSlider.create(slider, {
           range: range_all_sliders,
-          start: 2010,
+          start: 2015,
           snap: true,
           pips: {
             mode: 'positions',
