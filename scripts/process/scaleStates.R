@@ -4,6 +4,7 @@
 library(rgeos)
 library(dplyr)
 library(sp)
+library(rgdal)
 
 process.scaleStates <- function(viz){
 
