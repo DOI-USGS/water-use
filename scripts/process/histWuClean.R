@@ -109,6 +109,7 @@ process.histWuClean <- function(viz){
   
   wuData$state_name[wuData$state_name == "Dist. of Columbia"] <- "district of columbia"
     
+  wuData2015$state_name[wuData2015$state_name == "District of Columbia"] <- "district of columbia"
   
   full.out <- bind_rows(wuData, wuAwudsLong, wuData2015) %>%
     arrange(state_name, category, year)

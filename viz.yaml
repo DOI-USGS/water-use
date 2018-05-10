@@ -275,7 +275,9 @@ publish:
   -
     id: vizlab-favicon
     location: images/favicon.ico
-    mimetype: image/ico
+    mimetype: image/svg+xml
+    title: "vizlab-favicon"
+    alttext: "vizlab-favicon"
   -
     id: water-use-page
     name: index
