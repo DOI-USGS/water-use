@@ -12,3 +12,12 @@ fetch.waterUse <- function(viz){
   write.csv(all.states, viz[["location"]], row.names = FALSE)
   
 }
+
+fetch.wu_data_MT <- function(viz){
+  
+  library(data.table)
+  mt_data <- setDF(fread(viz[["file_path"]]))
+  
+  saveRDS(mt_data, viz[["location"]])
+  
+}
