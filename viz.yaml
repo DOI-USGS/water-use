@@ -116,6 +116,13 @@ fetch:
     scripts: scripts/fetch/waterUse.R
     refetch: FALSE
   -
+    id: wu_data_MT
+    location: cache/wu_data_MT.rds
+    file_path: "data/MT-NWISWeb-retrieval-20180508.csv"
+    reader: rds
+    fetcher: wu_data_MT
+    scripts: scripts/fetch/waterUse.R
+  -
     id: histWaterUse-data
     location: cache/awuds.zip
     fetcher: sciencebase
@@ -148,6 +155,13 @@ process:
     processor: state_15_wu_data
     scripts: [scripts/process/state_2015_wu_data.R]
   -
+    id: wu_MT_clean
+    location: cache/wu_data_MT_clean.rds
+    reader: rds
+    depends: wu_data_MT
+    processor: mtClean
+    scripts: [scripts/process/mtClean.R]
+  -
     id: calc-waterData
     location: cache/wuClean.rds
     processor: wuClean
@@ -165,6 +179,7 @@ process:
       waterUse: calc-waterData
       histWaterUse: histWaterUse-data
       water15: wu_state_15
+      waterMT: wu_MT_clean
   -
     id: calc-nationalData
     location: cache/nationalClean.rds
@@ -360,7 +375,7 @@ publish:
     depends: ["usgs-logo"]
     context:
       id: header
-      title: U.S. Water Use from 1950-Present
+      title: U.S. Water Use from 1950-2015
       logo: usgs-logo
       caption: Exploring trends in water use from National Water-Use Information Program historic data.
   -

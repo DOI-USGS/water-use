@@ -6,8 +6,23 @@ process.histWuClean <- function(viz){
   wuAwuds <- readData(viz[['depends']][['histWaterUse']])
   wuData <- readData(viz[['depends']][['waterUse']])
   wuData2015 <- readData(viz[['depends']][['water15']])
-  
+  waterMT <- readData(viz[['depends']][['waterMT']])
   wuData$state_cd <- zeroPad(wuData$state_cd, 2)
+  wuData <- bind_rows(wuData, waterMT)
+  
+  mt_2010 <- filter(wuData, 
+                    state_cd == "30",
+                    year == 2010) %>%
+    filter(!is.na(value))
+  
+  mt_2010_tots <- mt_2010[1,]
+  mt_2010_tots$category[1] <- "Total"
+  mt_2010_tots$value[1] <- sum(mt_2010$value)
+  
+  wuData <- wuData %>%
+    filter(!(year == 2010 & state_cd == "30"))
+  
+  wuData <- bind_rows(wuData, mt_2010, mt_2010_tots)
   
   wuAwuds <- wuAwuds %>%
     rename(state_cd = Area, 
