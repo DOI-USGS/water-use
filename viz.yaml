@@ -143,8 +143,8 @@ process:
     reader: rds
     depends:
       rawdata: wu_data_15
-    orig_names: ["TO-Wtotl", "PT-WFrTo", "PS-WFrTo", "IR-WFrTo", "IN-WFrTo"]
-    new_names: ["total", "thermoelectric", "publicsupply", "irrigation", "industrial"]
+    orig_names: ["PT-WFrTo", "PS-WFrTo", "IR-WFrTo", "IN-WFrTo", "MI-WFrTo"]
+    new_names: ["thermoelectric", "publicsupply", "irrigation", "industrial_1", "industrial_2"]
     processor: simplify_wu_data
     scripts: [scripts/process/simplify_2015_wu_data.R]
   -

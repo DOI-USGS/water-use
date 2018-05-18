@@ -9,11 +9,11 @@ process.state_15_wu_data <- function(viz) {
 
   wu_df_sel <- wu_df %>%
     group_by(STATEFIPS) %>%
-    dplyr::summarise(Total = sum(total),
-                   Thermoelectric = sum(thermoelectric),
+    dplyr::summarise(Thermoelectric = sum(thermoelectric),
                    `Public Supply` = sum(publicsupply),
                    Irrigation = sum(irrigation),
-                   Industrial = sum(industrial)) %>%
+                   Industrial = sum(industrial_1) + sum(industrial_2)) %>%
+    mutate(Total = Thermoelectric + Industrial + Irrigation + `Public Supply`) %>%
     gather(category, value, -STATEFIPS) %>%
     rename(state_cd = STATEFIPS) %>%
     left_join(select(dataRetrieval::stateCd, state_cd=STATE, state_name=STATE_NAME), by="state_cd") %>%
