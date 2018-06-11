@@ -1,4 +1,5 @@
-
+library(rgdal)
+library(rgeos)
 #' take map arguments and return a projected sp object
 #' 
 #' @param \dots arguments passed to \code{\link[maps]{map}} excluding \code{fill} and \code{plot}
@@ -83,7 +84,7 @@ process.state_map <- function(viz){
   saveRDS(out, file = viz[['location']])
 }
 
-library(rgeos)
+
 scale_transform <- function(obj, scale){
   centroid <- c(unlist(rgeos::gCentroid(obj,byid=TRUE)@coords))
   obj <- elide(obj, scale=max(apply(bbox(obj), 1, diff)) * scale) # do by area?
