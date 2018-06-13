@@ -383,7 +383,7 @@ publish:
   -
     id: footer-section
     template: layout/templates/footer.mustache
-    publisher: footer
+    publisher: section
     depends: [ "header-footer-css", "vizlab-logo", "github-logo" ]
     context:
       logo: vizlab-logo
