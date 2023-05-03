@@ -4,7 +4,7 @@
     "organization": "U.S. Geological Survey",
     "description": "Visualization using USGS water use data.",
     "version": "main",
-    "status": "Development",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
@@ -19,7 +19,7 @@
     "disclaimerURL": "https://github.com/USGS-VIZLAB/water-use/blob/main/DISCLAIMER.md",
     "repositoryURL": "https://github.com/USGS-VIZLAB/water-use.git",
     "vcs": "git",
-    "laborHours": -1,
+    "laborHours": 50,
     "tags": [
       "R",
       "USGS"
@@ -30,8 +30,8 @@
       "HTML"
     ],
     "contact": {
-      "name": "jordansread",
-      "email": "FILL ME IN"
+      "name": "Cee Nell",
+      "email": "cnell@usgs.gov"
     },
     "date": {
       "metadataLastUpdated": "2023-04-07"
