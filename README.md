@@ -49,7 +49,7 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser. Openin
 
 The site was built in 2016 with [vizlab](https://github.com/USGS-VIZLAB/vizlab) (v0.1.5), an R package developed by the USGS Vizlab team that assembled data visualization websites from a `viz.yaml` configuration. The `viz.yaml` at the root of this repo declares the fetch → process → visualize → publish pipeline, with the corresponding R scripts in `scripts/`. Running `vizlab::vizmake()` executed the pipeline, which:
 
-1. **Fetched** State-level water use data: 1985 onward from the USGS National Water Information System via the [`wateRuse`](https://github.com/USGS-R/wateRuse) and [`dataRetrieval`](https://cran.r-project.org/web/packages/dataRetrieval/index.html) packages, and 1950–1980 from data transcribed from the [historical compilation reports](https://water.usgs.gov/watuse/50years.html) and [hosted on ScienceBase](https://www.sciencebase.gov/catalog/item/584f00cee4b0260a373819db).
+1. **Fetched** State-level water use data: 1985 onward from the USGS National Water Information System via the [`wateRuse`](https://github.com/USGS-R/wateRuse) and [`dataRetrieval`](https://cran.r-project.org/web/packages/dataRetrieval/index.html) packages, and 1950–1980 from data transcribed from the [historical compilation reports](https://www.usgs.gov/mission-areas/water-resources/science/accessing-water-use-data) and [hosted on ScienceBase](https://www.sciencebase.gov/catalog/item/584f00cee4b0260a373819db).
 2. **Processed** the data into national totals by category and the per-State scale factors in `scaleFactors.json`, and simplified State boundaries for the map.
 3. **Visualized** the results by rendering the State outlines to an inline SVG and assembling the page from the templates in `layout/` and the narrative text in `data/siteText.yaml`.
 4. **Published** the assembled site to a `target/` directory, which was then synced to the web server.
@@ -60,7 +60,7 @@ The State-level water use data the pipeline fetched for 1985 onward can also no 
 
 ## Data sources
 
-* Estimated use of water in the United States, various years, 1950–2015: [https://water.usgs.gov/watuse/50years.html](https://water.usgs.gov/watuse/50years.html)
+* Estimated use of water in the United States, various years, 1950–2015: [https://www.usgs.gov/mission-areas/water-resources/science/accessing-water-use-data](https://www.usgs.gov/mission-areas/water-resources/science/accessing-water-use-data)
 * Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014, Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p. [https://doi.org/10.3133/cir1405](https://doi.org/10.3133/cir1405)
 * Dieter, C.A., Maupin, M.A., Caldwell, R.R., Harris, M.A., Ivahnenko, T.I., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2018, Estimated use of water in the United States in 2015: U.S. Geological Survey Circular 1441, 65 p. [https://doi.org/10.3133/cir1441](https://doi.org/10.3133/cir1441)
 
