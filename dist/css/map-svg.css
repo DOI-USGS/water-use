@@ -1,0 +1,84 @@
+line, polyline, path{
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-miterlimit: 10.00;
+}
+
+.map-background {
+  fill:white;
+  stroke:none;
+}
+.state-background {
+  fill:#f1f1f1;
+  stroke:none;
+}
+.state-foreground{
+  transform: scale3d(0,0,1);
+}
+.state-foreground, .category-area-fill {
+  fill: white;
+  stroke-width:1.5;
+}
+.legend-title-text, .legend-text{
+  fill:#666666;
+  stroke:none;
+  font-size: 0.75em;
+}
+.legend-title-text{
+  text-anchor:middle;
+}
+.watermark {
+  cursor: pointer;
+  fill: #f1f1f1;
+  stroke: #bdbdbd;
+  stroke-width:0.5;
+}
+.nodata-lines{
+  stroke:#a6a6a6; 
+  stroke-width:2;
+}
+
+.nodata-fill{
+  fill:#b9b9b9;
+  stroke:none;
+}
+
+
+.cat-button-text {
+  fill:black;
+  stroke:none;
+  text-anchor:middle;
+  font-size: 0.8em;
+}
+.hidden {
+  opacity: 0;
+}
+.shown {
+  opacity: 1;
+}
+.tooltip-box{
+  stroke: none;
+  opacity: 0.85;
+  fill: white;
+}
+.svg-text {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	cursor: default;
+}
+    
+.cat-button {
+  fill:#e5e5e5;
+  stroke:#262626;
+  stroke-width: 0.0;
+  cursor:pointer;
+}
+
+.cat-button:hover {
+  fill:#404040;
+  stroke-width: 0.5;
+  stroke-opacity:1;
+}

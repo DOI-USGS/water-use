@@ -1,0 +1,196 @@
+*{padding:0; margin:0;}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+    .map{
+      width:100%;
+      height:500px;
+    }
+}
+
+body{
+	font-family:"Open Sans", Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
+	position:relative;
+}
+
+.container{
+	min-height:30px;
+	padding: 0 10px;
+}
+
+.container h3{
+  margin:5px 0;
+  font-size:1em;
+}
+
+.container p{
+  font-size:.9em;
+  margin-top:10px;
+}
+
+.container a{
+  color:rgb(0,51,102);
+  font-weight:700;
+}
+
+.container a:hover{
+  text-decoration:none;
+}
+
+.map{
+	min-height:100px;
+}
+
+.dataBars,
+.timeslider,
+.eventHolder{
+  width:95%;
+}
+
+.dataBars{
+  height:50px;
+  margin:10px auto;
+  display: flex;
+  flex-direction:row;
+  position:relative;
+}
+
+.dataBar{
+  background:white;
+  height:100%;
+  width:2%;
+  margin-right:10px;
+  position:absolute;
+  outline: 1px solid transparent;
+}
+
+.nodataBar{
+  background:none;
+  height:2%;
+  width:2%;
+  margin-top:30px;
+  margin-right:10px;
+  position:absolute;
+  outline: 1px solid transparent;
+}
+.nodataText{
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  white-space: nowrap;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  cursor: default;
+}
+
+#bar-1950, #nodataBar-1950 {
+  left:-.9%;
+}
+
+#bar-1955, #nodataBar-1955{
+  left:6.76%;
+}
+
+#bar-1960, #nodataBar-1960{
+  left:14.44%;
+}
+
+#bar-1965, #nodataBar-1965{
+  left:22.1%;
+}
+
+#bar-1970, #nodataBar-1970{
+  left:29.85%;
+}
+
+#bar-1975, #nodataBar-1975{
+  left:37.5%;
+}
+
+#bar-1980, #nodataBar-1980{
+  left:45.15%;
+}
+
+#bar-1985, #nodataBar-1985{
+  left:52.82%;
+}
+
+#bar-1990, #nodataBar-1990{
+  left:60.44%;
+}
+
+#bar-1995, #nodataBar-1995{
+  left:68.12%;
+}
+
+#bar-2000, #nodataBar-2000{
+  left:75.85%;
+}
+
+#bar-2005, #nodataBar-2005{
+  left:83.5%;
+}
+
+#bar-2010, #nodataBar-2010{
+  left:91.2%;
+}
+
+#bar-2015, #nodataBar-201f{
+  left:98.8%;
+}
+
+.ui-tooltip
+{
+    max-width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    opacity: 0.85;
+}
+
+.timeslider{
+	margin:10px auto 70px auto;
+}
+
+@media screen and (min-width:768px){
+
+  .container{
+		width:560px;
+		margin:0 auto;
+	}
+
+  .dataBars{
+    height:90px;
+  }
+  .nodataBar{
+    margin-top:60px;
+  }
+}
+
+
+@media screen and (min-width:1024px){
+
+	.container{
+		width:760px;
+	}
+
+}
+
+@media screen and (min-width:1500px){
+
+	.container{
+		width:800px;
+	}
+
+}
+
+@media screen and (min-width:2000px){
+
+	.container{
+		width:1200px;
+	}
+
+}
