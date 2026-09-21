@@ -42,7 +42,8 @@ $.when(reallyReadyPromise).then(function(){
   }
 
   get_data();
-  svg = document.querySelector("svg");
+  // The USWDS banner also contains an inline svg, so select the map by id
+  svg = document.getElementById("water-use-svg");
   pt = svg.createSVGPoint();
   for (var cat in colors) {
     var catButton = $("#" + cat + '-button');
@@ -276,9 +277,10 @@ function hovertext(text, evt, stateName){
     pt = cursorPoint(evt);
     pt.x = Math.round(pt.x);
     pt.y = Math.round(pt.y);
-    svgWidth = Number(svg.getAttribute("viewBox").split(" ")[2]);
+    var viewBox = svg.getAttribute("viewBox").split(" ").map(Number);
+    var svgTop = viewBox[1];
+    var svgWidth = viewBox[2];
     tooltip.setAttribute("x",pt.x);
-    tooltip.setAttribute("y",pt.y);
     tooltip.firstChild.data = text;
     var length = Math.round(tooltip.getComputedTextLength());
     if (pt.x - length/2 - 6 < 0){
@@ -286,9 +288,23 @@ function hovertext(text, evt, stateName){
     } else if (pt.x + length/2 + 6 > svgWidth) {
       tooltip.setAttribute("x", svgWidth-length/2-6);
     }
+    // Show the tooltip above the cursor, or below it when it would be
+    // clipped by the top of the svg (northern states, the legend)
+    if (pt.y - 35 >= svgTop) {
+      tooltip.setAttribute("y",pt.y);
+      tooltip.setAttribute("dy","-1.1em");
+      tooltip_bg.setAttribute("y",pt.y-35);
+      tool_pt.setAttribute("d","M-6,-12 l6,10 l6,-10");
+      tool_pt.setAttribute("clip-path","url(#tipClip)");
+    } else {
+      tooltip.setAttribute("y",pt.y);
+      tooltip.setAttribute("dy","1.85em");
+      tooltip_bg.setAttribute("y",pt.y+11);
+      tool_pt.setAttribute("d","M-6,12 l6,-10 l6,10");
+      tool_pt.setAttribute("clip-path","url(#tipClipBelow)");
+    }
     tool_pt.setAttribute("transform","translate("+pt.x+","+pt.y+")");
     tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2-6);
-    tooltip_bg.setAttribute("y",pt.y-35);
     tooltip.setAttribute("class","shown");
     tooltip_bg.setAttribute("class","tooltip-box");
     tool_pt.setAttribute("class","tooltip-box");
