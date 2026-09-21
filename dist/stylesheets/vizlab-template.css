@@ -263,6 +263,20 @@ footer.footer ul.social svg.fa-svg {
   margin-top: 0.5em;
   margin-bottom: 0;
 }
+/* A text block that continues after a figure and its caption */
+#maincontent .viz-text--continued {
+  margin-top: 0;
+}
+
+/* Static figures fill the figure column */
+#maincontent .viz-figure figure {
+  margin: 1.5rem 0 0 0;
+}
+#maincontent .viz-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 /* End-of-page sections: stacked, with a rule separating them from the
    page content, styled like the pre-footer divider */

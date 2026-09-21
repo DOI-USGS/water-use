@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added inline color highlights where the category names are first mentioned in the text, tying them back to the map, bars, and legend; black text on each color meets WCAG AA contrast
 - Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue
 - Unified layout across the page: one 700px text column, one 800px figure width, consistent heading levels, type scale, paragraph rhythm, and section spacing
+- Added the USGS "Changes in Water Use Categories" timeline image beneath the sentence about categories varying through time, with a caption linking to the source page
 - Replaced retired `water.usgs.gov/watuse` links with their current `usgs.gov` locations
 - Updated `og:url` and social media image URLs in `dist/index.html` for the new site URL and S3 image hosting
 - Rewrote `README.md` to describe the `dist/` site, how to serve it locally, and how the site was originally built
