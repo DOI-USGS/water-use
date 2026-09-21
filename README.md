@@ -70,7 +70,7 @@ Appling, A., Blodgett, D., Carr, L., DeCicco, L., Read, E., Read, J., Walker, J.
 
 ## Contributors
 
-Alison Appling, David Blodgett, Lindsay Carr, Laura DeCicco, Emily Read, Jordan Read, Jordan Walker, David Watkins, and Marty Wernimont built the original site in 2016. Cee Nell, Althea Archer, and Elmera Azadpour updated it in 2026.
+Alison Appling, David Blodgett, Lindsay Carr, Laura DeCicco, Emily Read, Jordan Read, Jordan Walker, David Watkins, Marty Wernimont, Cee Nell, Althea Archer, and Elmera Azadpour.
 
 ## Point of contact
 
