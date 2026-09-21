@@ -152,6 +152,17 @@ var animate_bars = function(data) {
       };
       nodatabar.css(style);
       bar.attr("title", "US: " + value);
+      if (myYear === year) {
+        var label = $("#bar-label");
+        label.text(value);
+        label.toggleClass("at-start", myYear === "1950");
+        label.toggleClass("at-end", myYear === "2015");
+        label.css({
+          "left": bar.css("left"),
+          "bottom": (isNaN(val[category][0].barScale) ? 0 : val[category][0].barScale * bar[0].offsetHeight) + "px",
+          "transition": "all " + transitionTime + " ease-in-out"
+        });
+      }
     }
   });
   update_bar_tips();
@@ -231,6 +242,9 @@ var sendYrDelay = 1000; //ms
 var setYear = function(yr) {
   year = yr;
   animate();
+  $(".noUi-value").each(function() {
+    $(this).toggleClass("is-current", $(this).text() === year);
+  });
   if(setYrTimer){
     clearTimeout(setYrTimer);
   }

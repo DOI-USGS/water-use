@@ -379,3 +379,64 @@ h1, h2, h3, h4 {
 .cat-highlight--public-supply { background-color: #EADEDE; border-color: #D57C7C; }
 .cat-highlight--irrigation { background-color: #E6DED1; border-color: #B38C00; }
 .cat-highlight--industrial { background-color: #D2D5D4; border-color: #858E8D; }
+
+/* ============= TIMELINE SLIDER ============= */
+/* Flat track and round handle in place of the stock noUiSlider skin;
+   year labels in the page font, with the selected year emphasized. */
+.timeslider .noUi-target {
+  background: #dfe3e8;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+.timeslider .noUi-horizontal {
+  height: 6px;
+}
+.timeslider .noUi-horizontal .noUi-handle {
+  width: 22px;
+  height: 22px;
+  left: -11px;
+  top: -8px;
+  border-radius: 50%;
+  background: #00264c;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+}
+.timeslider .noUi-handle:before,
+.timeslider .noUi-handle:after {
+  display: none;
+}
+.timeslider .noUi-active {
+  cursor: grabbing;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.timeslider .noUi-handle:focus-visible {
+  outline: 3px solid #78B4E8;
+  outline-offset: 2px;
+}
+.timeslider .noUi-pips-horizontal {
+  padding: 6px 0 0 0;
+  height: 40px;
+}
+.timeslider .noUi-marker-horizontal.noUi-marker {
+  width: 1px;
+  margin-left: 0;
+  height: 6px;
+  background: #8a8a8a;
+}
+.timeslider .noUi-value {
+  top: 8px;
+  font-family: inherit;
+  font-size: 0.85em;
+  color: #555;
+}
+.timeslider .noUi-value.is-current {
+  font-weight: 700;
+  color: #00264c;
+}
+@media screen and (max-width: 599px) {
+  .timeslider .noUi-value {
+    font-size: 0.65em;
+  }
+}
