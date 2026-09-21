@@ -240,9 +240,10 @@ footer.footer ul.social svg.fa-svg {
   padding-right: var(--gutter);
 }
 
-/* Text blocks: title, intro, narrative, end sections */
+/* Text blocks: title, intro, narrative, captions, end sections */
 .page-title,
-#maincontent .viz-text {
+#maincontent .viz-text,
+#maincontent .caption {
   box-sizing: border-box;
   width: auto;
   max-width: var(--text-width);
@@ -257,6 +258,10 @@ footer.footer ul.social svg.fa-svg {
 }
 #maincontent .viz-text:first-of-type {
   margin-top: 0;
+}
+#maincontent .caption {
+  margin-top: 0.5em;
+  margin-bottom: 0;
 }
 
 /* End-of-page sections: stacked, with a rule separating them from the
@@ -310,6 +315,14 @@ h1, h2, h3, h4 {
 }
 #maincontent .container p {
   font-size: 1em;
+  line-height: 1.5;
+  margin: 0 0 1em 0;
+}
+/* Figure captions, styled as on other Vizlab sites */
+.caption p {
+  font-size: 0.9em;
+  font-style: italic;
+  color: rgb(106,106,106);
   line-height: 1.5;
   margin: 0 0 1em 0;
 }

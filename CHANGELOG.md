@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Updated the USWDS banner, USGS header, and USGS footer markup and links to match `vue3-template`; upgraded bundled USWDS assets from v2.7 to v3.13 and deferred the USWDS script so it runs after the page body exists
 - Restructured the end of the page into stacked Data Collection, References (alphabetical, name-based citations, now including the 2015 circular), and USGS Vizlab authorship sections, matching other Vizlab sites, with published and last-updated dates
 - Noted on the page that the 1985–2015 State data came from NWIS, which no longer serves water-use data, and that a data release is forthcoming
+- Moved the "In the map below, State size (area) is scaled…" subheading from the top of the page into a caption beneath the figure, in the caption style used on other Vizlab sites, and added the units (Mgal/d) for the map and the bar chart
 - Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue
 - Unified layout across the page: one 700px text column, one 800px figure width, consistent heading levels, type scale, paragraph rhythm, and section spacing
 - Replaced retired `water.usgs.gov/watuse` links with their current `usgs.gov` locations
