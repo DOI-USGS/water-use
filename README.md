@@ -4,7 +4,7 @@
 
 This repo contains the source for a data visualization website exploring how U.S. water use has changed over time. Every 5 years since 1950, the USGS has compiled and estimated water-use information in cooperation with State, Federal, and local agencies. This site scales each State's area in proportion to its freshwater withdrawals, by total and by category (thermoelectric, public supply, irrigation, and industrial), and lets users drag a timeline across the 14 compilations from 1950 to 2015.
 
-**The data visualization website can be viewed at [https://water.usgs.gov/vizlab/water-use-1950-2015](https://water.usgs.gov/vizlab/water-use-1950-2015).**
+**The data visualization website can be viewed at [https://water.usgs.gov/vizlab/water-use](https://water.usgs.gov/vizlab/water-use).**
 
 The site was originally published on 2016-12-13 at `owi.usgs.gov/vizlab/water-use` (later `labs.waterdata.usgs.gov/visualizations/water-use`) and developed at [github.com/USGS-VIZLAB/water-use](https://github.com/USGS-VIZLAB/water-use), which has since moved to this repository.
 

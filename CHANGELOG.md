@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Replaced retired `water.usgs.gov/watuse` links with their current `usgs.gov` locations (`50years.html` → Accessing Water-Use Data, `WU-Category-Changes.html` → Changes in Water Use Categories)
 - Updated `og:url` and social media image URLs in `dist/index.html` for the new site URL and S3 image hosting
 - Rewrote `README.md` to describe the `dist/` site, how to serve it locally, and how the site was originally built
-- Updated `code.json` and `CONTRIBUTING.md` to point at the `DOI-USGS` GitHub organization and the new site URL, https://water.usgs.gov/vizlab/water-use-1950-2015
+- Updated `code.json` and `CONTRIBUTING.md` to point at the `DOI-USGS` GitHub organization and the new site URL, https://water.usgs.gov/vizlab/water-use
 
 ### Fixed
 - Fixed the State hover tooltip, which was positioned against the wrong SVG (the padlock icon in the new USWDS banner) and often landed off the map; it now targets the map by id and flips below the cursor near the top edge instead of being clipped

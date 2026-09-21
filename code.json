@@ -14,7 +14,7 @@
         }
       ]
     },
-    "homepageURL": "https://water.usgs.gov/vizlab/water-use-1950-2015/",
+    "homepageURL": "https://water.usgs.gov/vizlab/water-use/",
     "downloadURL": "https://github.com/DOI-USGS/water-use/archive/refs/heads/main.zip",
     "disclaimerURL": "https://github.com/DOI-USGS/water-use/blob/main/DISCLAIMER.md",
     "repositoryURL": "https://github.com/DOI-USGS/water-use.git",
