@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Noted on the page that the 1985–2015 State data came from NWIS, which no longer serves water-use data, and that a data release is forthcoming
 - Moved the "In the map below, State size (area) is scaled…" subheading from the top of the page into a caption beneath the figure, in the caption style used on other Vizlab sites, and added the units (Mgal/d) for the map and the bar chart
 - Changed the category colors in `map.js` to the palette used on the water-use-15 site so the two sites match (Total, Thermoelectric, Public Supply, Irrigation, Industrial)
-- Added inline color highlights where the category names are first mentioned in the text, tying them back to the map, bars, and legend; black text on each color meets WCAG AA contrast
+- Added inline color highlights where the category names are first mentioned in the text, tying them back to the map, bars, and legend: a light tint of the category color as the fill with the full color as an underline, so dark text meets WCAG AAA contrast
 - Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue
 - Unified layout across the page: one 700px text column, one 800px figure width, consistent heading levels, type scale, paragraph rhythm, and section spacing
 - Added the USGS "Changes in Water Use Categories" timeline image beneath the sentence about categories varying through time, with a caption linking to the source page
