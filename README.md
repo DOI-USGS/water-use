@@ -66,11 +66,11 @@ The State-level water use data the pipeline fetched for 1985 onward can also no 
 
 ## Citation
 
-Appling, A., Blodgett, D., Carr, L., DeCicco, L., Read, E., Read, J., Walker, J., Watkins, D., Wernimont, M., Nell, C., and Archer, A. 2016. U.S. Water Use from 1950-2015. U.S. Geological Survey software release. Reston, VA. https://github.com/DOI-USGS/water-use
+Appling, A., Blodgett, D., Carr, L., DeCicco, L., Read, E., Read, J., Walker, J., Watkins, D., Wernimont, M., Nell, C., Archer, A., and Azadpour, E. 2016. U.S. Water Use from 1950-2015. U.S. Geological Survey software release. Reston, VA. https://github.com/DOI-USGS/water-use
 
 ## Contributors
 
-Alison Appling, David Blodgett, Lindsay Carr, Laura DeCicco, Emily Read, Jordan Read, Jordan Walker, David Watkins, and Marty Wernimont built the original site in 2016. Cee Nell and Althea Archer updated it in 2026.
+Alison Appling, David Blodgett, Lindsay Carr, Laura DeCicco, Emily Read, Jordan Read, Jordan Walker, David Watkins, and Marty Wernimont built the original site in 2016. Cee Nell, Althea Archer, and Elmera Azadpour updated it in 2026.
 
 ## Point of contact
 
