@@ -361,10 +361,9 @@ h1, h2, h3, h4 {
 
 /* ============= CATEGORY HIGHLIGHTS ============= */
 /* Inline highlights that tie category names in the text back to the map,
-   bars, and legend. Each uses a 45% tint of its category color as the
-   fill, with the full-strength color (matching `colors` in js/map.js,
-   shared with the water-use-15 site) as an underline. Dark text on the
-   tints is at least 9.4:1 (WCAG AAA). */
+   bars, and legend, using the USGS water-use category color ramps: the
+   light tint as the fill and the mid tone (the map color, see `colors` in
+   js/map.js) as an underline. Dark text on the tints is at least 11:1. */
 .cat-highlight {
   color: #1e1e1e;
   padding: 0.1em 0.4em 0.05em;
@@ -375,8 +374,8 @@ h1, h2, h3, h4 {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
-.cat-highlight--total { background-color: #9DCBDC; border-color: #268CB2; }
-.cat-highlight--thermoelectric { background-color: #F7E7AD; border-color: #EDC948; }
-.cat-highlight--public-supply { background-color: #C1DFDC; border-color: #76B7B2; }
-.cat-highlight--irrigation { background-color: #B4D5B0; border-color: #59A14F; }
-.cat-highlight--industrial { background-color: #F2B3B4; border-color: #E15759; }
+.cat-highlight--total { background-color: #D0E6F2; border-color: #539DD5; }
+.cat-highlight--thermoelectric { background-color: #D0E7F0; border-color: #7297B6; }
+.cat-highlight--public-supply { background-color: #EADEDE; border-color: #D57C7C; }
+.cat-highlight--irrigation { background-color: #E6DED1; border-color: #B38C00; }
+.cat-highlight--industrial { background-color: #D2D5D4; border-color: #858E8D; }

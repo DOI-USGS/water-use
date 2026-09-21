@@ -6,14 +6,24 @@ var smoothTransform = undefined;
 var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
-// Category colors shared with the water-use-15 site (js/styles.js there);
-// keep in sync with the .cat-highlight rules in stylesheets/vizlab-template.css
+// Category color ramps from the USGS "Changes in Water Use Categories"
+// palette (https://www.usgs.gov/mission-areas/water-resources/science/changes-water-use-categories).
+// Mid tones (3:1 against white) fill the map, the selected year's bar, the
+// legend, and the buttons; light tints mark the other years' bars. Keep in
+// sync with the .cat-highlight rules in stylesheets/vizlab-template.css.
 var colors = {
-  "Thermoelectric": "#EDC948",
-  "Public_Supply": "#76B7B2",
-  "Industrial": "#E15759",
-  "Irrigation": "#59A14F",
-  "Total": "#268CB2"
+  "Thermoelectric": "#7297B6",
+  "Public_Supply": "#D57C7C",
+  "Industrial": "#858E8D",
+  "Irrigation": "#B38C00",
+  "Total": "#539DD5"
+};
+var lightColors = {
+  "Thermoelectric": "#D0E7F0",
+  "Public_Supply": "#EADEDE",
+  "Industrial": "#D2D5D4",
+  "Irrigation": "#E6DED1",
+  "Total": "#D0E6F2"
 };
 
 $.when(reallyReadyPromise).then(function(){
@@ -119,6 +129,8 @@ var animate_bars = function(data) {
         scale = 0;
         color = 'grey';
       }
+      } else if (myYear !== year) {
+        color = lightColors[category];
       style = {
         "background": color,
         "transform": "scale3d(1," + scale + ",1)",
@@ -126,11 +138,6 @@ var animate_bars = function(data) {
         "transition": "all " + transitionTime + " ease-in-out"
       };
       bar.css(style);
-      if (myYear !== year) {
-        bar.css('opacity','0.25');
-      } else {
-        bar.css('opacity','1.0');
-      }
       var nodatabar = $("#nodataBar-" + myYear);
 
       if(value !== undefined){
