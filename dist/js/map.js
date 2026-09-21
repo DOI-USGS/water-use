@@ -6,12 +6,14 @@ var smoothTransform = undefined;
 var category = "Total";
 var year = "1950";
 var transitionTime = "1s";
+// Category colors shared with the water-use-15 site (js/styles.js there);
+// keep in sync with the .cat-highlight rules in stylesheets/vizlab-template.css
 var colors = {
-  "Thermoelectric": "#FCBA04",
-  "Public_Supply": "#BA3228",
-  "Industrial": "#8A716A",
-  "Irrigation": "#9BC53D",
-  "Total": "#2E86AB"
+  "Thermoelectric": "#EDC948",
+  "Public_Supply": "#76B7B2",
+  "Industrial": "#E15759",
+  "Irrigation": "#59A14F",
+  "Total": "#268CB2"
 };
 
 $.when(reallyReadyPromise).then(function(){

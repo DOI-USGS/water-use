@@ -344,3 +344,23 @@ h1, h2, h3, h4 {
     font-size: 2.1em;
   }
 }
+
+/* ============= CATEGORY HIGHLIGHTS ============= */
+/* Inline highlights that tie category names in the text back to the map,
+   bars, and legend. Colors match `colors` in js/map.js (shared with the
+   water-use-15 site). Black text on every color is at least 5.4:1
+   (WCAG AA for normal text). */
+.cat-highlight {
+  color: #000;
+  padding: 0 0.25em;
+  border-radius: 2px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cat-highlight--total { background-color: #268CB2; }
+.cat-highlight--thermoelectric { background-color: #EDC948; }
+.cat-highlight--public-supply { background-color: #76B7B2; }
+.cat-highlight--irrigation { background-color: #59A14F; }
+.cat-highlight--industrial { background-color: #E15759; }
