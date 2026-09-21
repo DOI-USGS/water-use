@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Moved the "In the map below, State size (area) is scaled…" subheading from the top of the page into a caption beneath the figure, in the caption style used on other Vizlab sites, and added the units (mgd) for the map and the bar chart
 - Changed the category colors in `map.js` to the mid tones of the USGS water-use category color ramps (from the "Changes in Water Use Categories" page), with the ramps' light tints for the bars of non-selected years in place of 25% opacity
 - Added inline color highlights where the category names are first mentioned in the text, tying them back to the map, bars, and legend: the ramp's light tint as the fill with the mid tone as an underline, so dark text meets WCAG AAA contrast
+- Added Cee Nell and Althea Archer as contributors for the 2026 update, in the page's authorship section and structured data and in the README citation and contributors
 - Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue
 - Unified layout across the page: one 700px text column, one 800px figure width, consistent heading levels, type scale, paragraph rhythm, and section spacing
 - Added the USGS "Changes in Water Use Categories" timeline image beneath the sentence about categories varying through time, with a caption linking to the source page
