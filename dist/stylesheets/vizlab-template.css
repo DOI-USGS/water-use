@@ -1,0 +1,222 @@
+/* Styles ported from the Vizlab vue3-template (rem values converted to px
+   at the template's 10px root font-size, since this site uses the 16px default) (HeaderUSWDSBanner.vue and
+   PreFooterCodeLinks.vue) so the banner and pre-footer match current
+   Vizlab sites. */
+
+:root {
+  --medium-blue: #4365A8;
+  --color-prefooter-highlight: var(--medium-blue);
+  --text-width: 760px;
+  --gutter: 10px;
+}
+
+/* ============= USWDS BANNER ============= */
+/* common.css sets `div { display: block }`, which overrides the browser's
+   default `[hidden] { display: none }` that USWDS 3 relies on to collapse the
+   banner. Restore it. */
+[hidden] {
+  display: none !important;
+}
+.usa-banner {
+  background-color: #00264c;
+}
+.usa-banner p, .usa-banner text {
+  color: #F0F0F0;
+  padding: 0;
+}
+.usa-banner__inner {
+  margin-left: 10px;
+  padding-left: 5px;
+}
+.usa-banner__header--expanded .usa-banner__inner {
+  margin-left: 10px;
+  padding-left: 5px;
+}
+.usa-banner__header-flag {
+  width: 16px;
+  margin-right: 7.5px;
+}
+.usa-banner__button {
+  color: #78B4E8;
+}
+.usa-accordion__button[aria-expanded=false] {
+  background-size: 24px;
+}
+@media (min-width: 600px) {
+  .usa-banner__header {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .usa-banner__header-text {
+    font-size: 14px;
+  }
+  .usa-banner__button {
+    font-size: 14px;
+  }
+  .usa-banner__button::after {
+    background-size: 16px 16px;
+    height: 16px;
+    width: 16px;
+  }
+  .usa-banner__button[aria-expanded=true]::after {
+    height: 16px;
+    width: 16px;
+  }
+  @supports ((-webkit-mask: url("")) or (mask: url(""))) {
+    .usa-banner__button::after {
+      -webkit-mask-size: 16px 16px;
+      mask-size: 16px 16px;
+    }
+    .usa-banner__button[aria-expanded=true]::after {
+      -webkit-mask-size: 16px 16px;
+      mask-size: 16px 16px;
+    }
+  }
+}
+.usa-banner__header-action::after {
+  background-size: 16px 16px;
+  height: 16px;
+  width: 16px;
+}
+@supports ((-webkit-mask: url("")) or (mask: url(""))) {
+  .usa-banner__header-action::after {
+    -webkit-mask-size: 16px 16px;
+    mask-size: 16px 16px;
+    background-color: #78B4E8;
+  }
+}
+@media screen and (max-width: 600px) {
+  .usa-banner__header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .usa-banner__header-text {
+    font-size: 13.5px;
+  }
+  .usa-banner__header-action {
+    font-size: 13.5px;
+  }
+  .usa-banner__button[aria-expanded=true]::before {
+    background-color: #e6e6e6;
+    height: 48px;
+    width: 48px;
+  }
+  .usa-banner__button[aria-expanded=true]::after {
+    height: 48px;
+    width: 48px;
+  }
+  @supports ((-webkit-mask: url("")) or (mask: url(""))) {
+    .usa-banner__button::after {
+      -webkit-mask-size: 24px 24px;
+      mask-size: 24px 24px;
+    }
+    .usa-banner__button[aria-expanded=true]::after {
+      -webkit-mask-size: 24px 24px;
+      mask-size: 24px 24px;
+    }
+  }
+}
+.usa-banner__button::after {
+  background-color: #78B4E8;
+}
+.usa-banner__button[aria-expanded=true]::before {
+  background-color: transparent;
+}
+.usa-banner__button[aria-expanded=true]::after {
+  background-color: #78B4E8;
+}
+.usa-banner__button:hover {
+  color: #A2CCF1;
+}
+.usa-banner__button:hover::after {
+  background-color: #A2CCF1;
+}
+.usa-banner__button[aria-expanded=true]:hover::after {
+  background-color: #A2CCF1;
+}
+.usa-banner .grid-row.grid-gap-lg {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.usa-media-block__img {
+  margin-right: 7.5px;
+}
+.usa-banner__content {
+  font-size: 16px;
+  max-width: 1000px;
+}
+.usa-banner__content p {
+  font-size: 16px;
+}
+.usa-banner__icon {
+  width: 40px;
+}
+
+/* ============= PRE-FOOTER LINKS ============= */
+.pre-footer-links {
+  background-color: white;
+  padding: 15px 0 20px;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 15px;
+  color: #1e1e1e;
+}
+/* Width/gutter adjusted to align with the page's text column (see LAYOUT) */
+.pre-footer-links__divider {
+  border-top: 1px solid #d4d8dd;
+  margin: 0 auto 15px;
+  width: auto;
+  max-width: calc(var(--text-width) - 2 * var(--gutter));
+}
+.pre-footer-links__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7.5px;
+  box-sizing: border-box;
+  width: auto;
+  max-width: var(--text-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.pre-footer-links__item {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 3.5px;
+  background-image: linear-gradient(var(--color-prefooter-highlight), var(--color-prefooter-highlight));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  padding-bottom: 1px;
+  transition: color 0.2s ease-in-out;
+}
+.pre-footer-links__item:hover,
+.pre-footer-links__item:focus-visible {
+  color: var(--color-prefooter-highlight);
+}
+.pre-footer-links__desktop-only {
+  display: none;
+}
+@media (min-width: 640px) {
+  .pre-footer-links__content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pre-footer-links__desktop-only {
+    display: inline;
+  }
+}
+
+/* ============= FOOTER SOCIAL ICONS ============= */
+/* Inline SVG used for the X (formerly Twitter) icon, which Font Awesome 4 lacks */
+footer.footer ul.social svg.fa-svg {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  fill: #fff;
+}
+

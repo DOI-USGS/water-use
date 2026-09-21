@@ -169,7 +169,9 @@ var get_state_value = (function() {
         }
         stateHoverTimer = setTimeout(function(){
           //could send cateogory and year here too?
-          ga('send', 'event', 'figure', 'Hovered on ' + state);
+          gtag('event', 'figure', {
+            'action': 'Hovered on ' + state
+          });
         }, stateHoverDelay);
 
         var stateData = transformData["totState"][year][category];
@@ -209,7 +211,9 @@ var setCategory = function(cat) {
   $('#' + cat).css("fill-opacity", "0.0");
   $('#' + cat).css("stroke-opacity","1.0");
   animate();
-  ga('send', 'event', 'figure', 'Category changed to ' + category);
+  gtag('event', 'figure', {
+    'action': 'Category changed to ' + category
+  });
 };
 
 var setYrTimer = null;
@@ -221,7 +225,9 @@ var setYear = function(yr) {
     clearTimeout(setYrTimer);
   }
   setYrTimer = setTimeout(function(){
-     ga('send', 'event', 'figure', 'Year changed to ' + year + ' ' + category);
+     gtag('event', 'figure', {
+       'action': 'Year changed to ' + year + ' ' + category
+     });
   }, sendYrDelay);
  };
 
