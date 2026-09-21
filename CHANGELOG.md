@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Updated the USWDS banner, USGS header, and USGS footer markup and links to match `vue3-template`; upgraded bundled USWDS assets from v2.7 to v3.13 and deferred the USWDS script so it runs after the page body exists
 - Restructured the end of the page into stacked Data Collection, References (alphabetical, name-based citations, now including the 2015 circular), and USGS Vizlab authorship sections, matching other Vizlab sites, with published and last-updated dates
 - Noted on the page that the 1985–2015 State data came from NWIS, which no longer serves water-use data, and that a data release is forthcoming
-- Moved the "In the map below, State size (area) is scaled…" subheading from the top of the page into a caption beneath the figure, in the caption style used on other Vizlab sites, and added the units (Mgal/d) for the map and the bar chart
+- Moved the "In the map below, State size (area) is scaled…" subheading from the top of the page into a caption beneath the figure, in the caption style used on other Vizlab sites, and added the units (mgd) for the map and the bar chart
 - Changed the category colors in `map.js` to the mid tones of the USGS water-use category color ramps (from the "Changes in Water Use Categories" page), with the ramps' light tints for the bars of non-selected years in place of 25% opacity
 - Added inline color highlights where the category names are first mentioned in the text, tying them back to the map, bars, and legend: the ramp's light tint as the fill with the mid tone as an underline, so dark text meets WCAG AAA contrast
 - Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue

@@ -111,7 +111,7 @@ var animate_resize_map = function(data) {
       }
     }
   });
-  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' million gallons per day (Mgal/d) water withdrawal';
+  document.getElementById('category-area-text').firstChild.data = transformData.catVals[category].toLocaleString() + ' million gallons per day (mgd) water withdrawal';
 };
 
 var animate_bars = function(data) {
@@ -129,9 +129,9 @@ var animate_bars = function(data) {
       if (isNaN(scale)){
         scale = 0;
         color = 'grey';
-      }
       } else if (myYear !== year) {
         color = lightColors[category];
+      }
       style = {
         "background": color,
         "transform": "scale3d(1," + scale + ",1)",
@@ -142,7 +142,7 @@ var animate_bars = function(data) {
       var nodatabar = $("#nodataBar-" + myYear);
 
       if(value !== undefined){
-        value = value.toLocaleString() + ' Mgal/d';
+        value = value.toLocaleString() + ' mgd';
       } else {
         nodataOp = "1.0";
       }
@@ -271,7 +271,7 @@ function hovertext(text, evt, stateName){
     if (isNaN(displayNum)){
       displayNum = 'no data';
     } else {
-      displayNum = displayNum.toLocaleString() + ' Mgal/d';
+      displayNum = displayNum.toLocaleString() + ' mgd';
     }
     text = text + ': ' + displayNum;
     pt = cursorPoint(evt);
