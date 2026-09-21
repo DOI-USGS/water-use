@@ -16,12 +16,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Updated the USWDS banner, USGS header, and USGS footer markup and links to match `vue3-template`; upgraded bundled USWDS assets from v2.7 to v3.13 and deferred the USWDS script so it runs after the page body exists
 - Restructured the end of the page into stacked Data Collection, References (alphabetical, name-based citations, now including the 2015 circular), and USGS Vizlab authorship sections, matching other Vizlab sites, with published and last-updated dates
 - Noted on the page that the 1985–2015 State data came from NWIS, which no longer serves water-use data, and that a data release is forthcoming
+- Switched the page font from Open Sans to Source Sans 3, made headings bold, and enlarged the page title in USGS blue
+- Unified layout across the page: one 700px text column, one 800px figure width, consistent heading levels, type scale, paragraph rhythm, and section spacing
 - Replaced retired `water.usgs.gov/watuse` links with their current `usgs.gov` locations
 - Updated `og:url` and social media image URLs in `dist/index.html` for the new site URL and S3 image hosting
 - Rewrote `README.md` to describe the `dist/` site, how to serve it locally, and how the site was originally built
 - Updated `code.json` and `CONTRIBUTING.md` to point at the `DOI-USGS` GitHub organization and the new site URL, https://water.usgs.gov/vizlab/water-use-1950-2015
 
 ### Fixed
+- Fixed a `#nodataBar-201f` selector typo in `main.css` so the 2015 "no data" marker is positioned like the others
 
 ## [1.0.0] - 2016-12-13
 

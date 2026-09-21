@@ -1,13 +1,12 @@
-/* Styles ported from the Vizlab vue3-template (rem values converted to px
-   at the template's 10px root font-size, since this site uses the 16px default) (HeaderUSWDSBanner.vue and
-   PreFooterCodeLinks.vue) so the banner and pre-footer match current
-   Vizlab sites. */
+/* Styles ported from the Vizlab vue3-template (HeaderUSWDSBanner.vue and
+   PreFooterCodeLinks.vue; rem values converted to px at the template's 10px
+   root font-size, since this site uses the 16px default) so the banner and
+   pre-footer match current Vizlab sites, plus the page-wide layout and
+   typography that bring the rest of the page in line with the template. */
 
 :root {
   --medium-blue: #4365A8;
   --color-prefooter-highlight: var(--medium-blue);
-  --text-width: 760px;
-  --gutter: 10px;
 }
 
 /* ============= USWDS BANNER ============= */
@@ -220,3 +219,115 @@ footer.footer ul.social svg.fa-svg {
   fill: #fff;
 }
 
+
+/* ============= LAYOUT ============= */
+/* One text column and one figure width for the whole page, matching the
+   template's 700px text-container. Overrides the breakpoint-specific
+   .container widths in css/main.css. */
+:root {
+  --text-width: 700px;
+  --figure-width: 800px;
+  --gutter: 10px;
+}
+
+#maincontent .container {
+  box-sizing: border-box;
+  width: auto;
+  max-width: var(--figure-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Text blocks: title, intro, narrative, end sections */
+.page-title,
+#maincontent .viz-text {
+  box-sizing: border-box;
+  width: auto;
+  max-width: var(--text-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+#maincontent .viz-text {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+#maincontent .viz-text:first-of-type {
+  margin-top: 0;
+}
+
+/* End-of-page sections: stacked, with a rule separating them from the
+   page content, styled like the pre-footer divider */
+#extras {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+#extras::before {
+  content: "";
+  display: block;
+  border-top: 1px solid #d4d8dd;
+  margin-bottom: 2.5rem;
+}
+#extras .end-section + .end-section {
+  margin-top: 2rem;
+}
+#data-collection p,
+#references p,
+#authors p {
+  overflow-wrap: anywhere;
+}
+
+/* ============= TYPOGRAPHY ============= */
+/* Source Sans 3 (successor to Source Sans Pro, the Vizlab default font) for
+   the whole page; bold headings. Overrides the body rule in css/main.css. */
+body,
+footer,
+#navbar {
+  font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+}
+/* One type scale for the whole page:
+   h1 (page title) 3em / h2 (section) 1.5em / h3 (sub-section) 1.2em /
+   body text 1em. */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+#maincontent .container h2 {
+  font-size: 1.5em;
+  margin: 2rem 0 0.75rem 0;
+}
+#maincontent .container > h2:first-child,
+#extras .end-section:first-child h2 {
+  margin-top: 0;
+}
+#maincontent .container h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem 0;
+}
+#maincontent .container p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 0 1em 0;
+}
+.page-title {
+  font-size: 3em;
+  font-weight: 800;
+  color: #00264c; /* USGS blue, matching the header */
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 2.5rem auto 1.25rem auto;
+}
+.byline {
+  font-style: italic;
+  color: #555;
+  margin-top: 0.5rem;
+}
+@media screen and (max-width: 599px) {
+  .page-title {
+    font-size: 2.1em;
+  }
+}
