@@ -16,3 +16,6 @@ Makefile
 .Rapp.history
 # Session Data files
 .RData
+
+# macOS
+*.DS_Store

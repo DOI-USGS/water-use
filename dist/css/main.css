@@ -1,0 +1,237 @@
+*{padding:0; margin:0;}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+    .map{
+      width:100%;
+      height:500px;
+    }
+}
+
+body{
+	font-family:"Open Sans", Gill Sans, Gill Sans MT, Myriad Pro, DejaVu Sans Condensed, Helvetica, Arial," sans-serif";
+	position:relative;
+}
+
+.container{
+	min-height:30px;
+	padding: 0 10px;
+}
+
+.container h3{
+  margin:5px 0;
+  font-size:1em;
+}
+
+.container p{
+  font-size:.9em;
+  margin-top:10px;
+}
+
+.container a{
+  color:rgb(0,51,102);
+  font-weight:700;
+}
+
+.container a:hover{
+  text-decoration:none;
+}
+
+.map{
+	min-height:100px;
+}
+
+.dataBars,
+.timeslider,
+.eventHolder{
+  width:95%;
+}
+
+/* One bar per compilation year, each centered on its tick on the timeline
+   below: bar i of 14 sits at i/13 of the width, shifted left by half its
+   width. Bars are scaled from the baseline by map.js. */
+.dataBars{
+  --bar-w: 16px;
+  --years: 13;
+  height:50px;
+  margin:36px auto 10px auto;
+  display: flex;
+  flex-direction:row;
+  position:relative;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.dataBar{
+  background:white;
+  height:100%;
+  width:var(--bar-w);
+  margin-left:calc(var(--bar-w) / -2);
+  position:absolute;
+  bottom:0;
+  border-radius: 2px 2px 0 0;
+  outline: 1px solid transparent;
+}
+
+.nodataBar{
+  background:none;
+  height:2%;
+  width:var(--bar-w);
+  margin-left:calc(var(--bar-w) / -2);
+  margin-top:30px;
+  position:absolute;
+  outline: 1px solid transparent;
+}
+.nodataText{
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  white-space: nowrap;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  cursor: default;
+  font-size: .75em;
+  color: #6a6a6a;
+}
+
+/* Value of the selected year, positioned above its bar by map.js */
+.dataBarLabel{
+  position:absolute;
+  bottom:0;
+  transform: translateX(-50%);
+  padding-bottom: 4px;
+  font-size: .85em;
+  font-weight: 600;
+  line-height: 1;
+  color: #1e1e1e;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: left 1s ease-in-out, bottom 1s ease-in-out;
+}
+/* Keep the label inside the chart on the first and last bars */
+.dataBarLabel.at-start{
+  transform: translateX(calc(var(--bar-w) / -2));
+}
+.dataBarLabel.at-end{
+  transform: translateX(calc(-100% + var(--bar-w) / 2));
+}
+
+#bar-1950, #nodataBar-1950 {
+  left:calc(100% * 0 / var(--years));
+}
+
+#bar-1955, #nodataBar-1955 {
+  left:calc(100% * 1 / var(--years));
+}
+
+#bar-1960, #nodataBar-1960 {
+  left:calc(100% * 2 / var(--years));
+}
+
+#bar-1965, #nodataBar-1965 {
+  left:calc(100% * 3 / var(--years));
+}
+
+#bar-1970, #nodataBar-1970 {
+  left:calc(100% * 4 / var(--years));
+}
+
+#bar-1975, #nodataBar-1975 {
+  left:calc(100% * 5 / var(--years));
+}
+
+#bar-1980, #nodataBar-1980 {
+  left:calc(100% * 6 / var(--years));
+}
+
+#bar-1985, #nodataBar-1985 {
+  left:calc(100% * 7 / var(--years));
+}
+
+#bar-1990, #nodataBar-1990 {
+  left:calc(100% * 8 / var(--years));
+}
+
+#bar-1995, #nodataBar-1995 {
+  left:calc(100% * 9 / var(--years));
+}
+
+#bar-2000, #nodataBar-2000 {
+  left:calc(100% * 10 / var(--years));
+}
+
+#bar-2005, #nodataBar-2005 {
+  left:calc(100% * 11 / var(--years));
+}
+
+#bar-2010, #nodataBar-2010 {
+  left:calc(100% * 12 / var(--years));
+}
+
+#bar-2015, #nodataBar-2015 {
+  left:calc(100% * 13 / var(--years));
+}
+
+.ui-tooltip
+{
+    max-width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    opacity: 0.85;
+}
+
+.timeslider{
+	margin:10px auto 60px auto;
+}
+
+@media screen and (max-width:599px){
+  .dataBars{
+    --bar-w: 10px;
+  }
+  .dataBarLabel{
+    font-size: .75em;
+  }
+}
+
+@media screen and (min-width:768px){
+
+  .container{
+		width:560px;
+		margin:0 auto;
+	}
+
+  .dataBars{
+    height:90px;
+  }
+  .nodataBar{
+    margin-top:60px;
+  }
+}
+
+
+@media screen and (min-width:1024px){
+
+	.container{
+		width:760px;
+	}
+
+}
+
+@media screen and (min-width:1500px){
+
+	.container{
+		width:800px;
+	}
+
+}
+
+@media screen and (min-width:2000px){
+
+	.container{
+		width:1200px;
+	}
+
+}
